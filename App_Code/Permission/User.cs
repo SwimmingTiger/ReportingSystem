@@ -1,0 +1,132 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Data.SqlClient;
+using System.Security.Cryptography;
+using System.Text;
+using DB;
+
+/// <summary>
+/// 权限管理模块
+/// </summary>
+namespace Permission
+{
+
+    /// <summary>
+    /// 用户权限类
+    /// </summary>
+    public class User
+    {
+        /// <summary>
+        /// 跳转到登录页面
+        /// </summary>
+        public static void JumpToLoginPage() {
+            HttpContext.Current.Response.Redirect("/Login.aspx?backUrl=" + HttpUtility.UrlEncode(HttpContext.Current.Request.Url.AbsolutePath));
+        }
+
+        /// <summary>
+        /// 跳转回登录前的页面
+        /// </summary>
+        public static void JumpPageBack()
+        {
+            String backUrl = HttpContext.Current.Request.Params["backUrl"];
+
+            if (backUrl == null) {
+                backUrl = "/";
+            }
+
+            HttpContext.Current.Response.Redirect(backUrl);
+        }
+
+        /// <summary>
+        /// 检查用户是否登录，若未登录，则跳转到登录页面
+        /// </summary>
+        public static void LoginCheck()
+        {
+            if (HttpContext.Current.Session["UserId"] == null)
+            {
+                JumpToLoginPage();
+            }
+        }
+
+        /// <summary>
+        /// 获取用户id
+        /// </summary>
+        /// <returns></returns>
+        public static int GetId() {
+            int id = 0;
+
+            if (HttpContext.Current.Session["UserId"] != null) {
+                id = (int)HttpContext.Current.Session["UserId"];
+            }
+
+            return id;
+        }
+
+        /// <summary>
+        /// 获取用户名
+        /// </summary>
+        /// <returns></returns>
+        public static string GetName() {
+            string sql = "SELECT username FROM userinfo WHERE id=@id";
+            SqlParam data = new SqlParam { { "@id", GetId() } };
+            Database db = new Database();
+            SqlDataReader reader = db.Query(sql, data);
+            string name = null;
+
+            if (reader.Read()) {
+                name = (string)reader["username"];
+            }
+
+            reader.Close();
+            db.Close();
+
+            return name;
+        }
+
+        /// <summary>
+        /// 32位MD5加密
+        /// </summary>
+        /// <param name="input">原始内容</param>
+        /// <returns>md5值</returns>
+        /// <links>http://blog.163.com/m13864039250_1/blog/static/21386524820150231533602/</links>
+        private static string HashPassword(string input)
+        {
+            MD5CryptoServiceProvider md5Hasher = new MD5CryptoServiceProvider();
+            byte[] data = md5Hasher.ComputeHash(Encoding.Default.GetBytes(input));
+            StringBuilder sBuilder = new StringBuilder();
+            for (int i = 0; i < data.Length; i++)
+            {
+                sBuilder.Append(data[i].ToString("x2"));
+            }
+            return sBuilder.ToString();
+        }
+
+        public static void Login(string username, string password) {
+            string sql = "SELECT id,password FROM userinfo WHERE username=@name";
+            SqlParam data = new SqlParam { { "@name", username } };
+            Database db = new Database();
+            SqlDataReader reader = db.Query(sql, data);
+
+            if (!reader.Read()) {
+                reader.Close();
+                db.Close();
+                throw new Exception("用户名不存在");
+            }
+
+            string hashedPassword = (string)reader["password"];
+            int id = (int)reader["id"];
+            reader.Close();
+            db.Close();
+
+            if (HashPassword(password) != hashedPassword) {
+                throw new Exception("密码错误");
+            }
+
+            HttpContext.Current.Session["UserId"] = id;
+            JumpPageBack();
+        }
+    }
+
+}
