@@ -17,7 +17,7 @@ namespace DB
     public class SqlParam : Dictionary<string, object>
     {
         // 该类没有扩展 Dictionary<string, object> 的功能。
-        // 创建该类仅仅为了给 Dictionary<string, object> 取一个全局的别名。
+        // 该类是 Dictionary<string, object> 的一个别名。
     }
 
     /// <summary>

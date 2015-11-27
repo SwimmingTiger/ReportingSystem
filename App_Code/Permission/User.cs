@@ -12,6 +12,15 @@ using DB;
 /// </summary>
 namespace Permission
 {
+    /// <summary>
+    /// 用户异常类
+    /// </summary>
+    public class UserException: Exception {
+        public UserException(string msg):base(msg) {
+            // 该类没有扩展 Exception 的功能。
+            // 该类是为了区分不同类型的异常
+        }
+    }
 
     /// <summary>
     /// 用户权限类
@@ -112,7 +121,7 @@ namespace Permission
             if (!reader.Read()) {
                 reader.Close();
                 db.Close();
-                throw new Exception("用户名不存在");
+                throw new UserException("用户名不存在");
             }
 
             string hashedPassword = (string)reader["password"];
@@ -121,7 +130,7 @@ namespace Permission
             db.Close();
 
             if (HashPassword(password) != hashedPassword) {
-                throw new Exception("密码错误");
+                throw new UserException("密码错误");
             }
 
             HttpContext.Current.Session["UserId"] = id;
