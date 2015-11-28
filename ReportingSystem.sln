@@ -7,21 +7,21 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ReportingSystem", ".", "{A7
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_53785"
-		Debug.AspNetCompiler.PhysicalPath = "..\ReportingSystem\"
+		Debug.AspNetCompiler.PhysicalPath = "..\ReportingSystem - 副本\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_53785\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.VirtualPath = "/localhost_53785"
-		Release.AspNetCompiler.PhysicalPath = "..\ReportingSystem\"
+		Release.AspNetCompiler.PhysicalPath = "..\ReportingSystem - 副本\"
 		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_53785\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "53785"
-		SlnRelativePath = "..\ReportingSystem\"
+		SlnRelativePath = "..\ReportingSystem - 副本\"
 	EndProjectSection
 EndProject
 Global
