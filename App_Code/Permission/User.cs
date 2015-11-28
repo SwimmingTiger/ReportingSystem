@@ -31,7 +31,7 @@ namespace Permission
         /// 跳转到登录页面
         /// </summary>
         public static void JumpToLoginPage() {
-            HttpContext.Current.Response.Redirect("/Login.aspx?backUrl=" + HttpUtility.UrlEncode(HttpContext.Current.Request.Url.AbsolutePath));
+            HttpContext.Current.Response.Redirect(Param.Website.VIEW_PATH + "/Permission/Login.aspx?backUrl=" + HttpUtility.UrlEncode(HttpContext.Current.Request.Url.AbsolutePath));
         }
 
         /// <summary>
