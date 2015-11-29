@@ -36,35 +36,6 @@
                 <asp:Parameter Name="original_id" Type="Int32" />
             </UpdateParameters>
         </asp:SqlDataSource>
-        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="SqlDataSource2">
-            <Columns>
-                <asp:BoundField DataField="id" HeaderText="id" InsertVisible="False" ReadOnly="True" SortExpression="id" />
-                <asp:BoundField DataField="date_input" HeaderText="date_input" SortExpression="date_input" />
-                <asp:TemplateField HeaderText="city_encode" SortExpression="city_encode">
-                    <EditItemTemplate>
-                        <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("city_encode") %>'></asp:TextBox>
-                    </EditItemTemplate>
-                    <ItemTemplate>
-                        <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [type], [code], [name] FROM [report_param] WHERE ([id] = @id)">
-                            <SelectParameters>
-                                <asp:ControlParameter ControlID="Label1" Name="id" PropertyName="Text" Type="Int32" />
-                            </SelectParameters>
-                        </asp:SqlDataSource>
-                        
-                        <asp:Label ID="Label1" runat="server" Text='<%# Bind("city_encode") %>' Visible="False"></asp:Label>
-                        <asp:ListView ID="ListView2" runat="server" DataSourceID="SqlDataSource3">
-                            <ItemTemplate>
-                                <asp:Label ID="idLabel" runat="server" Text='<%# Eval("name") %>' />
-                            </ItemTemplate>
-                        </asp:ListView>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:BoundField DataField="product_encode" HeaderText="product_encode" SortExpression="product_encode" />
-                <asp:BoundField DataField="cardsell_amount" HeaderText="cardsell_amount" SortExpression="cardsell_amount" />
-                <asp:BoundField DataField="face_value" HeaderText="face_value" SortExpression="face_value" />
-                <asp:BoundField DataField="card_totalamount" HeaderText="card_totalamount" SortExpression="card_totalamount" />
-            </Columns>
-        </asp:GridView>
 
 
         <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource2">
@@ -183,15 +154,30 @@
                         <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="编辑" />
                     </td>
                     <td>
-                        <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
+                        wo~<asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
                         
                     </td>
                     <td>
                         <asp:Label ID="date_inputLabel" runat="server" Text='<%# Eval("date_input") %>' />
                     </td>
+                    
                     <td>
-                        <asp:Label ID="city_encodeLabel" runat="server" Text='<%# Eval("city_encode") %>' />
+                        <asp:Label ID="city_encodeLabel" runat="server" Text='<%# Eval("city_encode") %>' Visible="False"/>
+                         <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [type], [code], [name] FROM [report_param] WHERE ([id] = @id)">
+                            <SelectParameters>
+                                <asp:ControlParameter ControlID="city_encodeLabel" Name="id" PropertyName="Text" Type="Int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                        
+                        <asp:ListView ID="ListView2" runat="server" DataSourceID="SqlDataSource4">
+                            <ItemTemplate>
+                                <asp:Label ID="idLabel" runat="server" Text='<%# Eval("name") %>' />
+                            </ItemTemplate>
+                        </asp:ListView>
                     </td>
+
+         
+                    
                     <td>
                         <asp:Label ID="product_encodeLabel" runat="server" Text='<%# Eval("product_encode") %>' />
                     </td>
