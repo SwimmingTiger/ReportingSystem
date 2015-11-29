@@ -8,21 +8,21 @@ namespace Param
     /// <summary>
     /// 报表数据状态
     /// </summary>
-    public class ReportStatus
+    public enum ReportStatus
     {
         /// <summary>
         /// 正常
         /// </summary>
-        public const int NORMAL = 0;
+        NORMAL = 0,
 
         /// <summary>
         /// 未稽核
         /// </summary>
-        public const int UNCHECKED = 1;
+        UNCHECKED = 1,
 
         /// <summary>
         /// 有错误
         /// </summary>
-        public const int MISTAKE = 2;
+        MISTAKE = 2,
     }
 }
