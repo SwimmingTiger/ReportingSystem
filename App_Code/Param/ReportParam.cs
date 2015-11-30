@@ -32,7 +32,7 @@ namespace Param
             /// <summary>
             /// 销账类型
             /// </summary>
-            CASH_RECONCILIATION = 3,
+            RECONCILIATION = 3,
 
             /// <summary>
             /// 通知单收入类型
@@ -53,6 +53,52 @@ namespace Param
             /// 结算类型
             /// </summary>
             SEETLEMENT_TYPE = 7,
+        };
+
+        public static readonly Dictionary<int, string> TypeNames = new Dictionary<int, string> {
+                {(int)Type.CITY, "地市编码" },
+                {(int)Type.PRODUCT, "产品编码" },
+                {(int)Type.ACCOUNT, "出账收入类型编码" },
+                {(int)Type.RECONCILIATION, "销账类型编码" },
+                {(int)Type.NOTICE_LETTER, "通知单收入类型编码" },
+                {(int)Type.PAYMENT_PURPOSE, "收款用途编码" },
+                {(int)Type.OPERATOR, "结算运营商编码" },
+                {(int)Type.SEETLEMENT_TYPE, "结算类型编码" },
+        };
+
+        /// <summary>
+        /// 标志字段定义
+        /// </summary>
+        public class Flag {
+            /// <summary>
+            /// 产品标志字段
+            /// </summary>
+            public class Product {
+                /// <summary>
+                /// 是否使用
+                /// </summary>
+                public const int USE = 1; // 1
+                /// <summary>
+                /// 是否出账收入
+                /// </summary>
+                public const int ACCOUNT = 1 << 1; // 2
+                /// <summary>
+                /// 是否卡销售
+                /// </summary>
+                public const int SALE = 1 << 2; // 4
+                /// <summary>
+                /// 是否网间结算
+                /// </summary>
+                public const int SETTLEMENT = 1 << 3; // 8
+                /// <summary>
+                /// 是否预存转收入
+                /// </summary>
+                public const int PRESTORE = 1 << 4; // 16
+                /// <summary>
+                /// 是否通知单
+                /// </summary>
+                public const int NOTICE = 1 << 5; // 32
+            }
         }
 
         public enum Relation {
@@ -65,6 +111,6 @@ namespace Param
             /// 产品-通知单对应关系
             /// </summary>
             PRODUCT_NOTICE = 1,
-        }
+        };
     }
 }
