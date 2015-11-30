@@ -30,7 +30,7 @@ namespace Permission
         /// <summary>
         /// 核对报表（收款稽核）
         /// </summary>
-        public const int CHECK_REPORTS = 1 << 1; // 1 << 1 = 00000001左移一位 = 00000010 = 2
+        public const int AUDIT_REPORTS = 1 << 1; // 1 << 1 = 00000001左移一位 = 00000010 = 2
 
         /// <summary>
         /// 阅读报表（数据归集）
@@ -40,17 +40,17 @@ namespace Permission
         /// <summary>
         /// 编辑用户（权限管理）
         /// </summary>
-        public const int EDIT_USER = 1 << 3;
+        public const int EDIT_USER = 1 << 3; // 8
 
         /// <summary>
         /// 编辑报表参数（参数管理）
         /// </summary>
-        public const int EDIT_REPORT_PARAMS = 1 << 4;
+        public const int EDIT_REPORT_PARAMS = 1 << 4; // 16
 
         /// <summary>
         /// 阅读日志（日志管理）
         /// </summary>
-        public const int READ_LOG = 1 << 5;
+        public const int READ_LOG = 1 << 5; // 32
 
         public static string GetPermissionName(int permission)
         {
