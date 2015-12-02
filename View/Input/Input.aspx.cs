@@ -27,6 +27,7 @@ public partial class Input : System.Web.UI.Page
     protected void LinkButton1_Click(object sender, EventArgs e)
     {
         this.MultiView1.ActiveViewIndex = 0;
+        
     }
     protected void LinkButton2_Click(object sender, EventArgs e)
     {
@@ -61,6 +62,26 @@ public partial class Input : System.Web.UI.Page
     }
 
     protected void ListView3_SelectedIndexChanged(object sender, EventArgs e)
+    {
+       
+    }
+
+    protected void SqlDataSource10_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
+    {
+
+    }
+
+    protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void InsertButton_Click(object sender, EventArgs e)
+    {
+        
+    }
+
+    protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
     {
 
     }
