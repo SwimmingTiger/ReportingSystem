@@ -15,109 +15,14 @@
         <asp:Button ID="Button4" runat="server" BorderWidth="0" Text="预存转收入收入基本信息" OnClick="LinkButton4_Click" />
         <asp:Button ID="Button5" runat="server" BorderWidth="0" Text="  通知单收入基本信息  " OnClick="LinkButton5_Click" /> 
         
-        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:database %>"
-             SelectCommand="SELECT * FROM [data_cardsale]"
-             DeleteCommand="DELETE FROM [data_cardsale] WHERE [id] = @original_id"
-             InsertCommand="INSERT INTO [data_cardsale] ([date], [city], [product], [number], [unit_price], [final_price], [status]) VALUES (@date, @city, @product, @number, @unit_price, @final_price, @status)" 
-             OldValuesParameterFormatString="original_{0}"
-             UpdateCommand="UPDATE [data_cardsale] SET [date] = @date, [city] = @city, [product] = @product, [number] = @number, [unit_price] = @unit_price, [final_price] = @final_price, [status] = @status WHERE [id] = @original_id">
-            <DeleteParameters>
-                <asp:Parameter Name="original_id" Type="Int32" />
-            </DeleteParameters>
-            <InsertParameters>
-                <asp:Parameter DbType="Date" Name="date" />
-                <asp:Parameter Name="city" Type="Int32" />
-                <asp:Parameter Name="product" Type="Int32" />
-                <asp:Parameter Name="number" Type="Int32" />
-                <asp:Parameter Name="unit_price" Type="Decimal" />
-                <asp:Parameter Name="final_price" Type="Decimal" />
-                <asp:Parameter Name="status" Type="Int32" DefaultValue="1"/>
-            </InsertParameters>
-            <UpdateParameters>
-                <asp:Parameter DbType="Date" Name="date" />
-                <asp:Parameter Name="city" Type="Int32" />
-                <asp:Parameter Name="product" Type="Int32" />
-                <asp:Parameter Name="number" Type="Int32" />
-                <asp:Parameter Name="unit_price" Type="Decimal" />
-                <asp:Parameter Name="final_price" Type="Decimal" />
-                <asp:Parameter Name="status" Type="Int32" />
-                <asp:Parameter Name="original_id" Type="Int32" />
-            </UpdateParameters>
-        </asp:SqlDataSource>
-
-        <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource2">
-        </asp:Repeater>
-
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="SqlDataSource2" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
-            <Columns>
-                <asp:CommandField ShowEditButton="True" />
-                <asp:BoundField DataField="id" HeaderText="id" InsertVisible="False" ReadOnly="True" SortExpression="id" />
-                <asp:BoundField DataField="date" HeaderText="date" SortExpression="date" />
-                <asp:TemplateField HeaderText="city" SortExpression="city">
-                    <EditItemTemplate>
-                        <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("city") %>'></asp:TextBox>
-                    </EditItemTemplate>
-                    <ItemTemplate>
-                        <asp:Label ID="Label1" runat="server" Text='<%# Bind("city") %>' Visible="False"></asp:Label>
-                        <asp:SqlDataSource ID="SqlDataSource10" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [name] FROM [report_param] WHERE ([id] = @id)" OnSelecting="SqlDataSource10_Selecting">
-                            <SelectParameters>
-                                <asp:ControlParameter ControlID="Label1" Name="id" PropertyName="Text" Type="Int32" />
-                            </SelectParameters>
-                        </asp:SqlDataSource>
-                        <asp:ListView ID="ListView7" runat="server" DataSourceID="SqlDataSource10">
-                            <ItemTemplate>
-                                <asp:Label ID="Label1" runat="server" Text='<%# Bind("name") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:ListView>
-                        <asp:Label ID="Label2" runat="server" Text='<%# Eval("product") %>'></asp:Label>
-                        <asp:SqlDataSource ID="SqlDataSource11" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [name] FROM [report_param] WHERE ([id] = @id)">
-                            <SelectParameters>
-                                <asp:ControlParameter ControlID="Label2" Name="id" PropertyName="Text" Type="Int32" />
-                            </SelectParameters>
-                        </asp:SqlDataSource>
-                        <asp:ListView ID="ListView8" runat="server" DataSourceID="SqlDataSource11">
-                            <ItemTemplate>
-                                <asp:Label ID="Label2" runat="server" Text='<%# Bind("name") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:ListView>
-                        <br />
-                        <br />
-                        <asp:SqlDataSource ID="SqlDataSource12" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type)">
-                            <SelectParameters>
-                                <asp:Parameter DefaultValue="0" Name="type" Type="Int32" />
-                            </SelectParameters>
-                        </asp:SqlDataSource>
-                        <br />
-                        <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource12" DataTextField="name" DataValueField="id" SelectedValue='<%# Bind("city") %>'>
-                        </asp:DropDownList>
-                        <br />
-                        <asp:SqlDataSource ID="SqlDataSource13" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type)">
-                            <SelectParameters>
-                                <asp:Parameter DefaultValue="1" Name="type" Type="Int32" />
-                            </SelectParameters>
-                        </asp:SqlDataSource>
-                        <asp:DropDownList ID="DropDownList2" runat="server" DataSourceID="SqlDataSource13" DataTextField="name" DataValueField="id" SelectedValue='<%# Bind("product") %>'>
-                        </asp:DropDownList>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:BoundField DataField="product" HeaderText="product" SortExpression="product" />
-                <asp:BoundField DataField="number" HeaderText="number" SortExpression="number" />
-                <asp:BoundField DataField="unit_price" HeaderText="unit_price" SortExpression="unit_price" />
-                <asp:BoundField DataField="final_price" HeaderText="final_price" SortExpression="final_price" />
-                <asp:BoundField DataField="status" HeaderText="status" SortExpression="status" />
-            </Columns>
-            <EmptyDataTemplate>
-                <asp:Label ID="Label1" runat="server" Text='<%# Eval("city") %>'></asp:Label>
-            </EmptyDataTemplate>
-        </asp:GridView>
-        <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex = 1>
+        <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex = 0>
             <asp:View ID="View1" runat="server">
             <asp:SqlDataSource ID="SqlDataSource6" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" DeleteCommand="DELETE FROM [data_account] WHERE [id] = @id" InsertCommand="INSERT INTO [data_account] ([month], [city], [product], [type], [money],[status]) VALUES (@month, @city, @product, @type, @money,@status)" SelectCommand="SELECT * FROM [data_account]" UpdateCommand="UPDATE [data_account] SET [month] = @month, [city] = @city, [product] = @product, [type] = @type, [money] = @money, [status] = @status WHERE [id] = @id">
                     <DeleteParameters>
                         <asp:Parameter Name="id" Type="Int32" />
                     </DeleteParameters>
                     <InsertParameters>
-                        <asp:Parameter Name="month" Type="Int32" />
+                        <asp:Parameter Name="month" DbType="Date" />
                         <asp:Parameter Name="city" Type="Int32" />
                         <asp:Parameter Name="product" Type="Int32" />
                         <asp:Parameter Name="type" Type="Int32" />
@@ -126,7 +31,7 @@
                      
                     </InsertParameters>
                     <UpdateParameters>
-                        <asp:Parameter Name="month" Type="Int32" />
+                        <asp:Parameter Name="month" DbType="Date" />
                         <asp:Parameter Name="city" Type="Int32" />
                         <asp:Parameter Name="product" Type="Int32" />
                         <asp:Parameter Name="type" Type="Int32" />
@@ -136,7 +41,7 @@
                     </UpdateParameters>
                 </asp:SqlDataSource>
                 出账收入信息
-                <asp:ListView ID="ListView3" runat="server" DataKeyNames="id" DataSourceID="SqlDataSource6" InsertItemPosition="LastItem" OnSelectedIndexChanged="ListView3_SelectedIndexChanged">
+                <asp:ListView ID="ListView0" runat="server" DataKeyNames="id" DataSourceID="SqlDataSource6" InsertItemPosition="LastItem" OnSelectedIndexChanged="ListView3_SelectedIndexChanged">
                     <AlternatingItemTemplate>
                         <tr style="background-color: #FFFFFF;color: #284775;">
                             <td>
@@ -179,13 +84,25 @@
                         </asp:ListView>
                             </td>
                             <td>
-                                <asp:Label ID="typeLabel" runat="server" Text='<%# Eval("type") %>' />
+                                <asp:Label ID="Label3" runat="server" Text='<%# Bind("type") %>'></asp:Label>
+                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [name] FROM [report_param] WHERE ([id] = @id)">
+                            <SelectParameters>
+                                <asp:ControlParameter ControlID="Label3" Name="id" PropertyName="Text" Type="Int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                        <asp:ListView ID="ListView1" runat="server" DataSourceID="SqlDataSource2">
+                        
+                            <ItemTemplate>
+                                        <asp:Label ID="nameLabel" runat="server" Text='<%# Eval("name") %>' />
+                            </ItemTemplate>
+             
+                        </asp:ListView>
                             </td>
                             <td>
                                 <asp:Label ID="moneyLabel" runat="server" Text='<%# Eval("money") %>' />
                             </td>
                             <td>
-                                <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' />
+                                <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' OnDataBinding="statusLabel_Load" />
                             </td>
                         </tr>
                     </AlternatingItemTemplate>
@@ -221,7 +138,14 @@
                         </asp:DropDownList>
                             </td>
                             <td>
-                                <asp:TextBox ID="typeTextBox" runat="server" Text='<%# Bind("type") %>' />
+                                
+                                   <asp:SqlDataSource ID="SqlDataSource14" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type)">
+                            <SelectParameters>
+                                <asp:Parameter DefaultValue="2" Name="type" Type="Int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                        <asp:DropDownList ID="DropDownList3" runat="server" DataSourceID="SqlDataSource14" DataTextField="name" DataValueField="id">
+                        </asp:DropDownList>
                             </td>
                             <td>
                                 <asp:TextBox ID="moneyTextBox" runat="server" Text='<%# Bind("money") %>' />
@@ -267,7 +191,13 @@
                         </asp:DropDownList>
                             </td>
                             <td>
-                                <asp:TextBox ID="typeTextBox" runat="server" Text='<%# Bind("type") %>' />
+                                   <asp:SqlDataSource ID="SqlDataSource14" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type)">
+                            <SelectParameters>
+                                <asp:Parameter DefaultValue="2" Name="type" Type="Int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                        <asp:DropDownList ID="DropDownList3" runat="server" DataSourceID="SqlDataSource14" DataTextField="name" DataValueField="id">
+                        </asp:DropDownList>
                             </td>
                             <td>
                                 <asp:TextBox ID="moneyTextBox" runat="server" Text='<%# Bind("money") %>' />
@@ -319,13 +249,25 @@
                         </asp:ListView>
                             </td>
                             <td>
-                                <asp:Label ID="typeLabel" runat="server" Text='<%# Eval("type") %>' />
+                                 <asp:Label ID="Label3" runat="server" Text='<%# Bind("type") %>'></asp:Label>
+                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [name] FROM [report_param] WHERE ([id] = @id)">
+                            <SelectParameters>
+                                <asp:ControlParameter ControlID="Label3" Name="id" PropertyName="Text" Type="Int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                        <asp:ListView ID="ListView1" runat="server" DataSourceID="SqlDataSource2">
+                        
+                            <ItemTemplate>
+                                        <asp:Label ID="nameLabel" runat="server" Text='<%# Eval("name") %>' />
+                            </ItemTemplate>
+             
+                        </asp:ListView>
                             </td>
                             <td>
                                 <asp:Label ID="moneyLabel" runat="server" Text='<%# Eval("money") %>' />
                             </td>
                             <td>
-                                <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' />
+                                <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' OnDataBinding="statusLabel_Load" />
                             </td>
                         </tr>
                     </ItemTemplate>
@@ -336,13 +278,13 @@
                                     <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;font-family: Verdana, Arial, Helvetica, sans-serif;">
                                         <tr runat="server" style="background-color: #E0FFFF;color: #333333;">
                                             <th runat="server"></th>
-                                            <th runat="server">id</th>
-                                            <th runat="server">month</th>
-                                            <th runat="server">city</th>
-                                            <th runat="server">product</th>
-                                            <th runat="server">type</th>
-                                            <th runat="server">money</th>
-                                            <th runat="server">status</th>
+                                            <th runat="server">ID</th>
+                                            <th runat="server">录入月份</th>
+                                            <th runat="server">城市</th>
+                                            <th runat="server">产品</th>
+                                            <th runat="server">出账类型</th>
+                                            <th runat="server">录入金额</th>
+                                            <th runat="server">稽核状态</th>
                                         </tr>
                                         <tr id="itemPlaceholder" runat="server">
                                         </tr>
@@ -354,35 +296,6 @@
                             </tr>
                         </table>
                     </LayoutTemplate>
-                    <SelectedItemTemplate>
-                        <tr style="background-color: #E2DED6;font-weight: bold;color: #333333;">
-                            <td>
-                                <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="删除" />
-                                <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="编辑" />
-                            </td>
-                            <td>
-                                <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
-                            </td>
-                            <td>
-                                <asp:Label ID="monthLabel" runat="server" Text='<%# Eval("month") %>' />
-                            </td>
-                            <td>
-                                <asp:Label ID="cityLabel" runat="server" Text='<%# Eval("city") %>' />
-                            </td>
-                            <td>
-                                <asp:Label ID="productLabel" runat="server" Text='<%# Eval("product") %>' />
-                            </td>
-                            <td>
-                                <asp:Label ID="typeLabel" runat="server" Text='<%# Eval("type") %>' />
-                            </td>
-                            <td>
-                                <asp:Label ID="moneyLabel" runat="server" Text='<%# Eval("money") %>' />
-                            </td>
-                            <td>
-                                <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' />
-                            </td>
-                        </tr>
-                    </SelectedItemTemplate>
                 </asp:ListView>
 
            
@@ -390,8 +303,31 @@
         </asp:View>
         <asp:View ID="View2" runat="server">
         
-                 卡销售信息
-            <asp:ListView ID="ListView1" runat="server" DataKeyNames="id" DataSourceID="SqlDataSource2" InsertItemPosition="LastItem" OnSelectedIndexChanged="ListView1_SelectedIndexChanged">
+                 卡销售信息<asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" DeleteCommand="DELETE FROM [data_cardsale] WHERE [id] = @original_id" InsertCommand="INSERT INTO [data_cardsale] ([date], [city], [product], [number], [unit_price], [final_price], [status]) VALUES (@date, @city, @product, @number, @unit_price, @final_price, @status)" OldValuesParameterFormatString="original_{0}" SelectCommand="SELECT * FROM [data_cardsale]" UpdateCommand="UPDATE [data_cardsale] SET [date] = @date, [city] = @city, [product] = @product, [number] = @number, [unit_price] = @unit_price, [final_price] = @final_price, [status] = @status WHERE [id] = @original_id">
+                     <DeleteParameters>
+                         <asp:Parameter Name="original_id" Type="Int32" />
+                     </DeleteParameters>
+                     <InsertParameters>
+                         <asp:Parameter DbType="Date" Name="date" />
+                         <asp:Parameter Name="city" Type="Int32" />
+                         <asp:Parameter Name="product" Type="Int32" />
+                         <asp:Parameter Name="number" Type="Int32" />
+                         <asp:Parameter Name="unit_price" Type="Decimal" />
+                         <asp:Parameter Name="final_price" Type="Decimal" />
+                         <asp:Parameter DefaultValue="1" Name="status" Type="Int32" />
+                     </InsertParameters>
+                     <UpdateParameters>
+                         <asp:Parameter DbType="Date" Name="date" />
+                         <asp:Parameter Name="city" Type="Int32" />
+                         <asp:Parameter Name="product" Type="Int32" />
+                         <asp:Parameter Name="number" Type="Int32" />
+                         <asp:Parameter Name="unit_price" Type="Decimal" />
+                         <asp:Parameter Name="final_price" Type="Decimal" />
+                         <asp:Parameter Name="status" Type="Int32" />
+                         <asp:Parameter Name="original_id" Type="Int32" />
+                     </UpdateParameters>
+                 </asp:SqlDataSource>
+&nbsp;<asp:ListView ID="ListView1" runat="server" DataKeyNames="id" DataSourceID="SqlDataSource2" InsertItemPosition="LastItem" OnSelectedIndexChanged="ListView1_SelectedIndexChanged">
             <ItemTemplate>
                 <tr style="background-color: #DCDCDC; color: #000000;">
                     <td>
@@ -442,7 +378,7 @@
                         <asp:Label ID="final_priceLabel" runat="server" Text='<%# Eval("final_price") %>' />
                     </td>
                     <td>
-                        <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' />
+                        <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' OnDataBinding="statusLabel_Load"/>
                     </td>
                 </tr>
             </ItemTemplate>
@@ -593,7 +529,7 @@
                         <asp:Label ID="final_priceLabel" runat="server" Text='<%# Eval("final_price") %>' />
                     </td>
                     <td>
-                        <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' />
+                        <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' OnDataBinding="statusLabel_Load"/>
                     </td>
                 </tr>
             </AlternatingItemTemplate>
@@ -604,14 +540,14 @@
                             <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;font-family: Verdana, Arial, Helvetica, sans-serif;">
                                 <tr runat="server" style="background-color: #DCDCDC; color: #000000;">
                                     <th runat="server"></th>
-                                    <th runat="server">id</th>
-                                    <th runat="server">date</th>
-                                    <th runat="server">city</th>
-                                    <th runat="server">product</th>
-                                    <th runat="server">number</th>
-                                    <th runat="server">unit_price</th>
-                                    <th runat="server">final_price</th>
-                                    <th runat="server">status</th>
+                                    <th runat="server">ID</th>
+                                    <th runat="server">录入日期</th>
+                                    <th runat="server">城市</th>
+                                    <th runat="server">产品</th>
+                                    <th runat="server">卡销售数量</th>
+                                    <th runat="server">面值金额</th>
+                                    <th runat="server">卡总金额</th>
+                                    <th runat="server">稽核状态</th>
                                 </tr>
                                 <tr id="itemPlaceholder" runat="server">
                                 </tr>
@@ -623,47 +559,15 @@
                     </tr>
                 </table>
             </LayoutTemplate>
-            <SelectedItemTemplate>
-                <tr style="background-color: #008A8C; font-weight: bold;color: #FFFFFF;">
-                    <td>
-                        <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="删除" />
-                        <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="编辑" />
-                    </td>
-                    <td>
-                        <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
-                    </td>
-                    <td>
-                        <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date") %>' />
-                    </td>
-                    <td>
-                        <asp:Label ID="cityLabel" runat="server" Text='<%# Eval("city") %>' />
-                    </td>
-                    <td>
-                        <asp:Label ID="productLabel" runat="server" Text='<%# Eval("product") %>' />
-                    </td>
-                    <td>
-                        <asp:Label ID="numberLabel" runat="server" Text='<%# Eval("number") %>' />
-                    </td>
-                    <td>
-                        <asp:Label ID="unit_priceLabel" runat="server" Text='<%# Eval("unit_price") %>' />
-                    </td>
-                    <td>
-                        <asp:Label ID="final_priceLabel" runat="server" Text='<%# Eval("final_price") %>' />
-                    </td>
-                    <td>
-                        <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' />
-                    </td>
-                </tr>
-            </SelectedItemTemplate>
         </asp:ListView>
         </asp:View>   
         <asp:View ID="View3" runat="server">
-            this is the third page<asp:SqlDataSource ID="SqlDataSource7" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" DeleteCommand="DELETE FROM [data_settlement] WHERE [id] = @id" InsertCommand="INSERT INTO [data_settlement] ([month], [city], [product], [operator], [type], [money], [status]) VALUES (@month, @city, @product, @operator, @type, @money, @status)" SelectCommand="SELECT * FROM [data_settlement]" UpdateCommand="UPDATE [data_settlement] SET [month] = @month, [city] = @city, [product] = @product, [operator] = @operator, [type] = @type, [money] = @money, [status] = @status WHERE [id] = @id">
+            网间结算基本信息<asp:SqlDataSource ID="SqlDataSource7" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" DeleteCommand="DELETE FROM [data_settlement] WHERE [id] = @id" InsertCommand="INSERT INTO [data_settlement] ([month], [city], [product], [operator], [type], [money], [status]) VALUES (@month, @city, @product, @operator, @type, @money, @status)" SelectCommand="SELECT * FROM [data_settlement]" UpdateCommand="UPDATE [data_settlement] SET [month] = @month, [city] = @city, [product] = @product, [operator] = @operator, [type] = @type, [money] = @money, [status] = @status WHERE [id] = @id">
                 <DeleteParameters>
                     <asp:Parameter Name="id" Type="Int32" />
                 </DeleteParameters>
                 <InsertParameters>
-                    <asp:Parameter Name="month" Type="Int32" />
+                    <asp:Parameter Name="month" DbType="Date" />
                     <asp:Parameter Name="city" Type="Int32" />
                     <asp:Parameter Name="product" Type="Int32" />
                     <asp:Parameter Name="operator" Type="Int32" />
@@ -672,7 +576,7 @@
                     <asp:Parameter Name="status" Type="Int32" DefaultValue="1" />
                 </InsertParameters>
                 <UpdateParameters>
-                    <asp:Parameter Name="month" Type="Int32" />
+                    <asp:Parameter Name="month" DbType="Date" />
                     <asp:Parameter Name="city" Type="Int32" />
                     <asp:Parameter Name="product" Type="Int32" />
                     <asp:Parameter Name="operator" Type="Int32" />
@@ -682,7 +586,7 @@
                     <asp:Parameter Name="id" Type="Int32" />
                 </UpdateParameters>
             </asp:SqlDataSource>
-            <asp:ListView ID="ListView4" runat="server" DataKeyNames="id" DataSourceID="SqlDataSource7" InsertItemPosition="LastItem">
+            <asp:ListView ID="ListView2" runat="server" DataKeyNames="id" DataSourceID="SqlDataSource7" InsertItemPosition="LastItem">
                 <AlternatingItemTemplate>
                     <tr style="background-color: #FFFFFF;color: #284775;">
                         <td>
@@ -722,16 +626,42 @@
                         </asp:ListView>
                         </td>
                         <td>
-                            <asp:Label ID="operatorLabel" runat="server" Text='<%# Eval("operator") %>' />
+                              <asp:Label ID="Label4" runat="server" Text='<%# Bind("operator") %>' Visible="False"></asp:Label>
+                        <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [name] FROM [report_param] WHERE ([id] = @id)">
+                            <SelectParameters>
+                                <asp:ControlParameter ControlID="Label4" Name="id" PropertyName="Text" Type="Int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                        <asp:ListView ID="ListView2" runat="server" DataSourceID="SqlDataSource4">
+
+                            <ItemTemplate>
+
+                                        <asp:Label ID="nameLabel" runat="server" Text='<%# Eval("name") %>' />
+                            </ItemTemplate>
+                         
+                        </asp:ListView>
                         </td>
                         <td>
-                            <asp:Label ID="typeLabel" runat="server" Text='<%# Eval("type") %>' />
+                             <asp:Label ID="Label5" runat="server" Text='<%# Bind("type") %>' Visible="False"></asp:Label>
+                        <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [name] FROM [report_param] WHERE ([id] = @id)">
+                            <SelectParameters>
+                                <asp:ControlParameter ControlID="Label5" Name="id" PropertyName="Text" Type="Int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                        <asp:ListView ID="ListView5" runat="server" DataSourceID="SqlDataSource5">
+
+                            <ItemTemplate>
+
+                                        <asp:Label ID="nameLabel" runat="server" Text='<%# Eval("name") %>' />
+                            </ItemTemplate>
+                         
+                        </asp:ListView>
                         </td>
                         <td>
                             <asp:Label ID="moneyLabel" runat="server" Text='<%# Eval("money") %>' />
                         </td>
                         <td>
-                            <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' />
+                            <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' OnDataBinding="statusLabel_Load"/>
                         </td>
                     </tr>
                 </AlternatingItemTemplate>
@@ -766,7 +696,13 @@
                         </asp:DropDownList>
                         </td>
                         <td>
-                            <asp:TextBox ID="operatorTextBox" runat="server" Text='<%# Bind("operator") %>' />
+                            <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [name], [id] FROM [report_param] WHERE ([type] = @type)">
+                            <SelectParameters>
+                                <asp:Parameter DefaultValue="6" Name="type" Type="Int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                        <asp:DropDownList ID="DropDownList5" runat="server" DataSourceID="SqlDataSource5" DataTextField="name" DataValueField="id" SelectedValue='<%# Bind("operator") %>'>
+                        </asp:DropDownList>
                         </td>
                         <td>
                             <asp:TextBox ID="typeTextBox" runat="server" Text='<%# Bind("type") %>' />
@@ -815,10 +751,23 @@
                         </asp:DropDownList>
                         </td>
                         <td>
-                            <asp:TextBox ID="operatorTextBox" runat="server" Text='<%# Bind("operator") %>' />
+                            <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [name], [id] FROM [report_param] WHERE ([type] = @type)">
+                            <SelectParameters>
+                                <asp:Parameter DefaultValue="6" Name="type" Type="Int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                        <asp:DropDownList ID="DropDownList4" runat="server" DataSourceID="SqlDataSource5" DataTextField="name" DataValueField="id" SelectedValue='<%# Bind("operator") %>'>
+                        </asp:DropDownList>
                         </td>
                         <td>
-                            <asp:TextBox ID="typeTextBox" runat="server" Text='<%# Bind("type") %>' />
+                            
+                            <asp:SqlDataSource ID="SqlDataSource6" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [name], [id] FROM [report_param] WHERE ([type] = @type)">
+                            <SelectParameters>
+                                <asp:Parameter DefaultValue="7" Name="type" Type="Int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                        <asp:DropDownList ID="DropDownList6" runat="server" DataSourceID="SqlDataSource6" DataTextField="name" DataValueField="id" SelectedValue='<%# Bind("type") %>'>
+                        </asp:DropDownList>
                         </td>
                         <td>
                             <asp:TextBox ID="moneyTextBox" runat="server" Text='<%# Bind("money") %>' />
@@ -867,16 +816,43 @@
                         </asp:ListView>
                         </td>
                         <td>
-                            <asp:Label ID="operatorLabel" runat="server" Text='<%# Eval("operator") %>' />
+                            <asp:Label ID="Label4" runat="server" Text='<%# Bind("operator") %>' Visible="False"></asp:Label>
+                        <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [name] FROM [report_param] WHERE ([id] = @id)">
+                            <SelectParameters>
+                                <asp:ControlParameter ControlID="Label4" Name="id" PropertyName="Text" Type="Int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                        <asp:ListView ID="ListView2" runat="server" DataSourceID="SqlDataSource4">
+
+                            <ItemTemplate>
+
+                                        <asp:Label ID="nameLabel" runat="server" Text='<%# Eval("name") %>' />
+                            </ItemTemplate>
+                         
+                        </asp:ListView>
                         </td>
                         <td>
-                            <asp:Label ID="typeLabel" runat="server" Text='<%# Eval("type") %>' />
+                            
+                             <asp:Label ID="Label5" runat="server" Text='<%# Bind("type") %>' Visible="False"></asp:Label>
+                        <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [name] FROM [report_param] WHERE ([id] = @id)">
+                            <SelectParameters>
+                                <asp:ControlParameter ControlID="Label5" Name="id" PropertyName="Text" Type="Int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                        <asp:ListView ID="ListView5" runat="server" DataSourceID="SqlDataSource5">
+
+                            <ItemTemplate>
+
+                                        <asp:Label ID="nameLabel" runat="server" Text='<%# Eval("name") %>' />
+                            </ItemTemplate>
+                         
+                        </asp:ListView>
                         </td>
                         <td>
                             <asp:Label ID="moneyLabel" runat="server" Text='<%# Eval("money") %>' />
                         </td>
                         <td>
-                            <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' />
+                            <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' OnDataBinding="statusLabel_Load"/>
                         </td>
                     </tr>
                 </ItemTemplate>
@@ -887,14 +863,14 @@
                                 <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;font-family: Verdana, Arial, Helvetica, sans-serif;">
                                     <tr runat="server" style="background-color: #E0FFFF;color: #333333;">
                                         <th runat="server"></th>
-                                        <th runat="server">id</th>
-                                        <th runat="server">month</th>
-                                        <th runat="server">city</th>
-                                        <th runat="server">product</th>
-                                        <th runat="server">operator</th>
-                                        <th runat="server">type</th>
-                                        <th runat="server">money</th>
-                                        <th runat="server">status</th>
+                                        <th runat="server">ID</th>
+                                        <th runat="server">录入月份</th>
+                                        <th runat="server">城市</th>
+                                        <th runat="server">产品</th>
+                                        <th runat="server">结算运营商</th>
+                                        <th runat="server">结算类型</th>
+                                        <th runat="server">结算金额</th>
+                                        <th runat="server">稽核状态</th>
                                     </tr>
                                     <tr id="itemPlaceholder" runat="server">
                                     </tr>
@@ -906,42 +882,10 @@
                         </tr>
                     </table>
                 </LayoutTemplate>
-                <SelectedItemTemplate>
-                    <tr style="background-color: #E2DED6;font-weight: bold;color: #333333;">
-                        <td>
-                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="删除" />
-                            <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="编辑" />
-                        </td>
-                        <td>
-                            <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
-                        </td>
-                        <td>
-                            <asp:Label ID="monthLabel" runat="server" Text='<%# Eval("month") %>' />
-                        </td>
-                        <td>
-                            <asp:Label ID="cityLabel" runat="server" Text='<%# Eval("city") %>' />
-                        </td>
-                        <td>
-                            <asp:Label ID="productLabel" runat="server" Text='<%# Eval("product") %>' />
-                        </td>
-                        <td>
-                            <asp:Label ID="operatorLabel" runat="server" Text='<%# Eval("operator") %>' />
-                        </td>
-                        <td>
-                            <asp:Label ID="typeLabel" runat="server" Text='<%# Eval("type") %>' />
-                        </td>
-                        <td>
-                            <asp:Label ID="moneyLabel" runat="server" Text='<%# Eval("money") %>' />
-                        </td>
-                        <td>
-                            <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' />
-                        </td>
-                    </tr>
-                </SelectedItemTemplate>
             </asp:ListView>
             </asp:View>
         <asp:View ID="View4" runat="server">
-            this is the forth page<asp:SqlDataSource ID="SqlDataSource8" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" DeleteCommand="DELETE FROM [data_prestore] WHERE [id] = @id" InsertCommand="INSERT INTO [data_prestore] ([date], [city], [product], [type], [money], [status]) VALUES (@date, @city, @product, @type, @money, @status)" SelectCommand="SELECT * FROM [data_prestore]" UpdateCommand="UPDATE [data_prestore] SET [date] = @date, [city] = @city, [product] = @product, [type] = @type, [money] = @money, [status] = @status WHERE [id] = @id">
+            预存转收入收入基本信息<asp:SqlDataSource ID="SqlDataSource8" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" DeleteCommand="DELETE FROM [data_prestore] WHERE [id] = @id" InsertCommand="INSERT INTO [data_prestore] ([date], [city], [product], [type], [money], [status]) VALUES (@date, @city, @product, @type, @money, @status)" SelectCommand="SELECT * FROM [data_prestore]" UpdateCommand="UPDATE [data_prestore] SET [date] = @date, [city] = @city, [product] = @product, [type] = @type, [money] = @money, [status] = @status WHERE [id] = @id">
                 <DeleteParameters>
                     <asp:Parameter Name="id" Type="Int32" />
                 </DeleteParameters>
@@ -963,7 +907,7 @@
                     <asp:Parameter Name="id" Type="Int32" />
                 </UpdateParameters>
             </asp:SqlDataSource>
-            <asp:ListView ID="ListView5" runat="server" DataKeyNames="id" DataSourceID="SqlDataSource8" InsertItemPosition="LastItem">
+            <asp:ListView ID="ListView3" runat="server" DataKeyNames="id" DataSourceID="SqlDataSource8" InsertItemPosition="LastItem">
                 <AlternatingItemTemplate>
                     <tr style="background-color:#FFF8DC;">
                         <td>
@@ -1003,13 +947,26 @@
                         </asp:ListView>
                         </td>
                         <td>
-                            <asp:Label ID="typeLabel" runat="server" Text='<%# Eval("type") %>' />
+                              <asp:Label ID="Label6" runat="server" Text='<%# Bind("type") %>'  Visible="False"></asp:Label>
+                        <asp:SqlDataSource ID="SqlDataSource8" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [name] FROM [report_param] WHERE ([id] = @id)">
+                            <SelectParameters>
+                                <asp:ControlParameter ControlID="Label6" Name="id" PropertyName="Text" Type="Int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                        <asp:ListView ID="ListView3" runat="server" DataSourceID="SqlDataSource8">
+
+                            <ItemTemplate>
+
+                                        <asp:Label ID="nameLabel" runat="server" Text='<%# Eval("name") %>' />
+                            </ItemTemplate>
+
+                        </asp:ListView>
                         </td>
                         <td>
                             <asp:Label ID="moneyLabel" runat="server" Text='<%# Eval("money") %>' />
                         </td>
                         <td>
-                            <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' />
+                            <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' OnDataBinding="statusLabel_Load"/>
                         </td>
                     </tr>
                 </AlternatingItemTemplate>
@@ -1044,8 +1001,14 @@
                         </asp:DropDownList>
                         </td>
                         <td>
-                            <asp:TextBox ID="typeTextBox" runat="server" Text='<%# Bind("type") %>' />
-                        </td>
+                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type)">
+                            <SelectParameters>
+                                <asp:Parameter DefaultValue="3" Name="type" Type="Int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                        <asp:DropDownList ID="DropDownList3" runat="server" DataSourceID="SqlDataSource1" DataTextField="name" DataValueField="id" SelectedValue='<%# Bind("type") %>'>
+                        </asp:DropDownList>
+                             </td>
                         <td>
                             <asp:TextBox ID="moneyTextBox" runat="server" Text='<%# Bind("money") %>' />
                         </td>
@@ -1090,7 +1053,13 @@
                         </asp:DropDownList>
                         </td>
                         <td>
-                            <asp:TextBox ID="typeTextBox" runat="server" Text='<%# Bind("type") %>' />
+                               <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type)">
+                            <SelectParameters>
+                                <asp:Parameter DefaultValue="3" Name="type" Type="Int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                        <asp:DropDownList ID="DropDownList3" runat="server" DataSourceID="SqlDataSource1" DataTextField="name" DataValueField="id" SelectedValue='<%# Bind("type") %>'>
+                        </asp:DropDownList>
                         </td>
                         <td>
                             <asp:TextBox ID="moneyTextBox" runat="server" Text='<%# Bind("money") %>' />
@@ -1139,13 +1108,26 @@
                         </asp:ListView>
                         </td>
                         <td>
-                            <asp:Label ID="typeLabel" runat="server" Text='<%# Eval("type") %>' />
+                            <asp:Label ID="Label6" runat="server" Text='<%# Bind("type") %>'  Visible="False"></asp:Label>
+                        <asp:SqlDataSource ID="SqlDataSource8" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [name] FROM [report_param] WHERE ([id] = @id)">
+                            <SelectParameters>
+                                <asp:ControlParameter ControlID="Label6" Name="id" PropertyName="Text" Type="Int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                        <asp:ListView ID="ListView3" runat="server" DataSourceID="SqlDataSource8">
+
+                            <ItemTemplate>
+
+                                        <asp:Label ID="nameLabel" runat="server" Text='<%# Eval("name") %>' />
+                            </ItemTemplate>
+
+                        </asp:ListView>
                         </td>
                         <td>
                             <asp:Label ID="moneyLabel" runat="server" Text='<%# Eval("money") %>' />
                         </td>
                         <td>
-                            <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' />
+                            <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' OnDataBinding="statusLabel_Load"/>
                         </td>
                     </tr>
                 </ItemTemplate>
@@ -1156,13 +1138,13 @@
                                 <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;font-family: Verdana, Arial, Helvetica, sans-serif;">
                                     <tr runat="server" style="background-color:#DCDCDC;color: #000000;">
                                         <th runat="server"></th>
-                                        <th runat="server">id</th>
-                                        <th runat="server">date</th>
-                                        <th runat="server">city</th>
-                                        <th runat="server">product</th>
-                                        <th runat="server">type</th>
-                                        <th runat="server">money</th>
-                                        <th runat="server">status</th>
+                                        <th runat="server">ID</th>
+                                        <th runat="server">销账日期</th>
+                                        <th runat="server">城市</th>
+                                        <th runat="server">产品</th>
+                                        <th runat="server">销账类型</th>
+                                        <th runat="server">销账金额</th>
+                                        <th runat="server">稽核状态</th>
                                     </tr>
                                     <tr id="itemPlaceholder" runat="server">
                                     </tr>
@@ -1174,39 +1156,10 @@
                         </tr>
                     </table>
                 </LayoutTemplate>
-                <SelectedItemTemplate>
-                    <tr style="background-color:#008A8C;font-weight: bold;color: #FFFFFF;">
-                        <td>
-                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="删除" />
-                            <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="编辑" />
-                        </td>
-                        <td>
-                            <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
-                        </td>
-                        <td>
-                            <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date") %>' />
-                        </td>
-                        <td>
-                            <asp:Label ID="cityLabel" runat="server" Text='<%# Eval("city") %>' />
-                        </td>
-                        <td>
-                            <asp:Label ID="productLabel" runat="server" Text='<%# Eval("product") %>' />
-                        </td>
-                        <td>
-                            <asp:Label ID="typeLabel" runat="server" Text='<%# Eval("type") %>' />
-                        </td>
-                        <td>
-                            <asp:Label ID="moneyLabel" runat="server" Text='<%# Eval("money") %>' />
-                        </td>
-                        <td>
-                            <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' />
-                        </td>
-                    </tr>
-                </SelectedItemTemplate>
             </asp:ListView>
          </asp:View>
         <asp:View ID="View5" runat="server">
-            this is the fifth page<asp:SqlDataSource ID="SqlDataSource9" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" DeleteCommand="DELETE FROM [data_notice] WHERE [id] = @id" InsertCommand="INSERT INTO [data_notice] ([date], [city], [product], [type], [money], [status]) VALUES (@date, @city, @product, @type, @money, @status)" SelectCommand="SELECT * FROM [data_notice]" UpdateCommand="UPDATE [data_notice] SET [date] = @date, [city] = @city, [product] = @product, [type] = @type, [money] = @money, [status] = @status WHERE [id] = @id">
+            通知单收入基本信息<asp:SqlDataSource ID="SqlDataSource9" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" DeleteCommand="DELETE FROM [data_notice] WHERE [id] = @id" InsertCommand="INSERT INTO [data_notice] ([date], [city], [product], [type], [money], [status]) VALUES (@date, @city, @product, @type, @money, @status)" SelectCommand="SELECT * FROM [data_notice]" UpdateCommand="UPDATE [data_notice] SET [date] = @date, [city] = @city, [product] = @product, [type] = @type, [money] = @money, [status] = @status WHERE [id] = @id" OnSelecting="SqlDataSource9_Selecting">
                 <DeleteParameters>
                     <asp:Parameter Name="id" Type="Int32" />
                 </DeleteParameters>
@@ -1228,7 +1181,7 @@
                     <asp:Parameter Name="id" Type="Int32" />
                 </UpdateParameters>
             </asp:SqlDataSource>
-            <asp:ListView ID="ListView6" runat="server" DataKeyNames="id" DataSourceID="SqlDataSource9" InsertItemPosition="LastItem">
+            <asp:ListView ID="ListView4" runat="server" DataKeyNames="id" DataSourceID="SqlDataSource9" InsertItemPosition="LastItem" OnSelectedIndexChanged="ListView4_SelectedIndexChanged">
                 <AlternatingItemTemplate>
                     <tr style="background-color: #FFFFFF;color: #284775;">
                         <td>
@@ -1268,13 +1221,25 @@
                         </asp:ListView>
                         </td>
                         <td>
-                            <asp:Label ID="typeLabel" runat="server" Text='<%# Eval("type") %>' />
+                            <asp:Label ID="Label7" runat="server" Text='<%# Bind("type") %>' Visible="False"></asp:Label>
+                        <asp:SqlDataSource ID="SqlDataSource12" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [name] FROM [report_param] WHERE ([id] = @id)">
+                            <SelectParameters>
+                                <asp:ControlParameter ControlID="Label7" Name="id" PropertyName="Text" Type="Int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                        <asp:ListView ID="ListView4" runat="server" DataSourceID="SqlDataSource12">
+
+                            <ItemTemplate>
+                                        <asp:Label ID="nameLabel" runat="server" Text='<%# Eval("name") %>' />
+                            </ItemTemplate>
+                
+                        </asp:ListView>
                         </td>
                         <td>
                             <asp:Label ID="moneyLabel" runat="server" Text='<%# Eval("money") %>' />
                         </td>
                         <td>
-                            <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' />
+                            <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' OnDataBinding="statusLabel_Load"  />
                         </td>
                     </tr>
                 </AlternatingItemTemplate>
@@ -1309,7 +1274,13 @@
                         </asp:DropDownList>
                         </td>
                         <td>
-                            <asp:TextBox ID="typeTextBox" runat="server" Text='<%# Bind("type") %>' />
+                            <asp:SqlDataSource ID="SqlDataSource11" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [name], [id] FROM [report_param] WHERE ([type] = @type)">
+                            <SelectParameters>
+                                <asp:Parameter DefaultValue="4" Name="type" Type="Int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                        <asp:DropDownList ID="DropDownList8" runat="server" DataSourceID="SqlDataSource11" DataTextField="name" DataValueField="id" SelectedValue='<%# Bind("type") %>'>
+                        </asp:DropDownList>
                         </td>
                         <td>
                             <asp:TextBox ID="moneyTextBox" runat="server" Text='<%# Bind("money") %>' />
@@ -1355,7 +1326,13 @@
                         </asp:DropDownList>
                         </td>
                         <td>
-                            <asp:TextBox ID="typeTextBox" runat="server" Text='<%# Bind("type") %>' />
+                            <asp:SqlDataSource ID="SqlDataSource11" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [name], [id] FROM [report_param] WHERE ([type] = @type)">
+                            <SelectParameters>
+                                <asp:Parameter DefaultValue="4" Name="type" Type="Int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                        <asp:DropDownList ID="DropDownList8" runat="server" DataSourceID="SqlDataSource11" DataTextField="name" DataValueField="id" SelectedValue='<%# Bind("type") %>'>
+                        </asp:DropDownList>
                         </td>
                         <td>
                             <asp:TextBox ID="moneyTextBox" runat="server" Text='<%# Bind("money") %>' />
@@ -1404,13 +1381,25 @@
                         </asp:ListView>
                         </td>
                         <td>
-                            <asp:Label ID="typeLabel" runat="server" Text='<%# Eval("type") %>' />
+                              <asp:Label ID="Label7" runat="server" Text='<%# Bind("type") %>' Visible="False"></asp:Label>
+                        <asp:SqlDataSource ID="SqlDataSource12" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [name] FROM [report_param] WHERE ([id] = @id)">
+                            <SelectParameters>
+                                <asp:ControlParameter ControlID="Label7" Name="id" PropertyName="Text" Type="Int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                        <asp:ListView ID="ListView4" runat="server" DataSourceID="SqlDataSource12">
+
+                            <ItemTemplate>
+                                        <asp:Label ID="nameLabel" runat="server" Text='<%# Eval("name") %>' />
+                            </ItemTemplate>
+                
+                        </asp:ListView>
                         </td>
                         <td>
                             <asp:Label ID="moneyLabel" runat="server" Text='<%# Eval("money") %>' />
                         </td>
                         <td>
-                            <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' />
+                            <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' OnDataBinding="statusLabel_Load" />
                         </td>
                     </tr>
                 </ItemTemplate>
@@ -1421,13 +1410,13 @@
                                 <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;font-family: Verdana, Arial, Helvetica, sans-serif;">
                                     <tr runat="server" style="background-color: #E0FFFF;color: #333333;">
                                         <th runat="server"></th>
-                                        <th runat="server">id</th>
-                                        <th runat="server">date</th>
-                                        <th runat="server">city</th>
-                                        <th runat="server">product</th>
-                                        <th runat="server">type</th>
-                                        <th runat="server">money</th>
-                                        <th runat="server">status</th>
+                                        <th runat="server">ID</th>
+                                        <th runat="server">营业收款日期</th>
+                                        <th runat="server">城市</th>
+                                        <th runat="server">产品</th>
+                                        <th runat="server">通知单收入</th>
+                                        <th runat="server">营业收入金额</th>
+                                        <th runat="server">稽核状态</th>
                                     </tr>
                                     <tr id="itemPlaceholder" runat="server">
                                     </tr>
@@ -1439,39 +1428,9 @@
                         </tr>
                     </table>
                 </LayoutTemplate>
-                <SelectedItemTemplate>
-                    <tr style="background-color: #E2DED6;font-weight: bold;color: #333333;">
-                        <td>
-                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="删除" />
-                            <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="编辑" />
-                        </td>
-                        <td>
-                            <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
-                        </td>
-                        <td>
-                            <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date") %>' />
-                        </td>
-                        <td>
-                            <asp:Label ID="cityLabel" runat="server" Text='<%# Eval("city") %>' />
-                        </td>
-                        <td>
-                            <asp:Label ID="productLabel" runat="server" Text='<%# Eval("product") %>' />
-                        </td>
-                        <td>
-                            <asp:Label ID="typeLabel" runat="server" Text='<%# Eval("type") %>' />
-                        </td>
-                        <td>
-                            <asp:Label ID="moneyLabel" runat="server" Text='<%# Eval("money") %>' />
-                        </td>
-                        <td>
-                            <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' />
-                        </td>
-                    </tr>
-                </SelectedItemTemplate>
             </asp:ListView>
         </asp:View>           
         </asp:MultiView>
-        
     </form>
 </body>
 </html>
