@@ -106,7 +106,9 @@ public partial class Input : System.Web.UI.Page
         {
             statusLabel.Text = "已稽核";
             Button EditButton = item.FindControl("EditButton") as Button;
+            Button DeleteButton = item.FindControl("DeleteButton") as Button;
             EditButton.Visible = false;
+            DeleteButton.Visible = false;
         }
         else if (int.Parse(statusLabel.Text) == (int)Param.ReportStatus.UNCHECKED)
         {

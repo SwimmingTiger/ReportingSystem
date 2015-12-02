@@ -29,7 +29,7 @@ public partial class View_Audit_data_settlement : System.Web.UI.Page
 
         */
         SqlParam data = new SqlParam { { "@id", id }, { "@status", status } };
-        string sql = "UPDATE [data_settleme] SET [status] = @status WHERE [id] = @id";
+        string sql = "UPDATE [data_settlement] SET [status] = @status WHERE [id] = @id";
 
         Database db = new Database();
         db.Exec(sql, data);

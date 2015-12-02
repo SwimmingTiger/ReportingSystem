@@ -279,7 +279,7 @@
                                         <tr runat="server" style="background-color: #E0FFFF;color: #333333;">
                                             <th runat="server"></th>
                                             <th runat="server">ID</th>
-                                            <th runat="server">录入日期</th>
+                                            <th runat="server">录入月份</th>
                                             <th runat="server">城市</th>
                                             <th runat="server">产品</th>
                                             <th runat="server">出账类型</th>
@@ -864,7 +864,7 @@
                                     <tr runat="server" style="background-color: #E0FFFF;color: #333333;">
                                         <th runat="server"></th>
                                         <th runat="server">ID</th>
-                                        <th runat="server">录入日期</th>
+                                        <th runat="server">录入月份</th>
                                         <th runat="server">城市</th>
                                         <th runat="server">产品</th>
                                         <th runat="server">结算运营商</th>
