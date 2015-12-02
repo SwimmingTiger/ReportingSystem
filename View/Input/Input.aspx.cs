@@ -9,7 +9,7 @@ public partial class Input : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+
     }
 
 
@@ -84,5 +84,37 @@ public partial class Input : System.Web.UI.Page
     protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
     {
 
+    }
+
+    protected void ListView4_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void SqlDataSource9_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
+    {
+
+    }
+
+    protected void statusLabel_Load(object sender, EventArgs e)
+    {
+        
+        Label statusLabel = sender as Label;
+        ListViewDataItem item = statusLabel.Parent as ListViewDataItem;
+
+        if (int.Parse(statusLabel.Text) == (int)Param.ReportStatus.NORMAL)
+        {
+            statusLabel.Text = "已稽核";
+            Button EditButton = item.FindControl("EditButton") as Button;
+            EditButton.Visible = false;
+        }
+        else if (int.Parse(statusLabel.Text) == (int)Param.ReportStatus.UNCHECKED)
+        {
+            statusLabel.Text = "未稽核";
+        }
+        else {
+            statusLabel.Text = "错误";
+        }
+        
     }
 }
