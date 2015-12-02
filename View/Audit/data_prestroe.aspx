@@ -53,7 +53,19 @@
                         </asp:ListView>
                     </td>
                     <td>
-                        <asp:Label ID="typeLabel" runat="server" Text='<%# Eval("type") %>' />
+                        <asp:Label ID="typeLabel" runat="server" Text='<%# Eval("type") %>' visible="false"/>
+                        <asp:SqlDataSource ID="SqlDataSource5" runat="server" 
+                            ConnectionString="<%$ ConnectionStrings:database %>" 
+                            SelectCommand="SELECT [name] FROM [report_param] WHERE ([id] = @id)">
+                            <SelectParameters>
+                                <asp:ControlParameter ControlID="typeLabel" Name="id" PropertyName="Text" Type="Int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                        <asp:ListView ID="ListView5" runat="server" DataSourceID="SqlDataSource5">
+                            <ItemTemplate>
+                                <asp:Label ID="Label2" runat="server" Text='<%# Eval("name") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:ListView>
                     </td>
                     <td>
                         <asp:Label ID="moneyLabel" runat="server" Text='<%# Eval("money") %>' />
@@ -116,7 +128,20 @@
                         </asp:ListView>
                     </td>
                     <td>
-                        <asp:Label ID="typeLabel" runat="server" Text='<%# Eval("type") %>' />
+                        <asp:Label ID="typeLabel" runat="server" Text='<%# Eval("type") %>' visible="false"/>
+                        <asp:SqlDataSource ID="SqlDataSource6" 
+                            runat="server" 
+                            ConnectionString="<%$ ConnectionStrings:database %>" 
+                            SelectCommand="SELECT [name] FROM [report_param] WHERE ([id] = @id)">
+                            <SelectParameters>
+                                <asp:ControlParameter ControlID="typeLabel" Name="id" PropertyName="Text" Type="Int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                        <asp:ListView ID="ListView6" runat="server" DataSourceID="SqlDataSource6">
+                            <ItemTemplate>
+                                <asp:Label ID="Label2" runat="server" Text='<%# Eval("name") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:ListView>
                     </td>
                     <td>
                         <asp:Label ID="moneyLabel" runat="server" Text='<%# Eval("money") %>' />

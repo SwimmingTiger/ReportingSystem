@@ -60,7 +60,21 @@
                         <asp:Label ID="operatorLabel" runat="server" Text='<%# Eval("operator") %>' />
                     </td>
                     <td>
-                        <asp:Label ID="typeLabel" runat="server" Text='<%# Eval("type") %>' />
+                        <asp:Label ID="typeLabel" runat="server" Text='<%# Eval("type") %>' visible="false"/>
+                        <asp:SqlDataSource 
+                            ID="SqlDataSource5" 
+                            runat="server" 
+                            ConnectionString="<%$ ConnectionStrings:database %>"
+                            SelectCommand="SELECT [name] FROM [report_param] WHERE ([id] = @id)">
+                            <SelectParameters>
+                                <asp:ControlParameter ControlID="typeLabel" Name="id" PropertyName="Text" Type="Int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                        <asp:ListView ID="ListView4" runat="server" DataSourceID="SqlDataSource5">
+                            <ItemTemplate>
+                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("name") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:ListView>
                     </td>
                     <td>
                         <asp:Label ID="moneyLabel" runat="server" Text='<%# Eval("money") %>' />
@@ -130,7 +144,21 @@
                         <asp:Label ID="operatorLabel" runat="server" Text='<%# Eval("operator") %>' />
                     </td>
                     <td>
-                        <asp:Label ID="typeLabel" runat="server" Text='<%# Eval("type") %>' />
+                        <asp:Label ID="typeLabel" runat="server" Text='<%# Eval("type") %>' visible="false"/>
+                        <asp:SqlDataSource 
+                            ID="SqlDataSource5" 
+                            runat="server" 
+                            ConnectionString="<%$ ConnectionStrings:database %>"
+                            SelectCommand="SELECT [name] FROM [report_param] WHERE ([id] = @id)">
+                            <SelectParameters>
+                                <asp:ControlParameter ControlID="typeLabel" Name="id" PropertyName="Text" Type="Int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                        <asp:ListView ID="ListView4" runat="server" DataSourceID="SqlDataSource5">
+                            <ItemTemplate>
+                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("name") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:ListView>
                     </td>
                     <td>
                         <asp:Label ID="moneyLabel" runat="server" Text='<%# Eval("money") %>' />
