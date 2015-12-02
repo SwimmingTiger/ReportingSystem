@@ -132,9 +132,9 @@
             <asp:View ID="productEditView" runat="server">
                 <asp:SqlDataSource ID="productDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" 
                     DeleteCommand="DELETE FROM [report_param] WHERE [id] = @id" 
-                    InsertCommand="INSERT INTO [report_param] ([type], [code], [name], [flag]) VALUES (@type, @code, @name, @use | @account | @sale | @settlement | @prestore | @notice)" 
+                    InsertCommand="INSERT INTO [report_param] ([type], [code], [name], [flag]) VALUES (@type, @code, @name, (@use | @account | @sale | @settlement | @prestore | @notice))" 
                     SelectCommand="SELECT [id], [code], [name], CAST(flag & 1 AS BIT) as [use], CAST(flag & 2 AS BIT) as [account], CAST(flag & 4 AS BIT) as [sale], CAST(flag & 8 AS BIT) as [settlement], CAST(flag & 16 AS BIT) as [prestore], CAST(flag & 32 AS BIT) as [notice] FROM [report_param] WHERE ([type] = @type)" 
-                    UpdateCommand="UPDATE [report_param] SET [code] = @code, [name] = @name, [flag] = @use | @account * 2 | @sale * 4 | @settlement * 8 | @prestore * 16 | @notice * 32 WHERE [id] = @id">
+                    UpdateCommand="UPDATE [report_param] SET [code] = @code, [name] = @name, [flag] = (@use | @account * 2 | @sale * 4 | @settlement * 8 | @prestore * 16 | @notice * 32) WHERE [id] = @id">
                     <DeleteParameters>
                         <asp:Parameter Name="id" Type="Int32" />
                     </DeleteParameters>
