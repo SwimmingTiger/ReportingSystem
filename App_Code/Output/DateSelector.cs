@@ -19,9 +19,9 @@ namespace Output
         protected DropDownList monthSelector = null;
         protected DropDownList daySelector = null;
 
-        protected bool yearShowAll = false;
-        protected bool monthShowAll = false;
-        protected bool dayShowAll = false;
+        protected string yearShowAll = null;
+        protected string monthShowAll = null;
+        protected string dayShowAll = null;
 
         /// <summary>
         /// 构造日期选择器
@@ -38,7 +38,7 @@ namespace Output
         /// 设置年份选择器
         /// </summary>
         /// <param name="selector">选择器控件</param>
-        public void setYearSelector(DropDownList selector, bool showAll = false) {
+        public void setYearSelector(DropDownList selector, string showAll = null) {
             yearSelector = selector;
             yearShowAll = showAll;
         }
@@ -47,7 +47,7 @@ namespace Output
         /// 设置月份选择器
         /// </summary>
         /// <param name="selector">选择器控件</param>
-        public void setMonthSelector(DropDownList selector, bool showAll = false)
+        public void setMonthSelector(DropDownList selector, string showAll = null)
         {
             monthSelector = selector;
             monthShowAll = showAll;
@@ -58,7 +58,7 @@ namespace Output
         /// 设置日子选择器
         /// </summary>
         /// <param name="selector">选择器控件</param>
-        public void setDaySelector(DropDownList selector, bool showAll = false)
+        public void setDaySelector(DropDownList selector, string showAll = null)
         {
             daySelector = selector;
             dayShowAll = showAll;
@@ -99,37 +99,62 @@ namespace Output
         }
 
         protected void setYearItems() {
+            int index = yearSelector.SelectedIndex;
             yearSelector.Items.Clear();
 
-            if (yearShowAll) {
-                yearSelector.Items.Add(new ListItem("全部", "0"));
+            if (yearShowAll != null) {
+                yearSelector.Items.Add(new ListItem(yearShowAll, "0"));
             }
 
             for (int year=yearStart; year<=yearEnd; year++) {
-                yearSelector.Items.Add(new ListItem(year.ToString(), year.ToString()));
+                yearSelector.Items.Add(new ListItem(year.ToString() + "年", year.ToString()));
             }
+
+            if (yearSelector.Items.Count < 1)
+            {
+                yearSelector.Visible = false;
+            }
+            else {
+                yearSelector.Visible = true;
+            }
+
+            if (index < 0 || index > yearSelector.Items.Count - 1)
+            {
+                index = 0;
+            }
+
+            yearSelector.SelectedIndex = index;
         }
 
         protected void setMonthItems()
         {
+            int index = monthSelector.SelectedIndex;
             monthSelector.Items.Clear();
 
-            if (monthShowAll)
+            if (monthShowAll != null)
             {
-                monthSelector.Items.Add(new ListItem("全部", "0"));
+                monthSelector.Items.Add(new ListItem(monthShowAll, "0"));
             }
 
             for (int month = 1; month <= 12; month++)
             {
-                monthSelector.Items.Add(new ListItem(month.ToString(), month.ToString()));
+                monthSelector.Items.Add(new ListItem(month.ToString() + "月", month.ToString()));
             }
+
+            if (index < 0 || index > monthSelector.Items.Count - 1)
+            {
+                index = 0;
+            }
+
+            monthSelector.SelectedIndex = index;
         }
 
         protected void setDayItems(int month)
         {
+            int index = daySelector.SelectedIndex;
             bool isLeapYear = false;
 
-            if (yearSelector == null)
+            if (yearSelector == null || yearSelector.Items.Count < 1)
             {
                 isLeapYear = true;
             }
@@ -141,27 +166,34 @@ namespace Output
 
             daySelector.Items.Clear();
 
-            if (dayShowAll)
+            if (dayShowAll != null)
             {
-                daySelector.Items.Add(new ListItem("全部", "0"));
+                daySelector.Items.Add(new ListItem(dayShowAll, "0"));
             }
 
             int monthDays = getMonthDays(month, isLeapYear);
 
             for (int day = 1; day <= monthDays; day++)
             {
-                daySelector.Items.Add(new ListItem(day.ToString(), day.ToString()));
+                daySelector.Items.Add(new ListItem(day.ToString() + "日", day.ToString()));
             }
+
+            if (index < 0 || index > daySelector.Items.Count - 1)
+            {
+                index = 0;
+            }
+
+            daySelector.SelectedIndex = index;
         }
 
         /// <summary>
-        /// 返回月份包含的日期，若月份为0，则返回0.
+        /// 返回月份包含的日期，若月份为0，则返回31.
         /// </summary>
         /// <param name="month">月份</param>
         /// <param name="isLeapYear">是否为闰年</param>
         /// <returns></returns>
         protected int getMonthDays(int month, bool isLeapYear) {
-            int[] monthDays = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+            int[] monthDays = {31, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
             int days = monthDays[month];
 
