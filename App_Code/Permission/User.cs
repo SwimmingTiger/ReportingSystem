@@ -117,6 +117,34 @@ namespace Permission
             return permission;
         }
 
+        public static void CheckPermission(params int[] permissions)
+        {
+            bool pass = true;
+            List<string> names = new List<string>();
+            int userPermission = GetPermission();
+
+            foreach (int permission in permissions)
+            {
+                if (0 == (userPermission & permission))
+                {
+                    pass = false;
+                    names.Add(UserPermission.GetName(permission));
+                }
+            }
+
+            if (pass == false)
+            {
+                string nameStr = string.Join(", ", names.ToArray());
+                //跳转到权限错误提示页
+                HttpContext.Current.Response.Redirect(Param.Website.VIEW_PATH + "/Permission/Error/PermissionDenied.aspx?permission=" + HttpUtility.UrlEncode(nameStr));
+            }
+        }
+
+        public static bool HasPermission(int permission)
+        {
+            return 0 != (GetPermission() & permission);
+        }
+
         /// <summary>
         /// 32位MD5加密
         /// </summary>

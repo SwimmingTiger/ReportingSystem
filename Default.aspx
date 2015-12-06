@@ -6,10 +6,14 @@
     <title><%= @Param.Website.SITE_NAME %></title>
 </head>
 <body>
-    <form id="form1" runat="server">
-    <div>
-    Hello, <%= Permission.User.GetName() %>
-    </div>
+    <form id="mainForm" runat="server">
+        <header>
+            欢迎光临，<%= Permission.User.GetName() %>。
+        </header>
+        <nav>
+        </nav>
+        <article>
+        </article>
     </form>
 </body>
 </html>

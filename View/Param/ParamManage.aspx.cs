@@ -9,7 +9,7 @@ public partial class View_Param_ParamManage : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Permission.UserPermission.Check(Permission.UserPermission.EDIT_REPORT_PARAMS);
+        Permission.User.CheckPermission(Permission.UserPermission.EDIT_REPORT_PARAMS);
     }
 
     protected void Page_Error(object sender, EventArgs e)

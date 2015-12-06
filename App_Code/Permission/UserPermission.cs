@@ -63,27 +63,9 @@ namespace Permission
 
         };
 
-        public static string GetPermissionName(int permission)
+        public static string GetName(int permission)
         {
             return PermissionNames[permission];
-        }
-
-        public static void Check(params int[] permissions) {
-            bool pass = true;
-            List<string> names = new List<string>();
-            int userPermission = User.GetPermission();
-
-            foreach (int permission in permissions) {
-                if (0 == (userPermission & permission)) {
-                    pass = false;
-                    names.Add(GetPermissionName(permission));
-                }
-            }
-
-            if (pass == false) {
-                string nameStr = string.Join(", ", names.ToArray());
-                HttpContext.Current.Response.Redirect(Param.Website.VIEW_PATH + "/Permission/Error/PermissionDenied.aspx?permission=" + HttpUtility.UrlEncode(nameStr));
-            }
         }
     }
 }

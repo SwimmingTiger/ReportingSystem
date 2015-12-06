@@ -22,7 +22,7 @@ public partial class View_Output_Browse : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         //检查访问权限
-        Permission.UserPermission.Check(Permission.UserPermission.READ_REPORTS);
+        Permission.User.CheckPermission(Permission.UserPermission.READ_REPORTS);
 
         string reportTable = ReportTableList.SelectedValue;
 

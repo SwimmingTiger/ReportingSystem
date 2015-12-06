@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="navigation_auditor.aspx.cs" Inherits="View_Audit_navigation_auditor" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Auditor.aspx.cs" Inherits="View_Audit_navigation_auditor" %>
 
 <!DOCTYPE html>
 

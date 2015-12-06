@@ -10,7 +10,7 @@ public partial class View_Audit_navigation_auditor : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Permission.UserPermission.Check(Permission.UserPermission.AUDIT_REPORTS);
+        Permission.User.CheckPermission(Permission.UserPermission.AUDIT_REPORTS);
     }
 
     protected void Page_Error(object sender, EventArgs e)
