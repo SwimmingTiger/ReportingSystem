@@ -12,7 +12,7 @@
         <asp:Button ID="Button1" runat="server" BorderWidth="0" Text="   出账收入基本信息   " OnClick="LinkButton1_Click" />
         <asp:Button ID="Button2" runat="server" BorderWidth="0" Text="  卡销售收入基本信息  " OnClick="LinkButton2_Click" />
         <asp:Button ID="Button3" runat="server" BorderWidth="0" Text="   网间结算基本信息   " OnClick="LinkButton3_Click" />
-        <asp:Button ID="Button4" runat="server" BorderWidth="0" Text="预存转收入收入基本信息" OnClick="LinkButton4_Click" />
+        <asp:Button ID="Button4" runat="server" BorderWidth="0" Text="预存转收入基本信息" OnClick="LinkButton4_Click" />
         <asp:Button ID="Button5" runat="server" BorderWidth="0" Text="  通知单收入基本信息  " OnClick="LinkButton5_Click" /> 
         
         <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex = 0>
@@ -40,16 +40,10 @@
                         <asp:Parameter Name="id" Type="Int32" />
                     </UpdateParameters>
                 </asp:SqlDataSource>
-                出账收入信息
+                <h3>出账收入信息</h3>
                 <asp:ListView ID="ListView0" runat="server" DataKeyNames="id" DataSourceID="SqlDataSource6" InsertItemPosition="LastItem" OnSelectedIndexChanged="ListView3_SelectedIndexChanged">
                     <AlternatingItemTemplate>
                         <tr style="background-color: #FFFFFF;color: #284775;">
-                            <td>
-                                
-
-                                <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="删除" />
-                                <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="编辑" />
-                            </td>
                             <td>
                                 <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
                             </td>
@@ -104,14 +98,14 @@
                             <td>
                                 <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' OnDataBinding="statusLabel_Load" />
                             </td>
+                            <td>
+                                <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="删除" />
+                                <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="修改" />
+                            </td>
                         </tr>
                     </AlternatingItemTemplate>
                     <EditItemTemplate>
                         <tr style="background-color: #999999;">
-                            <td>
-                                <asp:Button ID="UpdateButton" runat="server" CommandName="Update" Text="更新" />
-                                <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="取消" />
-                            </td>
                             <td>
                                 <asp:Label ID="idLabel1" runat="server" Text='<%# Eval("id") %>' />
                             </td>
@@ -153,6 +147,10 @@
                             <td>
 
                             </td>
+                            <td>
+                                <asp:Button ID="UpdateButton" runat="server" CommandName="Update" Text="保存" />
+                                <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="取消" />
+                            </td>
                         </tr>
                     </EditItemTemplate>
                     <EmptyDataTemplate>
@@ -164,10 +162,6 @@
                     </EmptyDataTemplate>
                     <InsertItemTemplate>
                         <tr style="">
-                            <td>
-                                <asp:Button ID="InsertButton" runat="server" CommandName="Insert" Text="插入" OnClick="InsertButton_Click" />
-                                <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="清除" />
-                            </td>
                             <td>&nbsp;</td>
                             <td>
                                 <asp:TextBox placeholder="年-月" ID="monthTextBox" runat="server" Text='<%# Bind("month", "{0:yyyy-M}") %>' />
@@ -205,14 +199,14 @@
                             <td>
 
                             </td>
+                            <td>
+                                <asp:Button ID="InsertButton" runat="server" CommandName="Insert" Text="保存" OnClick="InsertButton_Click" />
+                                <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="清除" />
+                            </td>
                         </tr>
                     </InsertItemTemplate>
                     <ItemTemplate>
                         <tr style="background-color: #E0FFFF;color: #333333;">
-                            <td>
-                                <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="删除" />
-                                <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="编辑" />
-                            </td>
                             <td>
                                 <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
                             </td>
@@ -269,6 +263,10 @@
                             <td>
                                 <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' OnDataBinding="statusLabel_Load" />
                             </td>
+                            <td>
+                                <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="删除" />
+                                <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="修改" />
+                            </td>
                         </tr>
                     </ItemTemplate>
                     <LayoutTemplate>
@@ -277,7 +275,6 @@
                                 <td runat="server">
                                     <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;font-family: Verdana, Arial, Helvetica, sans-serif;">
                                         <tr runat="server" style="background-color: #E0FFFF;color: #333333;">
-                                            <th runat="server"></th>
                                             <th runat="server">ID</th>
                                             <th runat="server">录入月份</th>
                                             <th runat="server">城市</th>
@@ -285,6 +282,7 @@
                                             <th runat="server">出账类型</th>
                                             <th runat="server">录入金额</th>
                                             <th runat="server">稽核状态</th>
+                                            <th runat="server">操作</th>
                                         </tr>
                                         <tr id="itemPlaceholder" runat="server">
                                         </tr>
@@ -302,8 +300,8 @@
                 
         </asp:View>
         <asp:View ID="View2" runat="server">
-        
-                 卡销售信息<asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" DeleteCommand="DELETE FROM [data_cardsale] WHERE [id] = @original_id" InsertCommand="INSERT INTO [data_cardsale] ([date], [city], [product], [number], [unit_price], [final_price], [status]) VALUES (@date, @city, @product, @number, @unit_price, @final_price, @status)" OldValuesParameterFormatString="original_{0}" SelectCommand="SELECT * FROM [data_cardsale]" UpdateCommand="UPDATE [data_cardsale] SET [date] = @date, [city] = @city, [product] = @product, [number] = @number, [unit_price] = @unit_price, [final_price] = @final_price, [status] = @status WHERE [id] = @original_id">
+            <h3>卡销售信息</h3>
+            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" DeleteCommand="DELETE FROM [data_cardsale] WHERE [id] = @original_id" InsertCommand="INSERT INTO [data_cardsale] ([date], [city], [product], [number], [unit_price], [final_price], [status]) VALUES (@date, @city, @product, @number, @unit_price, @final_price, @status)" OldValuesParameterFormatString="original_{0}" SelectCommand="SELECT * FROM [data_cardsale]" UpdateCommand="UPDATE [data_cardsale] SET [date] = @date, [city] = @city, [product] = @product, [number] = @number, [unit_price] = @unit_price, [final_price] = @final_price, [status] = @status WHERE [id] = @original_id">
                      <DeleteParameters>
                          <asp:Parameter Name="original_id" Type="Int32" />
                      </DeleteParameters>
@@ -327,13 +325,9 @@
                          <asp:Parameter Name="original_id" Type="Int32" />
                      </UpdateParameters>
                  </asp:SqlDataSource>
-&nbsp;<asp:ListView ID="ListView1" runat="server" DataKeyNames="id" DataSourceID="SqlDataSource2" InsertItemPosition="LastItem" OnSelectedIndexChanged="ListView1_SelectedIndexChanged">
+        <asp:ListView ID="ListView1" runat="server" DataKeyNames="id" DataSourceID="SqlDataSource2" InsertItemPosition="LastItem" OnSelectedIndexChanged="ListView1_SelectedIndexChanged">
             <ItemTemplate>
                 <tr style="background-color: #DCDCDC; color: #000000;">
-                    <td>
-                        <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="删除" />
-                        <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="编辑" />
-                    </td>
                     <td>
                         <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
                     </td>
@@ -380,14 +374,15 @@
                     <td>
                         <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' OnDataBinding="statusLabel_Load"/>
                     </td>
+                    
+                    <td>
+                        <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="删除" />
+                        <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="修改" />
+                    </td>
                 </tr>
             </ItemTemplate>
             <EditItemTemplate>
                 <tr style="background-color: #008A8C; color: #FFFFFF;">
-                    <td>
-                        <asp:Button ID="UpdateButton" runat="server" CommandName="Update" Text="更新" />
-                        <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="取消" />
-                    </td>
                     <td>
                         <asp:Label ID="idLabel1" runat="server" Text='<%# Eval("id") %>' />
                     </td>
@@ -424,6 +419,10 @@
                     <td>
                         
                     </td>
+                    <td>
+                        <asp:Button ID="UpdateButton" runat="server" CommandName="Update" Text="保存" />
+                        <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="取消" />
+                    </td>
                 </tr>
             </EditItemTemplate>
             <EmptyDataTemplate>
@@ -435,10 +434,6 @@
             </EmptyDataTemplate>
             <InsertItemTemplate>
                 <tr style="">
-                    <td>
-                        <asp:Button ID="InsertButton" runat="server" CommandName="Insert" Text="插入" />
-                        <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="清除" />
-                    </td>
                     <td>&nbsp;</td>
                     <td>
                         <asp:TextBox placeholder="年-月-日" ID="dateTextBox" runat="server" Text='<%# Bind("date", "{0:yyyy-M-d}") %>' />
@@ -473,14 +468,14 @@
                     <td>
                         
                     </td>
+                    <td>
+                        <asp:Button ID="InsertButton" runat="server" CommandName="Insert" Text="保存" />
+                        <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="清除" />
+                    </td>
                 </tr>
             </InsertItemTemplate>
             <AlternatingItemTemplate>
                 <tr style="background-color: #FFF8DC;">
-                    <td>
-                        <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="删除" />
-                        <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="编辑" />
-                    </td>
                     <td>
                         <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
                         
@@ -531,6 +526,10 @@
                     <td>
                         <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' OnDataBinding="statusLabel_Load"/>
                     </td>
+                    <td>
+                        <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="删除" />
+                        <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="修改" />
+                    </td>
                 </tr>
             </AlternatingItemTemplate>
             <LayoutTemplate>
@@ -539,7 +538,6 @@
                         <td runat="server">
                             <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;font-family: Verdana, Arial, Helvetica, sans-serif;">
                                 <tr runat="server" style="background-color: #DCDCDC; color: #000000;">
-                                    <th runat="server"></th>
                                     <th runat="server">ID</th>
                                     <th runat="server">录入日期</th>
                                     <th runat="server">城市</th>
@@ -548,6 +546,7 @@
                                     <th runat="server">面值金额</th>
                                     <th runat="server">实售金额</th>
                                     <th runat="server">稽核状态</th>
+                                    <th runat="server">操作</th>
                                 </tr>
                                 <tr id="itemPlaceholder" runat="server">
                                 </tr>
@@ -562,7 +561,8 @@
         </asp:ListView>
         </asp:View>   
         <asp:View ID="View3" runat="server">
-            网间结算基本信息<asp:SqlDataSource ID="SqlDataSource7" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" DeleteCommand="DELETE FROM [data_settlement] WHERE [id] = @id" InsertCommand="INSERT INTO [data_settlement] ([month], [city], [product], [operator], [type], [money], [status]) VALUES (@month, @city, @product, @operator, @type, @money, @status)" SelectCommand="SELECT * FROM [data_settlement]" UpdateCommand="UPDATE [data_settlement] SET [month] = @month, [city] = @city, [product] = @product, [operator] = @operator, [type] = @type, [money] = @money, [status] = @status WHERE [id] = @id">
+            <h3>网间结算基本信息</h3>
+            <asp:SqlDataSource ID="SqlDataSource7" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" DeleteCommand="DELETE FROM [data_settlement] WHERE [id] = @id" InsertCommand="INSERT INTO [data_settlement] ([month], [city], [product], [operator], [type], [money], [status]) VALUES (@month, @city, @product, @operator, @type, @money, @status)" SelectCommand="SELECT * FROM [data_settlement]" UpdateCommand="UPDATE [data_settlement] SET [month] = @month, [city] = @city, [product] = @product, [operator] = @operator, [type] = @type, [money] = @money, [status] = @status WHERE [id] = @id">
                 <DeleteParameters>
                     <asp:Parameter Name="id" Type="Int32" />
                 </DeleteParameters>
@@ -589,10 +589,6 @@
             <asp:ListView ID="ListView2" runat="server" DataKeyNames="id" DataSourceID="SqlDataSource7" InsertItemPosition="LastItem">
                 <AlternatingItemTemplate>
                     <tr style="background-color: #FFFFFF;color: #284775;">
-                        <td>
-                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="删除" />
-                            <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="编辑" />
-                        </td>
                         <td>
                             <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
                         </td>
@@ -663,14 +659,15 @@
                         <td>
                             <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' OnDataBinding="statusLabel_Load"/>
                         </td>
+                        
+                        <td>
+                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="删除" />
+                            <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="修改" />
+                        </td>
                     </tr>
                 </AlternatingItemTemplate>
                 <EditItemTemplate>
                     <tr style="background-color: #999999;">
-                        <td>
-                            <asp:Button ID="UpdateButton" runat="server" CommandName="Update" Text="更新" />
-                            <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="取消" />
-                        </td>
                         <td>
                             <asp:Label ID="idLabel1" runat="server" Text='<%# Eval("id") %>' />
                         </td>
@@ -719,6 +716,10 @@
                         <td>
                             
                         </td>
+                        <td>
+                            <asp:Button ID="UpdateButton" runat="server" CommandName="Update" Text="保存" />
+                            <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="取消" />
+                        </td>
                     </tr>
                 </EditItemTemplate>
                 <EmptyDataTemplate>
@@ -730,10 +731,6 @@
                 </EmptyDataTemplate>
                 <InsertItemTemplate>
                     <tr style="">
-                        <td>
-                            <asp:Button ID="InsertButton" runat="server" CommandName="Insert" Text="插入" />
-                            <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="清除" />
-                        </td>
                         <td>&nbsp;</td>
                         <td>
                             <asp:TextBox placeholder="年-月" ID="monthTextBox" runat="server" Text='<%# Bind("month", "{0:yyyy-M}") %>' />
@@ -781,14 +778,14 @@
                         <td>
                             
                         </td>
+                        <td>
+                            <asp:Button ID="InsertButton" runat="server" CommandName="Insert" Text="保存" />
+                            <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="清除" />
+                        </td>
                     </tr>
                 </InsertItemTemplate>
                 <ItemTemplate>
                     <tr style="background-color: #E0FFFF;color: #333333;">
-                        <td>
-                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="删除" />
-                            <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="编辑" />
-                        </td>
                         <td>
                             <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
                         </td>
@@ -860,6 +857,10 @@
                         <td>
                             <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' OnDataBinding="statusLabel_Load"/>
                         </td>
+                        <td>
+                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="删除" />
+                            <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="修改" />
+                        </td>
                     </tr>
                 </ItemTemplate>
                 <LayoutTemplate>
@@ -868,7 +869,6 @@
                             <td runat="server">
                                 <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;font-family: Verdana, Arial, Helvetica, sans-serif;">
                                     <tr runat="server" style="background-color: #E0FFFF;color: #333333;">
-                                        <th runat="server"></th>
                                         <th runat="server">ID</th>
                                         <th runat="server">录入月份</th>
                                         <th runat="server">城市</th>
@@ -877,6 +877,7 @@
                                         <th runat="server">结算类型</th>
                                         <th runat="server">结算金额</th>
                                         <th runat="server">稽核状态</th>
+                                        <th runat="server">操作</th>
                                     </tr>
                                     <tr id="itemPlaceholder" runat="server">
                                     </tr>
@@ -891,7 +892,8 @@
             </asp:ListView>
             </asp:View>
         <asp:View ID="View4" runat="server">
-            预存转收入收入基本信息<asp:SqlDataSource ID="SqlDataSource8" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" DeleteCommand="DELETE FROM [data_prestore] WHERE [id] = @id" InsertCommand="INSERT INTO [data_prestore] ([date], [city], [product], [type], [money], [status]) VALUES (@date, @city, @product, @type, @money, @status)" SelectCommand="SELECT * FROM [data_prestore]" UpdateCommand="UPDATE [data_prestore] SET [date] = @date, [city] = @city, [product] = @product, [type] = @type, [money] = @money, [status] = @status WHERE [id] = @id">
+            <h3>预存转收入基本信息</h3>
+            <asp:SqlDataSource ID="SqlDataSource8" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" DeleteCommand="DELETE FROM [data_prestore] WHERE [id] = @id" InsertCommand="INSERT INTO [data_prestore] ([date], [city], [product], [type], [money], [status]) VALUES (@date, @city, @product, @type, @money, @status)" SelectCommand="SELECT * FROM [data_prestore]" UpdateCommand="UPDATE [data_prestore] SET [date] = @date, [city] = @city, [product] = @product, [type] = @type, [money] = @money, [status] = @status WHERE [id] = @id">
                 <DeleteParameters>
                     <asp:Parameter Name="id" Type="Int32" />
                 </DeleteParameters>
@@ -916,10 +918,6 @@
             <asp:ListView ID="ListView3" runat="server" DataKeyNames="id" DataSourceID="SqlDataSource8" InsertItemPosition="LastItem">
                 <AlternatingItemTemplate>
                     <tr style="background-color:#FFF8DC;">
-                        <td>
-                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="删除" />
-                            <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="编辑" />
-                        </td>
                         <td>
                             <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
                         </td>
@@ -974,14 +972,15 @@
                         <td>
                             <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' OnDataBinding="statusLabel_Load"/>
                         </td>
+                        
+                        <td>
+                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="删除" />
+                            <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="修改" />
+                        </td>
                     </tr>
                 </AlternatingItemTemplate>
                 <EditItemTemplate>
                     <tr style="background-color:#008A8C;color: #FFFFFF;">
-                        <td>
-                            <asp:Button ID="UpdateButton" runat="server" CommandName="Update" Text="更新" />
-                            <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="取消" />
-                        </td>
                         <td>
                             <asp:Label ID="idLabel1" runat="server" Text='<%# Eval("id") %>' />
                         </td>
@@ -1021,6 +1020,11 @@
                         <td>
                             
                         </td>
+                        
+                        <td>
+                            <asp:Button ID="UpdateButton" runat="server" CommandName="Update" Text="保存" />
+                            <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="取消" />
+                        </td>
                     </tr>
                 </EditItemTemplate>
                 <EmptyDataTemplate>
@@ -1032,10 +1036,6 @@
                 </EmptyDataTemplate>
                 <InsertItemTemplate>
                     <tr style="">
-                        <td>
-                            <asp:Button ID="InsertButton" runat="server" CommandName="Insert" Text="插入" />
-                            <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="清除" />
-                        </td>
                         <td>&nbsp;</td>
                         <td>
                             <asp:TextBox placeholder="年-月-日" ID="dateTextBox" runat="server" Text='<%# Bind("date", "{0:yyyy-M-d}") %>' />
@@ -1073,14 +1073,14 @@
                         <td>
                             
                         </td>
+                        <td>
+                            <asp:Button ID="InsertButton" runat="server" CommandName="Insert" Text="保存" />
+                            <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="清除" />
+                        </td>
                     </tr>
                 </InsertItemTemplate>
                 <ItemTemplate>
                     <tr style="background-color:#DCDCDC;color: #000000;">
-                        <td>
-                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="删除" />
-                            <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="编辑" />
-                        </td>
                         <td>
                             <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
                         </td>
@@ -1135,6 +1135,10 @@
                         <td>
                             <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' OnDataBinding="statusLabel_Load"/>
                         </td>
+                        <td>
+                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="删除" />
+                            <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="修改" />
+                        </td>
                     </tr>
                 </ItemTemplate>
                 <LayoutTemplate>
@@ -1143,7 +1147,6 @@
                             <td runat="server">
                                 <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;font-family: Verdana, Arial, Helvetica, sans-serif;">
                                     <tr runat="server" style="background-color:#DCDCDC;color: #000000;">
-                                        <th runat="server"></th>
                                         <th runat="server">ID</th>
                                         <th runat="server">销账日期</th>
                                         <th runat="server">城市</th>
@@ -1151,6 +1154,7 @@
                                         <th runat="server">销账类型</th>
                                         <th runat="server">销账金额</th>
                                         <th runat="server">稽核状态</th>
+                                        <th runat="server">操作</th>
                                     </tr>
                                     <tr id="itemPlaceholder" runat="server">
                                     </tr>
@@ -1165,7 +1169,8 @@
             </asp:ListView>
          </asp:View>
         <asp:View ID="View5" runat="server">
-            通知单收入基本信息<asp:SqlDataSource ID="SqlDataSource9" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" DeleteCommand="DELETE FROM [data_notice] WHERE [id] = @id" InsertCommand="INSERT INTO [data_notice] ([date], [city], [product], [type], [money], [status]) VALUES (@date, @city, @product, @type, @money, @status)" SelectCommand="SELECT * FROM [data_notice]" UpdateCommand="UPDATE [data_notice] SET [date] = @date, [city] = @city, [product] = @product, [type] = @type, [money] = @money, [status] = @status WHERE [id] = @id" OnSelecting="SqlDataSource9_Selecting">
+            <h3>通知单收入基本信息</h3>
+            <asp:SqlDataSource ID="SqlDataSource9" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" DeleteCommand="DELETE FROM [data_notice] WHERE [id] = @id" InsertCommand="INSERT INTO [data_notice] ([date], [city], [product], [type], [money], [status]) VALUES (@date, @city, @product, @type, @money, @status)" SelectCommand="SELECT * FROM [data_notice]" UpdateCommand="UPDATE [data_notice] SET [date] = @date, [city] = @city, [product] = @product, [type] = @type, [money] = @money, [status] = @status WHERE [id] = @id" OnSelecting="SqlDataSource9_Selecting">
                 <DeleteParameters>
                     <asp:Parameter Name="id" Type="Int32" />
                 </DeleteParameters>
@@ -1190,10 +1195,6 @@
             <asp:ListView ID="ListView4" runat="server" DataKeyNames="id" DataSourceID="SqlDataSource9" InsertItemPosition="LastItem" OnSelectedIndexChanged="ListView4_SelectedIndexChanged">
                 <AlternatingItemTemplate>
                     <tr style="background-color: #FFFFFF;color: #284775;">
-                        <td>
-                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="删除" />
-                            <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="编辑" />
-                        </td>
                         <td>
                             <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
                         </td>
@@ -1247,14 +1248,14 @@
                         <td>
                             <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' OnDataBinding="statusLabel_Load"  />
                         </td>
+                        <td>
+                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="删除" />
+                            <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="修改" />
+                        </td>
                     </tr>
                 </AlternatingItemTemplate>
                 <EditItemTemplate>
                     <tr style="background-color: #999999;">
-                        <td>
-                            <asp:Button ID="UpdateButton" runat="server" CommandName="Update" Text="更新" />
-                            <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="取消" />
-                        </td>
                         <td>
                             <asp:Label ID="idLabel1" runat="server" Text='<%# Eval("id") %>' />
                         </td>
@@ -1294,6 +1295,10 @@
                         <td>
                             
                         </td>
+                        <td>
+                            <asp:Button ID="UpdateButton" runat="server" CommandName="Update" Text="保存" />
+                            <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="取消" />
+                        </td>
                     </tr>
                 </EditItemTemplate>
                 <EmptyDataTemplate>
@@ -1305,10 +1310,6 @@
                 </EmptyDataTemplate>
                 <InsertItemTemplate>
                     <tr style="">
-                        <td>
-                            <asp:Button ID="InsertButton" runat="server" CommandName="Insert" Text="插入" />
-                            <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="清除" />
-                        </td>
                         <td>&nbsp;</td>
                         <td>
                             <asp:TextBox placeholder="年-月-日" ID="dateTextBox" runat="server" Text='<%# Bind("date", "{0:yyyy-M-d}") %>' />
@@ -1346,14 +1347,14 @@
                         <td>
                             
                         </td>
+                        <td>
+                            <asp:Button ID="InsertButton" runat="server" CommandName="Insert" Text="保存" />
+                            <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="清除" />
+                        </td>
                     </tr>
                 </InsertItemTemplate>
                 <ItemTemplate>
                     <tr style="background-color: #E0FFFF;color: #333333;">
-                        <td>
-                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="删除" />
-                            <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="编辑" />
-                        </td>
                         <td>
                             <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
                         </td>
@@ -1407,6 +1408,10 @@
                         <td>
                             <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' OnDataBinding="statusLabel_Load" />
                         </td>
+                        <td>
+                            <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="删除" />
+                            <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="修改" />
+                        </td>
                     </tr>
                 </ItemTemplate>
                 <LayoutTemplate>
@@ -1415,7 +1420,6 @@
                             <td runat="server">
                                 <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;font-family: Verdana, Arial, Helvetica, sans-serif;">
                                     <tr runat="server" style="background-color: #E0FFFF;color: #333333;">
-                                        <th runat="server"></th>
                                         <th runat="server">ID</th>
                                         <th runat="server">营业收款日期</th>
                                         <th runat="server">城市</th>
@@ -1423,6 +1427,7 @@
                                         <th runat="server">通知单收入</th>
                                         <th runat="server">营业收入金额</th>
                                         <th runat="server">稽核状态</th>
+                                        <th runat="server">操作</th>
                                     </tr>
                                     <tr id="itemPlaceholder" runat="server">
                                     </tr>
