@@ -62,13 +62,19 @@ public partial class View_Output_Browse : System.Web.UI.Page
 
     protected void clearFilter() {
         filter.Clear();
-        yearSelector.SelectedIndex = 0;
-        monthSelector.SelectedIndex = 0;
-        daySelector.SelectedIndex = 0;
-        CityList.SelectedIndex = 0;
-        ProductList.SelectedIndex = 0;
-        ReportTableList.SelectedIndex = 0;
-        operatorList.SelectedIndex = 0;
+        try
+        {
+            yearSelector.SelectedIndex = 0;
+            monthSelector.SelectedIndex = 0;
+            daySelector.SelectedIndex = 0;
+            CityList.SelectedIndex = 0;
+            ProductList.SelectedIndex = 0;
+            ReportTypeList.SelectedIndex = 0;
+            operatorList.SelectedIndex = 0;
+        }
+        catch (ArgumentOutOfRangeException) {
+            // ignore
+        }
     }
 
     protected void ReportTable_SelectedIndexChanged(object sender, EventArgs e)
@@ -145,4 +151,9 @@ public partial class View_Output_Browse : System.Web.UI.Page
         list.SelectedIndex = index;
     }
 
+
+    protected void ResetFilter_Click(object sender, EventArgs e)
+    {
+        clearFilter();
+    }
 }

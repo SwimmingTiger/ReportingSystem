@@ -57,6 +57,7 @@
         
         <asp:DropDownList ID="ReportTypeList" runat="server" DataSourceID="reportTypeDataSource" DataTextField="name" DataValueField="id" AutoPostBack="True" OnDataBound="DropDownList_DataBound">
         </asp:DropDownList>
+        <asp:Button ID="ResetFilter" runat="server" OnClick="ResetFilter_Click" Text="清除条件" />
         <asp:SqlDataSource ID="accountDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" 
             SelectCommand="SELECT * FROM [data_account] WHERE (@city = 0 OR [city] = @city) AND (@year = 0 OR year([month]) = @year) AND (@month = 0 OR month([month]) = @month) AND (@product = 0 OR [product] = @product) AND (@type = 0 OR [type] = @type) AND ([status] = @status)">
             <SelectParameters>
@@ -235,7 +236,7 @@
                                     <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;font-family: Verdana, Arial, Helvetica, sans-serif;">
                                         <tr runat="server" style="background-color: #E0FFFF;color: #333333;">
                                             <th runat="server">录入月份</th>
-                                            <th runat="server">城市</th>
+                                            <th runat="server">地市</th>
                                             <th runat="server">产品</th>
                                             <th runat="server">出账类型</th>
                                             <th runat="server">录入金额</th>
@@ -366,7 +367,7 @@
                             <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;font-family: Verdana, Arial, Helvetica, sans-serif;">
                                 <tr runat="server" style="background-color: #DCDCDC; color: #000000;">
                                     <th runat="server">录入日期</th>
-                                    <th runat="server">城市</th>
+                                    <th runat="server">地市</th>
                                     <th runat="server">产品</th>
                                     <th runat="server">卡销售数量</th>
                                     <th runat="server">面值金额</th>
@@ -503,7 +504,7 @@
                                 <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;font-family: Verdana, Arial, Helvetica, sans-serif;">
                                     <tr runat="server" style="background-color: #E0FFFF;color: #333333;">
                                         <th runat="server">营业收款日期</th>
-                                        <th runat="server">城市</th>
+                                        <th runat="server">地市</th>
                                         <th runat="server">产品</th>
                                         <th runat="server">通知单收入</th>
                                         <th runat="server">营业收入金额</th>
@@ -640,7 +641,7 @@
                                 <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;font-family: Verdana, Arial, Helvetica, sans-serif;">
                                     <tr runat="server" style="background-color:#DCDCDC;color: #000000;">
                                         <th runat="server">销账日期</th>
-                                        <th runat="server">城市</th>
+                                        <th runat="server">地市</th>
                                         <th runat="server">产品</th>
                                         <th runat="server">销账类型</th>
                                         <th runat="server">销账金额</th>
@@ -810,7 +811,7 @@
                                 <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;font-family: Verdana, Arial, Helvetica, sans-serif;">
                                     <tr runat="server" style="background-color: #E0FFFF;color: #333333;">
                                         <th runat="server">录入月份</th>
-                                        <th runat="server">城市</th>
+                                        <th runat="server">地市</th>
                                         <th runat="server">产品</th>
                                         <th runat="server">结算运营商</th>
                                         <th runat="server">结算类型</th>
