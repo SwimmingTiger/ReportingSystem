@@ -9,15 +9,16 @@
 </head>
 <body>
     <form id="form1" runat="server"> 
-        <asp:Button ID="Button1" runat="server" Text="data_account" OnClick="LinkButton1_Click"/>
-        <asp:Button ID="Button2" runat="server" Text="data_cardsale" OnClick="LinkButton2_Click"/>
-        <asp:Button ID="Button3" runat="server" Text="data_notice" OnClick="LinkButton3_Click"/>
-        <asp:Button ID="Button4" runat="server" Text="data_prestroe" OnClick="LinkButton4_Click"/>
-        <asp:Button ID="Button5" runat="server" Text="data_settlement" OnClick="LinkButton5_Click"/>
+        <asp:Button ID="Button1" runat="server" Text="出账收入基本信息" OnClick="LinkButton1_Click"/>
+        <asp:Button ID="Button2" runat="server" Text="卡销售收入基本信息" OnClick="LinkButton2_Click"/>
+        <asp:Button ID="Button3" runat="server" Text="通知单收入基本信息" OnClick="LinkButton3_Click"/>
+        <asp:Button ID="Button4" runat="server" Text="预存转收入基本信息" OnClick="LinkButton4_Click"/>
+        <asp:Button ID="Button5" runat="server" Text="网间结算基本信息" OnClick="LinkButton5_Click"/>
         
     <div style="margin-top: 0px" >
         <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
             <asp:View ID="View1" runat="server">
+                <h3>出账收入基本信息</h3>
                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT * FROM [data_account]"></asp:SqlDataSource>
                 <asp:ListView ID="ListView1" runat="server" DataKeyNames="id" DataSourceID="SqlDataSource1">
                     <AlternatingItemTemplate>
@@ -46,7 +47,7 @@
                                 </asp:ListView>
                             </td>
                             <td>
-                                <asp:Label ID="productLabel" runat="server" Text='<%# Eval("product") %>' />
+                                <asp:Label ID="productLabel" runat="server" Text='<%# Eval("product") %>' visible="false"/>
                                 <asp:SqlDataSource 
                                     ID="SqlDataSource3" 
                                     runat="server"
@@ -125,7 +126,7 @@
                                 </asp:ListView>
                             </td>
                             <td>
-                                <asp:Label ID="productLabel" runat="server" Text='<%# Eval("product") %>' />
+                                <asp:Label ID="productLabel" runat="server" Text='<%# Eval("product") %>' visible="false"/>
                                 <asp:SqlDataSource 
                                     ID="SqlDataSource4" 
                                     runat="server"
@@ -178,12 +179,12 @@
                                     <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;font-family: Verdana, Arial, Helvetica, sans-serif;">
                                         <tr runat="server" style="background-color:#DCDCDC;color: #000000;">
                                             <th runat="server">id</th>
-                                            <th runat="server">month</th>
-                                            <th runat="server">city</th>
-                                            <th runat="server">product</th>
-                                            <th runat="server">type</th>
-                                            <th runat="server">money</th>
-                                            <th runat="server">status</th>
+                                            <th runat="server">月份</th>
+                                            <th runat="server">城市</th>
+                                            <th runat="server">产品</th>
+                                            <th runat="server">类型</th>
+                                            <th runat="server">金额</th>
+                                            <th runat="server">稽核状态</th>
                                         </tr>
                                         <tr id="itemPlaceholder" runat="server">
                                         </tr>
@@ -198,6 +199,7 @@
                 </asp:ListView>
             </asp:View>
             <asp:View ID="View2" runat="server">
+                <h3>卡销售收入基本信息</h3>
                  <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" 
                     SelectCommand="SELECT * FROM [data_cardsale]">
                  </asp:SqlDataSource>
@@ -336,13 +338,13 @@
                                     <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;font-family: Verdana, Arial, Helvetica, sans-serif;">
                                         <tr runat="server" style="background-color:#DCDCDC;color: #000000;">
                                             <th runat="server">id</th>
-                                            <th runat="server">date</th>
-                                            <th runat="server">city</th>
-                                            <th runat="server">product</th>
-                                            <th runat="server">number</th>
-                                            <th runat="server">unit_price</th>
-                                            <th runat="server">final_price</th>
-                                            <th runat="server">status</th>
+                                            <th runat="server">日期</th>
+                                            <th runat="server">城市</th>
+                                            <th runat="server">产品</th>
+                                            <th runat="server">售卡数量</th>
+                                            <th runat="server">面值金额</th>
+                                            <th runat="server">实售金额</th>
+                                            <th runat="server">稽核状态</th>
                                         </tr>
                                         <tr id="itemPlaceholder" runat="server">
                                         </tr>                                                           
@@ -357,6 +359,7 @@
                  </asp:ListView>
             </asp:View>
             <asp:View ID="View3" runat="server">
+                <h3>通知单收入基本信息</h3>
                 <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT * FROM [data_notice]"></asp:SqlDataSource>
                 <asp:ListView ID="ListView7" runat="server" DataKeyNames="id" DataSourceID="SqlDataSource3">
                 <AlternatingItemTemplate>
@@ -519,12 +522,12 @@
                                 <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;font-family: Verdana, Arial, Helvetica, sans-serif;">
                                     <tr runat="server" style="background-color:#DCDCDC;color: #000000;">
                                         <th runat="server">id</th>
-                                        <th runat="server">date</th>
-                                        <th runat="server">city</th>
-                                        <th runat="server">product</th>
-                                        <th runat="server">type</th>
-                                        <th runat="server">money</th>
-                                        <th runat="server">status</th>
+                                        <th runat="server">日期</th>
+                                        <th runat="server">城市</th>
+                                        <th runat="server">产品</th>
+                                        <th runat="server">类型</th>
+                                        <th runat="server">金额</th>
+                                        <th runat="server">稽核状态</th>
                                     </tr>
                                     <tr id="itemPlaceholder" runat="server">
                                     </tr>
@@ -540,6 +543,7 @@
               </asp:ListView>
             </asp:View>
             <asp:View ID="View4" runat="server">
+                <h3>预存转收入基本信息</h3>
                 <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT * FROM [data_prestore]"></asp:SqlDataSource>
                 <asp:ListView ID="ListView8" runat="server" DataKeyNames="id" DataSourceID="SqlDataSource4">
                 <AlternatingItemTemplate>
@@ -691,12 +695,12 @@
                             <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;font-family: Verdana, Arial, Helvetica, sans-serif;">
                                 <tr runat="server" style="background-color:#DCDCDC;color: #000000;">
                                     <th runat="server">id</th>
-                                    <th runat="server">date</th>
-                                    <th runat="server">city</th>
-                                    <th runat="server">product</th>
-                                    <th runat="server">type</th>
-                                    <th runat="server">money</th>
-                                    <th runat="server">status</th>
+                                    <th runat="server">日期</th>
+                                    <th runat="server">城市</th>
+                                    <th runat="server">产品</th>
+                                    <th runat="server">类型</th>
+                                    <th runat="server">金额</th>
+                                    <th runat="server">稽核状态</th>
                                 </tr>
                                 <tr id="itemPlaceholder" runat="server">
                                 </tr>
@@ -712,6 +716,7 @@
         </asp:ListView>
             </asp:View>
             <asp:View ID="View5" runat="server">
+                <h3>网间结算基本信息</h3>
                 <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT * FROM [data_settlement]"></asp:SqlDataSource>
                 <asp:ListView ID="ListView9" runat="server" DataKeyNames="id" DataSourceID="SqlDataSource5">
                 <AlternatingItemTemplate>
@@ -757,7 +762,20 @@
                             </asp:ListView>
                         </td>
                         <td>
-                            <asp:Label ID="operatorLabel" runat="server" Text='<%# Eval("operator") %>' />
+                            <asp:Label ID="operatorLabel" runat="server" Text='<%# Eval("operator") %>' visible="false"/>
+                            <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [name] FROM [report_param] WHERE ([id] = @id)">
+                            <SelectParameters>
+                                <asp:ControlParameter ControlID="operatorLabel" Name="id" PropertyName="Text" Type="Int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                        <asp:ListView ID="ListView10" runat="server" DataSourceID="SqlDataSource4">
+
+                            <ItemTemplate>
+
+                                        <asp:Label ID="nameLabel" runat="server" Text='<%# Eval("name") %>' />
+                            </ItemTemplate>
+                         
+                        </asp:ListView>
                         </td>
                         <td>
                             <asp:Label ID="typeLabel" runat="server" Text='<%# Eval("type") %>' visible="false"/>
@@ -841,7 +859,20 @@
                             </asp:ListView>
                         </td>
                         <td>
-                            <asp:Label ID="operatorLabel" runat="server" Text='<%# Eval("operator") %>' />
+                            <asp:Label ID="operatorLabel" runat="server" Text='<%# Eval("operator") %>' visible="false"/>
+                            <asp:SqlDataSource ID="SqlDataSource7" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [name] FROM [report_param] WHERE ([id] = @id)">
+                            <SelectParameters>
+                                <asp:ControlParameter ControlID="operatorLabel" Name="id" PropertyName="Text" Type="Int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                        <asp:ListView ID="ListView10" runat="server" DataSourceID="SqlDataSource4">
+
+                            <ItemTemplate>
+
+                                        <asp:Label ID="nameLabel" runat="server" Text='<%# Eval("name") %>' />
+                            </ItemTemplate>
+                         
+                        </asp:ListView>
                         </td>
                         <td>
                             <asp:Label ID="typeLabel" runat="server" Text='<%# Eval("type") %>' visible="false"/>
@@ -880,13 +911,13 @@
                             <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;font-family: Verdana, Arial, Helvetica, sans-serif;">
                                 <tr runat="server" style="background-color:#DCDCDC;color: #000000;">
                                     <th runat="server">id</th>
-                                    <th runat="server">month</th>
-                                    <th runat="server">city</th>
-                                    <th runat="server">product</th>
-                                    <th runat="server">operator</th>
-                                    <th runat="server">type</th>
-                                    <th runat="server">money</th>
-                                    <th runat="server">status</th>
+                                    <th runat="server">月份</th>
+                                    <th runat="server">城市</th>
+                                    <th runat="server">产品</th>
+                                    <th runat="server">运营商</th>
+                                    <th runat="server">类型</th>
+                                    <th runat="server">金额</th>
+                                    <th runat="server">稽核状态</th>
                                 </tr>
                                 <tr id="itemPlaceholder" runat="server">
                                 </tr>
