@@ -13,13 +13,16 @@
     </style>
 </head>
 <body>
-    <header id="mainHeader">
-        欢迎光临，<%= Permission.User.GetName() %>。
-    </header>
     <form id="mainForm" class="main" runat="server">
+        <header id="mainHeader">
+            欢迎光临，<%= Permission.User.GetName() %>
+            <asp:Button ID="Exit" runat="server" Text="退出" OnClick="Exit_Click" />
+        </header>
+
         <nav id="mainNav">
             <asp:Menu ID="NavMenu" runat="server" OnMenuItemClick="NavMenu_MenuItemClick" StaticSubMenuIndent="16px" Orientation="Horizontal">
                 <Items>
+                    <asp:MenuItem Text="首页" Value="../Default.aspx"></asp:MenuItem>
                     <asp:MenuItem Text="手工录入" Value="Input/Input.aspx"></asp:MenuItem>
                     <asp:MenuItem Text="收款稽核" Value="Audit/Auditor.aspx"></asp:MenuItem>
                     <asp:MenuItem Text="数据归集" Value="Output/Browse.aspx"></asp:MenuItem>

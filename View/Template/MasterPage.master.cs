@@ -16,4 +16,9 @@ public partial class MasterPage : System.Web.UI.MasterPage
     {
         HttpContext.Current.Response.Redirect(Param.Website.VIEW_PATH + "/" + NavMenu.SelectedValue);
     }
+
+    protected void Exit_Click(object sender, EventArgs e)
+    {
+        Permission.User.Exit();
+    }
 }

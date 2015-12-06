@@ -205,8 +205,9 @@ namespace Permission
             JumpPageBack();
         }
 
-        public void Exit() {
+        public static void Exit() {
             HttpContext.Current.Session["UserId"] = null;
+            JumpToLoginPage();
         }
     }
 
