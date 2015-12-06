@@ -126,7 +126,7 @@
                     <AlternatingItemTemplate>
                         <tr style="background-color: #FFFFFF;color: #284775;">
                             <td>
-                                <asp:Label ID="monthLabel" runat="server" Text='<%# Eval("month") %>' />
+                                <asp:Label ID="monthLabel" runat="server" Text='<%# Eval("month", "{0:yyyy年M月}") %>' />
                             </td>
                             <td>
                                 <asp:Label ID="Label1" runat="server" Text='<%# Bind("city") %>' Visible="False"></asp:Label>
@@ -182,7 +182,7 @@
                     <ItemTemplate>
                         <tr style="background-color: #E0FFFF;color: #333333;">
                             <td>
-                                <asp:Label ID="monthLabel" runat="server" Text='<%# Eval("month") %>' />
+                                <asp:Label ID="monthLabel" runat="server" Text='<%# Eval("month", "{0:yyyy年M月}") %>' />
                             </td>
                             <td>
                                 <asp:Label ID="Label1" runat="server" Text='<%# Bind("city") %>' Visible="False"></asp:Label>
@@ -258,7 +258,7 @@
             <ItemTemplate>
                 <tr style="background-color: #DCDCDC; color: #000000;">
                     <td>
-                        <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date") %>' />
+                        <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date", "{0:yyyy年M月d日}") %>' />
                     </td>
                     <td>
                         
@@ -312,7 +312,7 @@
             <AlternatingItemTemplate>
                 <tr style="background-color: #FFF8DC;">
                     <td>
-                        <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date") %>' />
+                        <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date", "{0:yyyy年M月d日}") %>' />
                     </td>
                     
                     <td>
@@ -390,7 +390,7 @@
                 <AlternatingItemTemplate>
                     <tr style="background-color: #FFFFFF;color: #284775;">
                         <td>
-                            <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date") %>' />
+                            <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date", "{0:yyyy年M月d日}") %>' />
                         </td>
                         <td>
                             <asp:Label ID="Label1" runat="server" Text='<%# Bind("city") %>' Visible="False"></asp:Label>
@@ -448,7 +448,7 @@
 				<ItemTemplate>
                     <tr style="background-color: #E0FFFF;color: #333333;">
                         <td>
-                            <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date") %>' />
+                            <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date", "{0:yyyy年M月d日}") %>' />
                         </td>
                         <td>
                             <asp:Label ID="Label1" runat="server" Text='<%# Bind("city") %>' Visible="False"></asp:Label>
@@ -525,7 +525,7 @@
                 <AlternatingItemTemplate>
                     <tr style="background-color:#FFF8DC;">
                         <td>
-                            <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date") %>' />
+                            <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date", "{0:yyyy年M月d日}") %>' />
                         </td>
                         <td>
                             <asp:Label ID="Label1" runat="server" Text='<%# Bind("city") %>' Visible="False"></asp:Label>
@@ -584,7 +584,7 @@
                 <ItemTemplate>
                     <tr style="background-color:#DCDCDC;color: #000000;">
                         <td>
-                            <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date") %>' />
+                            <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date", "{0:yyyy年M月d日}") %>' />
                         </td>
                         <td>
                             <asp:Label ID="Label1" runat="server" Text='<%# Bind("city") %>' Visible="False"></asp:Label>
@@ -662,7 +662,7 @@
                 <AlternatingItemTemplate>
                     <tr style="background-color: #FFFFFF;color: #284775;">
                         <td>
-                            <asp:Label ID="monthLabel" runat="server" Text='<%# Eval("month") %>' />
+                            <asp:Label ID="monthLabel" runat="server" Text='<%# Eval("month", "{0:yyyy年M月}") %>' />
                         </td>
                         <td>
                             <asp:Label ID="Label1" runat="server" Text='<%# Bind("city") %>' Visible="False"></asp:Label>
@@ -737,7 +737,7 @@
                 <ItemTemplate>
                     <tr style="background-color: #E0FFFF;color: #333333;">
                         <td>
-                            <asp:Label ID="monthLabel" runat="server" Text='<%# Eval("month") %>' />
+                            <asp:Label ID="monthLabel" runat="server" Text='<%# Eval("month", "{0:yyyy年M月}") %>' />
                         </td>
                         <td>
                             <asp:Label ID="Label1" runat="server" Text='<%# Bind("city") %>' Visible="False"></asp:Label>

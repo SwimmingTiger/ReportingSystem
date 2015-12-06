@@ -54,7 +54,7 @@
                                 <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
                             </td>
                             <td>
-                                <asp:Label ID="monthLabel" runat="server" Text='<%# Eval("month") %>' />
+                                <asp:Label ID="monthLabel" runat="server" Text='<%# Eval("month", "{0:yyyy年M月}") %>' />
                             </td>
                             <td>
                                <asp:Label ID="Label1" runat="server" Text='<%# Bind("city") %>' Visible="False"></asp:Label>
@@ -116,7 +116,7 @@
                                 <asp:Label ID="idLabel1" runat="server" Text='<%# Eval("id") %>' />
                             </td>
                             <td>
-                                <asp:TextBox ID="monthTextBox" runat="server" Text='<%# Bind("month") %>' />
+                                <asp:TextBox placeholder="年-月" ID="monthTextBox" runat="server" Text='<%# Bind("month", "{0:yyyy-M}") %>' />
                             </td>
                             <td>
                                  <asp:SqlDataSource ID="SqlDataSource12" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type)">
@@ -170,7 +170,7 @@
                             </td>
                             <td>&nbsp;</td>
                             <td>
-                                <asp:TextBox ID="monthTextBox" runat="server" Text='<%# Bind("month") %>' />
+                                <asp:TextBox placeholder="年-月" ID="monthTextBox" runat="server" Text='<%# Bind("month", "{0:yyyy-M}") %>' />
                             </td>
                             <td>
                                  <asp:SqlDataSource ID="SqlDataSource12" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type)">
@@ -217,7 +217,7 @@
                                 <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
                             </td>
                             <td>
-                                <asp:Label ID="monthLabel" runat="server" Text='<%# Eval("month") %>' />
+                                <asp:Label ID="monthLabel" runat="server" Text='<%# Eval("month", "{0:yyyy年M月}") %>' />
                             </td>
                             <td>
                                 <asp:Label ID="Label1" runat="server" Text='<%# Bind("city") %>' Visible="False"></asp:Label>
@@ -338,7 +338,7 @@
                         <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
                     </td>
                     <td>
-                        <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date") %>' />
+                        <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date", "{0:yyyy年M月d日}") %>' />
                     </td>
                     <td>
                         
@@ -392,7 +392,7 @@
                         <asp:Label ID="idLabel1" runat="server" Text='<%# Eval("id") %>' />
                     </td>
                     <td>
-                        <asp:TextBox ID="dateTextBox" runat="server" Text='<%# Bind("date") %>' />
+                        <asp:TextBox placeholder="年-月-日" ID="dateTextBox" runat="server" Text='<%# Bind("date", "{0:yyyy-M-d}") %>' />
                     </td>
                     <td>
                         <asp:SqlDataSource ID="SqlDataSource12" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type)">
@@ -441,7 +441,7 @@
                     </td>
                     <td>&nbsp;</td>
                     <td>
-                        <asp:TextBox ID="dateTextBox" runat="server" Text='<%# Bind("date") %>' />
+                        <asp:TextBox placeholder="年-月-日" ID="dateTextBox" runat="server" Text='<%# Bind("date", "{0:yyyy-M-d}") %>' />
                     </td>
                     <td>
                         <asp:SqlDataSource ID="SqlDataSource12" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type)">
@@ -486,7 +486,7 @@
                         
                     </td>
                     <td>
-                        <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date") %>' />
+                        <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date", "{0:yyyy年M月d日}") %>' />
                     </td>
                     
                     <td>
@@ -597,7 +597,7 @@
                             <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
                         </td>
                         <td>
-                            <asp:Label ID="monthLabel" runat="server" Text='<%# Eval("month") %>' />
+                            <asp:Label ID="monthLabel" runat="server" Text='<%# Eval("month", "{0:yyyy年M月}") %>' />
                         </td>
                         <td>
                             <asp:Label ID="Label1" runat="server" Text='<%# Bind("city") %>' Visible="False"></asp:Label>
@@ -675,7 +675,7 @@
                             <asp:Label ID="idLabel1" runat="server" Text='<%# Eval("id") %>' />
                         </td>
                         <td>
-                            <asp:TextBox ID="monthTextBox" runat="server" Text='<%# Bind("month") %>' />
+                            <asp:TextBox placeholder="年-月" ID="monthTextBox" runat="server" Text='<%# Bind("month", "{0:yyyy-M}") %>' />
                         </td>
                         <td>
                                <asp:SqlDataSource ID="SqlDataSource12" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type)">
@@ -736,7 +736,7 @@
                         </td>
                         <td>&nbsp;</td>
                         <td>
-                            <asp:TextBox ID="monthTextBox" runat="server" Text='<%# Bind("month") %>' />
+                            <asp:TextBox placeholder="年-月" ID="monthTextBox" runat="server" Text='<%# Bind("month", "{0:yyyy-M}") %>' />
                         </td>
                         <td>
                                 <asp:SqlDataSource ID="SqlDataSource12" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type)">
@@ -793,7 +793,7 @@
                             <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
                         </td>
                         <td>
-                            <asp:Label ID="monthLabel" runat="server" Text='<%# Eval("month") %>' />
+                            <asp:Label ID="monthLabel" runat="server" Text='<%# Eval("month", "{0:yyyy年M月}") %>' />
                         </td>
                         <td>
                             <asp:Label ID="Label1" runat="server" Text='<%# Bind("city") %>' Visible="False"></asp:Label>
@@ -924,7 +924,7 @@
                             <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
                         </td>
                         <td>
-                            <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date") %>' />
+                            <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date", "{0:yyyy年M月d日}") %>' />
                         </td>
                         <td>
                             <asp:Label ID="Label1" runat="server" Text='<%# Bind("city") %>' Visible="False"></asp:Label>
@@ -986,7 +986,7 @@
                             <asp:Label ID="idLabel1" runat="server" Text='<%# Eval("id") %>' />
                         </td>
                         <td>
-                            <asp:TextBox ID="dateTextBox" runat="server" Text='<%# Bind("date") %>' />
+                            <asp:TextBox placeholder="年-月-日" ID="dateTextBox" runat="server" Text='<%# Bind("date", "{0:yyyy-M-d}") %>' />
                         </td>
                         <td>
                                 <asp:SqlDataSource ID="SqlDataSource12" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type)">
@@ -1038,7 +1038,7 @@
                         </td>
                         <td>&nbsp;</td>
                         <td>
-                            <asp:TextBox ID="dateTextBox" runat="server" Text='<%# Bind("date") %>' />
+                            <asp:TextBox placeholder="年-月-日" ID="dateTextBox" runat="server" Text='<%# Bind("date", "{0:yyyy-M-d}") %>' />
                         </td>
                         <td>
                                 <asp:SqlDataSource ID="SqlDataSource12" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type)">
@@ -1085,7 +1085,7 @@
                             <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
                         </td>
                         <td>
-                            <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date") %>' />
+                            <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date", "{0:yyyy年M月d日}") %>' />
                         </td>
                         <td>
                             <asp:Label ID="Label1" runat="server" Text='<%# Bind("city") %>' Visible="False"></asp:Label>
@@ -1198,7 +1198,7 @@
                             <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
                         </td>
                         <td>
-                            <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date") %>' />
+                            <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date", "{0:yyyy年M月d日}") %>' />
                         </td>
                         <td>
                             <asp:Label ID="Label1" runat="server" Text='<%# Bind("city") %>' Visible="False"></asp:Label>
@@ -1259,7 +1259,7 @@
                             <asp:Label ID="idLabel1" runat="server" Text='<%# Eval("id") %>' />
                         </td>
                         <td>
-                            <asp:TextBox ID="dateTextBox" runat="server" Text='<%# Bind("date") %>' />
+                            <asp:TextBox placeholder="年-月-日" ID="dateTextBox" runat="server" Text='<%# Bind("date", "{0:yyyy-M-d}") %>' />
                         </td>
                         <td>
                                <asp:SqlDataSource ID="SqlDataSource12" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type)">
@@ -1311,7 +1311,7 @@
                         </td>
                         <td>&nbsp;</td>
                         <td>
-                            <asp:TextBox ID="dateTextBox" runat="server" Text='<%# Bind("date") %>' />
+                            <asp:TextBox placeholder="年-月-日" ID="dateTextBox" runat="server" Text='<%# Bind("date", "{0:yyyy-M-d}") %>' />
                         </td>
                         <td>
                                 <asp:SqlDataSource ID="SqlDataSource12" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type)">
@@ -1358,7 +1358,7 @@
                             <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
                         </td>
                         <td>
-                            <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date") %>' />
+                            <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date", "{0:yyyy年M月d日}") %>' />
                         </td>
                         <td>
                             <asp:Label ID="Label1" runat="server" Text='<%# Bind("city") %>' Visible="False"></asp:Label>
