@@ -11,4 +11,9 @@ public partial class View_navigation_navigation : System.Web.UI.Page
     {
 
     }
+
+    protected void Page_Error(object sender, EventArgs e)
+    {
+        Html.ErrorPage.Show();
+    }
 }

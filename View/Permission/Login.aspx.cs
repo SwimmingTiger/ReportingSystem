@@ -21,4 +21,9 @@ public partial class Login : System.Web.UI.Page
             Notice.Text = ex.Message;
         }
     }
+
+    protected void Page_Error(object sender, EventArgs e)
+    {
+        Html.ErrorPage.Show();
+    }
 }

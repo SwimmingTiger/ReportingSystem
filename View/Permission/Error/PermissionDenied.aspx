@@ -8,9 +8,11 @@
     <title></title>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form" runat="server">
     <div>
-    
+        <h3>您需要以下权限才能访问该功能：</h3>
+        <p><asp:Label ID="permission" runat="server" Text="权限"></asp:Label></p>
+
     </div>
     </form>
 </body>

@@ -14,8 +14,16 @@ public partial class View_Output_Browse : System.Web.UI.Page
     /// </summary>
     Dictionary<string, int> filter = new Dictionary<string, int>();
 
+    protected void Page_Error(object sender, EventArgs e)
+    {
+        Html.ErrorPage.Show();
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
+        //检查访问权限
+        Permission.UserPermission.Check(Permission.UserPermission.READ_REPORTS);
+
         string reportTable = ReportTableList.SelectedValue;
 
         if (reportTable == "") {

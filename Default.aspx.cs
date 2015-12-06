@@ -11,4 +11,9 @@ public partial class _Default : System.Web.UI.Page
     {
         Permission.User.LoginCheck();
     }
+
+    protected void Page_Error(object sender, EventArgs e)
+    {
+        Html.ErrorPage.Show();
+    }
 }

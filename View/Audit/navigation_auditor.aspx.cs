@@ -10,7 +10,12 @@ public partial class View_Audit_navigation_auditor : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        Permission.UserPermission.Check(Permission.UserPermission.AUDIT_REPORTS);
+    }
 
+    protected void Page_Error(object sender, EventArgs e)
+    {
+        Html.ErrorPage.Show();
     }
 
     protected void OnSelectedIndexChanged_data_account(object sender, EventArgs e)

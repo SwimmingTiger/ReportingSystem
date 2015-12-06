@@ -95,6 +95,29 @@ namespace Permission
         }
 
         /// <summary>
+        /// 获取权限
+        /// </summary>
+        /// <returns>用户权限</returns>
+        public static int GetPermission()
+        {
+            string sql = "SELECT permission FROM userinfo WHERE id=@id";
+            SqlParam data = new SqlParam { { "@id", GetId() } };
+            Database db = new Database();
+            SqlDataReader reader = db.Query(sql, data);
+            int permission = 0;
+
+            if (reader.Read())
+            {
+                permission = (int)reader["permission"];
+            }
+
+            reader.Close();
+            db.Close();
+
+            return permission;
+        }
+
+        /// <summary>
         /// 32位MD5加密
         /// </summary>
         /// <param name="input">原始内容</param>
@@ -102,14 +125,31 @@ namespace Permission
         /// <links>http://blog.163.com/m13864039250_1/blog/static/21386524820150231533602/</links>
         private static string HashPassword(string input)
         {
-            MD5CryptoServiceProvider md5Hasher = new MD5CryptoServiceProvider();
+            /*MD5CryptoServiceProvider md5Hasher = new MD5CryptoServiceProvider();
             byte[] data = md5Hasher.ComputeHash(Encoding.Default.GetBytes(input));
             StringBuilder sBuilder = new StringBuilder();
             for (int i = 0; i < data.Length; i++)
             {
                 sBuilder.Append(data[i].ToString("x2"));
             }
-            return sBuilder.ToString();
+            return sBuilder.ToString();*/
+
+            // 放弃原始算法，改为调用数据库的运算结果
+
+            string md5sum = "";
+            string sql = "select right(sys.fn_VarBinToHexStr(hashbytes('MD5', @input)),32) as md5sum";
+            SqlParam data = new SqlParam { { "@input", input } };
+            Database db = new Database();
+            SqlDataReader reader = db.Query(sql, data);
+
+            if (reader.Read()) {
+                md5sum = (string)reader["md5sum"];
+            }
+
+            reader.Close();
+            db.Close();
+
+            return md5sum;
         }
 
         public static void Login(string username, string password) {
@@ -130,7 +170,7 @@ namespace Permission
             db.Close();
 
             if (HashPassword(password) != hashedPassword) {
-                throw new UserException("密码错误");
+                throw new UserException("密码错误"+ HashPassword(password) + ", " + hashedPassword);
             }
 
             HttpContext.Current.Session["UserId"] = id;

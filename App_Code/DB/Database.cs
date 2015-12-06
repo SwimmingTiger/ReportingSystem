@@ -35,7 +35,13 @@ namespace DB
 
         public void Close()
         {
-            conn.Close();
+            try
+            {
+                conn.Close();
+            }
+            finally {
+                // ignore
+            }
         }
 
         ~Database()

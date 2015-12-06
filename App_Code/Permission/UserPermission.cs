@@ -52,21 +52,38 @@ namespace Permission
         /// </summary>
         public const int READ_LOG = 1 << 5; // 32
 
+        public static readonly Dictionary<int, string> PermissionNames = new Dictionary<int, string>
+        {
+            { EDIT_REPORTS, "编辑报表" },
+            { AUDIT_REPORTS , "核对报表" },
+            { READ_REPORTS , "阅读报表" },
+            { EDIT_USER , "编辑用户" },
+            { EDIT_REPORT_PARAMS , "编辑报表参数" },
+            { READ_LOG , "阅读日志" },
+
+        };
+
         public static string GetPermissionName(int permission)
         {
-            string name = null;
+            return PermissionNames[permission];
+        }
 
-            switch (permission)
-            {
-                case EDIT_REPORTS:
-                    break;
+        public static void Check(params int[] permissions) {
+            bool pass = true;
+            List<string> names = new List<string>();
+            int userPermission = User.GetPermission();
 
-                default:
-                    throw new Exception("未知权限id“" + permission.ToString() + "”");
-                    break;
+            foreach (int permission in permissions) {
+                if (0 == (userPermission & permission)) {
+                    pass = false;
+                    names.Add(GetPermissionName(permission));
+                }
             }
 
-            return name;
+            if (pass == false) {
+                string nameStr = string.Join(", ", names.ToArray());
+                HttpContext.Current.Response.Redirect(Param.Website.VIEW_PATH + "/Permission/Error/PermissionDenied.aspx?permission=" + HttpUtility.UrlEncode(nameStr));
+            }
         }
     }
 }
