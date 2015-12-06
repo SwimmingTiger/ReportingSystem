@@ -1,14 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="UserManage.aspx.cs" Inherits="View_Permission_UserManage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="UserManage.aspx.cs" Inherits="View_Permission_UserManage" MasterPageFile="~/View/Template/MasterPage.master" %>
 
-<!DOCTYPE html>
+<asp:Content ID="title" ContentPlaceHolderID="title" runat="server">
+    用户/权限管理 - <%= Param.Website.SITE_NAME %>
+</asp:Content>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>用户/权限管理 - <%= Param.Website.SITE_NAME %></title>
-</head>
-<body>
-    <form id="mainForm" runat="server">
+<asp:Content ID="content" ContentPlaceHolderID="content" runat="server">
     <div>
         <asp:SqlDataSource ID="userSqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" 
             DeleteCommand="DELETE FROM [userinfo] WHERE [id] = @id" 
@@ -205,6 +201,4 @@
             </LayoutTemplate>
         </asp:ListView>
     </div>
-    </form>
-</body>
-</html>
+</asp:Content>

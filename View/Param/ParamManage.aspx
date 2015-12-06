@@ -1,14 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ParamManage.aspx.cs" Inherits="View_Param_ParamManage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ParamManage.aspx.cs" Inherits="View_Param_ParamManage" MasterPageFile="~/View/Template/MasterPage.master" %>
 
-<!DOCTYPE html>
+<asp:Content ID="title" ContentPlaceHolderID="title" runat="server">
+    报表参数管理 - <%= Param.Website.SITE_NAME %>
+</asp:Content>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>报表参数管理 - <%= Param.Website.SITE_NAME %></title>
-</head>
-<body>
-    <form id="mainForm" runat="server">
+<asp:Content ID="content" ContentPlaceHolderID="content" runat="server">
     <div>
         <asp:LinqDataSource ID="paramTypeDataSource" runat="server" ContextTypeName="Param.ReportParam" EntityTypeName="" TableName="TypeNames"></asp:LinqDataSource>
         
@@ -328,6 +324,4 @@
         </asp:MultiView>
         
     </div>
-    </form>
-</body>
-</html>
+</asp:Content>

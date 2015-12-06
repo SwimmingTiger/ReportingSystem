@@ -1,14 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Browse.aspx.cs" Inherits="View_Output_Browse" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Browse.aspx.cs" Inherits="View_Output_Browse" MasterPageFile="~/View/Template/MasterPage.master" %>
 
-<!DOCTYPE html>
+<asp:Content ID="title" ContentPlaceHolderID="title" runat="server">
+    报表查询 - <%= Param.Website.SITE_NAME %>
+</asp:Content>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>报表查询 - <%= Param.Website.SITE_NAME %></title>
-</head>
-<body>
-    <form id="mainForm" runat="server">
+<asp:Content ID="content" ContentPlaceHolderID="content" runat="server">
     <div>
         <asp:Label ID="reportTypeLabel" runat="server" Text="[reportTypeLabel]" Visible="False"></asp:Label>
         <asp:Label ID="ProductTypeLabel" runat="server" Text="[ProductTypeLabel]" Visible="False"></asp:Label>
@@ -830,8 +826,5 @@
             </asp:ListView>
 			</asp:View>
         </asp:MultiView>
-		
     </div>
-    </form>
-</body>
-</html>
+</asp:Content>

@@ -1,0 +1,36 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>
+        <asp:ContentPlaceHolder id="title" runat="server"></asp:ContentPlaceHolder>
+    </title>
+
+    <style>
+    </style>
+</head>
+<body>
+    <header id="mainHeader">
+        欢迎光临，<%= Permission.User.GetName() %>。
+    </header>
+    <form id="mainForm" class="main" runat="server">
+        <nav id="mainNav">
+            <asp:Menu ID="NavMenu" runat="server" OnMenuItemClick="NavMenu_MenuItemClick" StaticSubMenuIndent="16px" Orientation="Horizontal">
+                <Items>
+                    <asp:MenuItem Text="手工录入" Value="Input/Input.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text="收款稽核" Value="Audit/Auditor.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text="数据归集" Value="Output/Browse.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text="参数管理" Value="Param/ParamManage.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text="权限管理" Value="Permission/UserManage.aspx"></asp:MenuItem>
+                </Items>
+            </asp:Menu>
+        </nav>
+        <article id="mainContent">
+            <asp:ContentPlaceHolder id="content" runat="server"></asp:ContentPlaceHolder>
+        </article>
+    </form>
+</body>
+</html>

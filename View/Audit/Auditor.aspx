@@ -1,14 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Auditor.aspx.cs" Inherits="View_Audit_navigation_auditor" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Auditor.aspx.cs" Inherits="View_Audit_navigation_auditor" MasterPageFile="~/View/Template/MasterPage.master"%>
 
-<!DOCTYPE html>
+<asp:Content ID="title" ContentPlaceHolderID="title" runat="server">
+    收款稽核 - <%= Param.Website.SITE_NAME %>
+</asp:Content>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>收款稽核 - <%= Param.Website.SITE_NAME %></title>
-</head>
-<body>
-    <form id="form1" runat="server"> 
+<asp:Content ID="content" ContentPlaceHolderID="content" runat="server">
         <asp:Button ID="Button1" runat="server" Text="出账收入基本信息" OnClick="LinkButton1_Click"/>
         <asp:Button ID="Button2" runat="server" Text="卡销售收入基本信息" OnClick="LinkButton2_Click"/>
         <asp:Button ID="Button3" runat="server" Text="通知单收入基本信息" OnClick="LinkButton3_Click"/>
@@ -935,7 +931,4 @@
 
         </asp:MultiView>
     </div>
-    </form>
-   
-    </body>
-</html>
+</asp:Content>

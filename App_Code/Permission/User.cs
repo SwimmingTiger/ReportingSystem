@@ -136,7 +136,7 @@ namespace Permission
             {
                 string nameStr = string.Join(", ", names.ToArray());
                 //跳转到权限错误提示页
-                HttpContext.Current.Response.Redirect(Param.Website.VIEW_PATH + "/Permission/Error/PermissionDenied.aspx?permission=" + HttpUtility.UrlEncode(nameStr));
+                HttpContext.Current.Response.Redirect(Param.Website.VIEW_PATH + "/Permission/Error/PermissionDenied.aspx?permission=" + HttpUtility.UrlEncode(nameStr) + "&backUrl=" + HttpUtility.UrlEncode(HttpContext.Current.Request.Url.AbsolutePath));
             }
         }
 
@@ -203,6 +203,10 @@ namespace Permission
 
             HttpContext.Current.Session["UserId"] = id;
             JumpPageBack();
+        }
+
+        public void Exit() {
+            HttpContext.Current.Session["UserId"] = null;
         }
     }
 
