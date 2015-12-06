@@ -27,7 +27,7 @@
                                 <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
                             </td>
                             <td>
-                                <asp:Label ID="monthLabel" runat="server" Text='<%# Eval("month") %>' />
+                                <asp:Label ID="monthLabel" runat="server" Text='<%# Eval("month", "{0:yyyy年M月}") %>' />
                             </td>
                             <td>
                                 <asp:Label ID="cityLabel" runat="server" Text='<%# Eval("city") %>' visible="false"/>
@@ -106,7 +106,7 @@
                                 <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />                        
                             </td>
                             <td>
-                                <asp:Label ID="monthLabel" runat="server" Text='<%# Eval("month") %>' />
+                                <asp:Label ID="monthLabel" runat="server" Text='<%# Eval("month", "{0:yyyy年M月}") %>' />
                             </td>
                             <td>
                                 <asp:Label ID="cityLabel" runat="server" Text='<%# Eval("city") %>' visible="false"/>
@@ -211,7 +211,7 @@
                                 <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
                             </td>
                             <td>
-                                <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date") %>' />
+                                <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date", "{0:yyyy年M月d日}") %>' />
                             </td>
                             <td>
                                 <asp:Label ID="cityLabel" runat="server" Text='<%# Eval("city") %>' visible="false"/>
@@ -278,7 +278,7 @@
                                 <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
                             </td>
                             <td>
-                                <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date") %>' />
+                                <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date", "{0:yyyy年M月d日}") %>' />
                             </td>
                             <td>
                                 <asp:Label ID="cityLabel" runat="server" Text='<%# Eval("city") %>' Visible="false" />
@@ -368,7 +368,7 @@
                             <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
                         </td>
                         <td>
-                            <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date") %>' />
+                            <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date", "{0:yyyy年M月d日}") %>' />
                         </td>
                         <td>
                             <asp:Label ID="cityLabel" runat="server" Text='<%# Eval("city") %>' visible="false"/>
@@ -449,7 +449,7 @@
                             <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
                         </td>
                         <td>
-                            <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date") %>' />
+                            <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date", "{0:yyyy年M月d日}") %>' />
                         </td>
                         <td>
                             <asp:Label ID="cityLabel" runat="server" Text='<%# Eval("city") %>' visible="false"/>
@@ -552,7 +552,7 @@
                             <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
                         </td>
                         <td>
-                            <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date") %>' />
+                            <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date", "{0:yyyy年M月d日}") %>' />
                         </td>
                         <td>
                             <asp:Label ID="cityLabel" runat="server" Text='<%# Eval("city") %>' visible="false"/>
@@ -627,7 +627,7 @@
                             <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
                         </td>
                         <td>
-                            <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date") %>' />
+                            <asp:Label ID="dateLabel" runat="server" Text='<%# Eval("date", "{0:yyyy年M月d日}") %>' />
                         </td>
                         <td>
                             <asp:Label ID="cityLabel" runat="server" Text='<%# Eval("city") %>' visible="false"/>
@@ -725,7 +725,7 @@
                             <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
                         </td>
                         <td>
-                            <asp:Label ID="monthLabel" runat="server" Text='<%# Eval("month") %>' />
+                            <asp:Label ID="monthLabel" runat="server" Text='<%# Eval("month", "{0:yyyy年M月}") %>' />
                         </td>
                         <td>
                             <asp:Label ID="cityLabel" runat="server" Text='<%# Eval("city") %>' visible="false"/>
@@ -822,7 +822,7 @@
                             <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
                         </td>
                         <td>
-                            <asp:Label ID="monthLabel" runat="server" Text='<%# Eval("month") %>' />
+                            <asp:Label ID="monthLabel" runat="server" Text='<%# Eval("month", "{0:yyyy年M月}") %>' />
                         </td>
                         <td>
                             <asp:Label ID="cityLabel" runat="server" Text='<%# Eval("city") %>' visible="false"/>
