@@ -129,7 +129,7 @@
 
                             </td>
                             <td>
-                                   <asp:SqlDataSource ID="SqlDataSource13" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type)">
+                                   <asp:SqlDataSource ID="SqlDataSource13" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type) and ([flag] & 2 !=0)">
                             <SelectParameters>
                                 <asp:Parameter DefaultValue="1" Name="type" Type="Int32" />
                             </SelectParameters>
@@ -182,7 +182,7 @@
                         </asp:DropDownList>
                             </td>
                             <td>
-                                   <asp:SqlDataSource ID="SqlDataSource13" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type)">
+                                   <asp:SqlDataSource ID="SqlDataSource13" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type) and ([flag] & 2 !=0)">
                             <SelectParameters>
                                 <asp:Parameter DefaultValue="1" Name="type" Type="Int32" />
                             </SelectParameters>
@@ -404,7 +404,7 @@
                         </asp:DropDownList>
                     </td>
                     <td>
-                        <asp:SqlDataSource ID="SqlDataSource13" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type)">
+                        <asp:SqlDataSource ID="SqlDataSource13" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type) and ([flag] & 4 !=0)">
                             <SelectParameters>
                                 <asp:Parameter DefaultValue="1" Name="type" Type="Int32" />
                             </SelectParameters>
@@ -453,7 +453,7 @@
                         </asp:DropDownList>
                     </td>
                     <td>
-                        <asp:SqlDataSource ID="SqlDataSource13" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type)">
+                        <asp:SqlDataSource ID="SqlDataSource13" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type) and ([flag] & 4 !=0)">
                             <SelectParameters>
                                 <asp:Parameter DefaultValue="1" Name="type" Type="Int32" />
                             </SelectParameters>
@@ -687,7 +687,7 @@
                         </asp:DropDownList>
                             </td>
                             <td>
-                                   <asp:SqlDataSource ID="SqlDataSource13" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type)">
+                                   <asp:SqlDataSource ID="SqlDataSource13" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type) and ([flag] & 8 !=0)">
                             <SelectParameters>
                                 <asp:Parameter DefaultValue="1" Name="type" Type="Int32" />
                             </SelectParameters>
@@ -742,7 +742,7 @@
                         </asp:DropDownList>
                             </td>
                             <td>
-                                   <asp:SqlDataSource ID="SqlDataSource13" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type)">
+                                   <asp:SqlDataSource ID="SqlDataSource13" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type) and ([flag] & 8 !=0)">
                             <SelectParameters>
                                 <asp:Parameter DefaultValue="1" Name="type" Type="Int32" />
                             </SelectParameters>
@@ -992,7 +992,7 @@
                         </asp:DropDownList>
                             </td>
                             <td>
-                                   <asp:SqlDataSource ID="SqlDataSource13" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type)">
+                                   <asp:SqlDataSource ID="SqlDataSource13" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type) and ([flag] & 16 !=0)">
                             <SelectParameters>
                                 <asp:Parameter DefaultValue="1" Name="type" Type="Int32" />
                             </SelectParameters>
@@ -1044,7 +1044,7 @@
                         </asp:DropDownList>
                             </td>
                             <td>
-                                   <asp:SqlDataSource ID="SqlDataSource13" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type)">
+                                   <asp:SqlDataSource ID="SqlDataSource13" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type) and ([flag] & 16 !=0)">
                             <SelectParameters>
                                 <asp:Parameter DefaultValue="1" Name="type" Type="Int32" />
                             </SelectParameters>
@@ -1265,7 +1265,7 @@
                         </asp:DropDownList>
                             </td>
                             <td>
-                                   <asp:SqlDataSource ID="SqlDataSource13" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type)">
+                                   <asp:SqlDataSource ID="SqlDataSource13" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type) and ([flag] & 32 !=0)">
                             <SelectParameters>
                                 <asp:Parameter DefaultValue="1" Name="type" Type="Int32" />
                             </SelectParameters>
@@ -1317,7 +1317,7 @@
                         </asp:DropDownList>
                             </td>
                             <td>
-                                   <asp:SqlDataSource ID="SqlDataSource13" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type)">
+                                   <asp:SqlDataSource ID="SqlDataSource13" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type) and ([flag] & 32 !=0)">
                             <SelectParameters>
                                 <asp:Parameter DefaultValue="1" Name="type" Type="Int32" />
                             </SelectParameters>
