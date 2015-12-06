@@ -9,7 +9,21 @@ public partial class Error_PermissionDenied : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        permission.Text = Request.Params["permission"];
+        try
+        {
+            int needPermission = int.Parse(Request.Params["permissionId"]);
+
+            if (Permission.User.HasPermission(needPermission))
+            {
+                Response.Redirect(Request.Params["backUrl"]);
+            }
+
+            permission.Text = Request.Params["permission"];
+        }
+        catch (Exception)
+        {
+            // ignore
+        }
     }
 
     protected void Page_Error(object sender, EventArgs e)

@@ -10,6 +10,15 @@
     </title>
 
     <style>
+        #mainNav {
+            margin: 10px;
+        }
+        #mainNav li {
+            margin-right: 10px;
+        }
+        #mainNav a {
+            color: darkgreen;
+        }
     </style>
 </head>
 <body>
@@ -21,14 +30,6 @@
 
         <nav id="mainNav">
             <asp:Menu ID="NavMenu" runat="server" OnMenuItemClick="NavMenu_MenuItemClick" StaticSubMenuIndent="16px" Orientation="Horizontal">
-                <Items>
-                    <asp:MenuItem Text="首页" Value="../Default.aspx"></asp:MenuItem>
-                    <asp:MenuItem Text="手工录入" Value="Input/Input.aspx"></asp:MenuItem>
-                    <asp:MenuItem Text="收款稽核" Value="Audit/Auditor.aspx"></asp:MenuItem>
-                    <asp:MenuItem Text="数据归集" Value="Output/Browse.aspx"></asp:MenuItem>
-                    <asp:MenuItem Text="参数管理" Value="Param/ParamManage.aspx"></asp:MenuItem>
-                    <asp:MenuItem Text="权限管理" Value="Permission/UserManage.aspx"></asp:MenuItem>
-                </Items>
             </asp:Menu>
         </nav>
         <article id="mainContent">

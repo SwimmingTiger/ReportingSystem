@@ -30,8 +30,15 @@ namespace Permission
         /// <summary>
         /// 跳转到登录页面
         /// </summary>
-        public static void JumpToLoginPage() {
-            HttpContext.Current.Response.Redirect(Param.Website.VIEW_PATH + "/Permission/Login.aspx?backUrl=" + HttpUtility.UrlEncode(HttpContext.Current.Request.Url.AbsolutePath));
+        public static void JumpToLoginPage(bool backUrl = true) {
+            string url = Param.Website.VIEW_PATH + "/Permission/Login.aspx";
+
+            if (backUrl)
+            {
+                url += "?backUrl=" + HttpUtility.UrlEncode(HttpContext.Current.Request.Url.AbsolutePath);
+            }
+
+            HttpContext.Current.Response.Redirect(url);
         }
 
         /// <summary>
@@ -122,6 +129,7 @@ namespace Permission
             bool pass = true;
             List<string> names = new List<string>();
             int userPermission = GetPermission();
+            int needPermission = 0;
 
             foreach (int permission in permissions)
             {
@@ -129,6 +137,7 @@ namespace Permission
                 {
                     pass = false;
                     names.Add(UserPermission.GetName(permission));
+                    needPermission |= permission;
                 }
             }
 
@@ -136,7 +145,7 @@ namespace Permission
             {
                 string nameStr = string.Join(", ", names.ToArray());
                 //跳转到权限错误提示页
-                HttpContext.Current.Response.Redirect(Param.Website.VIEW_PATH + "/Permission/Error/PermissionDenied.aspx?permission=" + HttpUtility.UrlEncode(nameStr) + "&backUrl=" + HttpUtility.UrlEncode(HttpContext.Current.Request.Url.AbsolutePath));
+                HttpContext.Current.Response.Redirect(Param.Website.VIEW_PATH + "/Permission/Error/PermissionDenied.aspx?permissionId=" + needPermission + "&permission=" + HttpUtility.UrlEncode(nameStr) + "&backUrl=" + HttpUtility.UrlEncode(HttpContext.Current.Request.Url.AbsolutePath));
             }
         }
 
@@ -207,7 +216,7 @@ namespace Permission
 
         public static void Exit() {
             HttpContext.Current.Session["UserId"] = null;
-            JumpToLoginPage();
+            JumpToLoginPage(false);
         }
     }
 

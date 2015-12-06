@@ -26,7 +26,8 @@ namespace Html
             HttpContext.Current.Response.Write("</head>");
             HttpContext.Current.Response.Write("<body>");
             HttpContext.Current.Response.Write(message);
-            HttpContext.Current.Response.Write("<a href=\"#\" onclick=\"history.back()\">返回</a>");
+            HttpContext.Current.Response.Write("<a href=\"#\" onclick=\"history.back()\">返回</a> | ");
+            HttpContext.Current.Response.Write("<a href=\"/Default.aspx\">首页</a>");
             HttpContext.Current.Response.Write("</body>");
 
             HttpContext.Current.Server.ClearError();
