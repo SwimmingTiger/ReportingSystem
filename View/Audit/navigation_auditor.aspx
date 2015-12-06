@@ -180,7 +180,7 @@
                                         <tr runat="server" style="background-color:#DCDCDC;color: #000000;">
                                             <th runat="server">id</th>
                                             <th runat="server">月份</th>
-                                            <th runat="server">城市</th>
+                                            <th runat="server">地市</th>
                                             <th runat="server">产品</th>
                                             <th runat="server">类型</th>
                                             <th runat="server">金额</th>
@@ -339,7 +339,7 @@
                                         <tr runat="server" style="background-color:#DCDCDC;color: #000000;">
                                             <th runat="server">id</th>
                                             <th runat="server">日期</th>
-                                            <th runat="server">城市</th>
+                                            <th runat="server">地市</th>
                                             <th runat="server">产品</th>
                                             <th runat="server">售卡数量</th>
                                             <th runat="server">面值金额</th>
@@ -523,7 +523,7 @@
                                     <tr runat="server" style="background-color:#DCDCDC;color: #000000;">
                                         <th runat="server">id</th>
                                         <th runat="server">日期</th>
-                                        <th runat="server">城市</th>
+                                        <th runat="server">地市</th>
                                         <th runat="server">产品</th>
                                         <th runat="server">类型</th>
                                         <th runat="server">金额</th>
@@ -696,7 +696,7 @@
                                 <tr runat="server" style="background-color:#DCDCDC;color: #000000;">
                                     <th runat="server">id</th>
                                     <th runat="server">日期</th>
-                                    <th runat="server">城市</th>
+                                    <th runat="server">地市</th>
                                     <th runat="server">产品</th>
                                     <th runat="server">类型</th>
                                     <th runat="server">金额</th>
@@ -912,7 +912,7 @@
                                 <tr runat="server" style="background-color:#DCDCDC;color: #000000;">
                                     <th runat="server">id</th>
                                     <th runat="server">月份</th>
-                                    <th runat="server">城市</th>
+                                    <th runat="server">地市</th>
                                     <th runat="server">产品</th>
                                     <th runat="server">运营商</th>
                                     <th runat="server">类型</th>

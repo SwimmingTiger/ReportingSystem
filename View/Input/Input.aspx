@@ -277,7 +277,7 @@
                                         <tr runat="server" style="background-color: #E0FFFF;color: #333333;">
                                             <th runat="server">ID</th>
                                             <th runat="server">录入月份</th>
-                                            <th runat="server">城市</th>
+                                            <th runat="server">地市</th>
                                             <th runat="server">产品</th>
                                             <th runat="server">出账类型</th>
                                             <th runat="server">录入金额</th>
@@ -540,7 +540,7 @@
                                 <tr runat="server" style="background-color: #DCDCDC; color: #000000;">
                                     <th runat="server">ID</th>
                                     <th runat="server">录入日期</th>
-                                    <th runat="server">城市</th>
+                                    <th runat="server">地市</th>
                                     <th runat="server">产品</th>
                                     <th runat="server">卡销售数量</th>
                                     <th runat="server">面值金额</th>
@@ -871,7 +871,7 @@
                                     <tr runat="server" style="background-color: #E0FFFF;color: #333333;">
                                         <th runat="server">ID</th>
                                         <th runat="server">录入月份</th>
-                                        <th runat="server">城市</th>
+                                        <th runat="server">地市</th>
                                         <th runat="server">产品</th>
                                         <th runat="server">结算运营商</th>
                                         <th runat="server">结算类型</th>
@@ -1149,7 +1149,7 @@
                                     <tr runat="server" style="background-color:#DCDCDC;color: #000000;">
                                         <th runat="server">ID</th>
                                         <th runat="server">销账日期</th>
-                                        <th runat="server">城市</th>
+                                        <th runat="server">地市</th>
                                         <th runat="server">产品</th>
                                         <th runat="server">销账类型</th>
                                         <th runat="server">销账金额</th>
@@ -1422,7 +1422,7 @@
                                     <tr runat="server" style="background-color: #E0FFFF;color: #333333;">
                                         <th runat="server">ID</th>
                                         <th runat="server">营业收款日期</th>
-                                        <th runat="server">城市</th>
+                                        <th runat="server">地市</th>
                                         <th runat="server">产品</th>
                                         <th runat="server">通知单收入</th>
                                         <th runat="server">营业收入金额</th>
