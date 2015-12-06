@@ -36,7 +36,7 @@
                         <asp:Parameter Name="product" Type="Int32" />
                         <asp:Parameter Name="type" Type="Int32" />
                         <asp:Parameter Name="money" Type="Decimal" />
-                        <asp:Parameter Name="status" Type="Int32" />
+                        <asp:Parameter DefaultValue="1" Name="status" Type="Int32" />
                         <asp:Parameter Name="id" Type="Int32" />
                     </UpdateParameters>
                 </asp:SqlDataSource>
@@ -151,7 +151,7 @@
                                 <asp:TextBox ID="moneyTextBox" runat="server" Text='<%# Bind("money") %>' />
                             </td>
                             <td>
-                                <asp:TextBox ID="statusTextBox" runat="server" Text='<%# Bind("status") %>' Enabled="false" />
+
                             </td>
                         </tr>
                     </EditItemTemplate>
@@ -203,7 +203,7 @@
                                 <asp:TextBox ID="moneyTextBox" runat="server" Text='<%# Bind("money") %>' />
                             </td>
                             <td>
-                                <asp:TextBox ID="statusTextBox"  runat="server"  Text='<%# Bind("status")   %>' Enabled="false"/>
+
                             </td>
                         </tr>
                     </InsertItemTemplate>
@@ -323,7 +323,7 @@
                          <asp:Parameter Name="number" Type="Int32" />
                          <asp:Parameter Name="unit_price" Type="Decimal" />
                          <asp:Parameter Name="final_price" Type="Decimal" />
-                         <asp:Parameter Name="status" Type="Int32" />
+                         <asp:Parameter DefaultValue="1" Name="status" Type="Int32" />
                          <asp:Parameter Name="original_id" Type="Int32" />
                      </UpdateParameters>
                  </asp:SqlDataSource>
@@ -422,7 +422,7 @@
                         <asp:TextBox ID="final_priceTextBox" runat="server" Text='<%# Bind("final_price") %>' />
                     </td>
                     <td>
-                        <asp:TextBox ID="statusTextBox" runat="server" Text='<%# Bind("status") %>' Enabled="false"/>
+                        
                     </td>
                 </tr>
             </EditItemTemplate>
@@ -471,7 +471,7 @@
                         <asp:TextBox ID="final_priceTextBox" runat="server" Text='<%# Bind("final_price") %>' />
                     </td>
                     <td>
-                        <asp:TextBox ID="statusTextBox" runat="server" Text='<%# Bind("status") %>' Enabled="false"/>
+                        
                     </td>
                 </tr>
             </InsertItemTemplate>
@@ -582,7 +582,7 @@
                     <asp:Parameter Name="operator" Type="Int32" />
                     <asp:Parameter Name="type" Type="Int32" />
                     <asp:Parameter Name="money" Type="Decimal" />
-                    <asp:Parameter Name="status" Type="Int32" />
+                    <asp:Parameter DefaultValue="1" Name="status" Type="Int32" />
                     <asp:Parameter Name="id" Type="Int32" />
                 </UpdateParameters>
             </asp:SqlDataSource>
@@ -717,7 +717,7 @@
                             <asp:TextBox ID="moneyTextBox" runat="server" Text='<%# Bind("money") %>' />
                         </td>
                         <td>
-                            <asp:TextBox ID="statusTextBox" runat="server" Text='<%# Bind("status") %>' Enabled="false"/>
+                            
                         </td>
                     </tr>
                 </EditItemTemplate>
@@ -779,7 +779,7 @@
                             <asp:TextBox ID="moneyTextBox" runat="server" Text='<%# Bind("money") %>' />
                         </td>
                         <td>
-                            <asp:TextBox ID="statusTextBox" runat="server" Text='<%# Bind("status") %>' Enabled="false"/>
+                            
                         </td>
                     </tr>
                 </InsertItemTemplate>
@@ -909,7 +909,7 @@
                     <asp:Parameter Name="product" Type="Int32" />
                     <asp:Parameter Name="type" Type="Int32" />
                     <asp:Parameter Name="money" Type="Decimal" />
-                    <asp:Parameter Name="status" Type="Int32" />
+                    <asp:Parameter DefaultValue="1" Name="status" Type="Int32" />
                     <asp:Parameter Name="id" Type="Int32" />
                 </UpdateParameters>
             </asp:SqlDataSource>
@@ -1019,7 +1019,7 @@
                             <asp:TextBox ID="moneyTextBox" runat="server" Text='<%# Bind("money") %>' />
                         </td>
                         <td>
-                            <asp:TextBox ID="statusTextBox" runat="server" Text='<%# Bind("status") %>' Enabled="false"/>
+                            
                         </td>
                     </tr>
                 </EditItemTemplate>
@@ -1071,7 +1071,7 @@
                             <asp:TextBox ID="moneyTextBox" runat="server" Text='<%# Bind("money") %>' />
                         </td>
                         <td>
-                            <asp:TextBox ID="statusTextBox" runat="server" Text='<%# Bind("status") %>' Enabled="false"/>
+                            
                         </td>
                     </tr>
                 </InsertItemTemplate>
@@ -1183,7 +1183,7 @@
                     <asp:Parameter Name="product" Type="Int32" />
                     <asp:Parameter Name="type" Type="Int32" />
                     <asp:Parameter Name="money" Type="Decimal" />
-                    <asp:Parameter Name="status" Type="Int32" />
+                    <asp:Parameter DefaultValue="1" Name="status" Type="Int32" />
                     <asp:Parameter Name="id" Type="Int32" />
                 </UpdateParameters>
             </asp:SqlDataSource>
@@ -1292,7 +1292,7 @@
                             <asp:TextBox ID="moneyTextBox" runat="server" Text='<%# Bind("money") %>' />
                         </td>
                         <td>
-                            <asp:TextBox ID="statusTextBox" runat="server" Text='<%# Bind("status") %>' Enabled="false"/>
+                            
                         </td>
                     </tr>
                 </EditItemTemplate>
@@ -1344,7 +1344,7 @@
                             <asp:TextBox ID="moneyTextBox" runat="server" Text='<%# Bind("money") %>' />
                         </td>
                         <td>
-                            <asp:TextBox ID="statusTextBox" runat="server" Text='<%# Bind("status") %>' Enabled="false"/>
+                            
                         </td>
                     </tr>
                 </InsertItemTemplate>
