@@ -47,6 +47,7 @@ public partial class View_Output_Browse : System.Web.UI.Page
 
         CityTypeLabel.Text = ((int)Param.ReportParam.Type.CITY).ToString();
         auditNormalLabel.Text = ((int)Param.ReportStatus.NORMAL).ToString();
+        operatorTypeLabel.Text = ((int)Param.ReportParam.Type.OPERATOR).ToString();
     }
 
     protected void yearSelector_SelectedIndexChanged(object sender, EventArgs e)
@@ -67,6 +68,7 @@ public partial class View_Output_Browse : System.Web.UI.Page
         CityList.SelectedIndex = 0;
         ProductList.SelectedIndex = 0;
         ReportTableList.SelectedIndex = 0;
+        operatorList.SelectedIndex = 0;
     }
 
     protected void ReportTable_SelectedIndexChanged(object sender, EventArgs e)
@@ -79,6 +81,14 @@ public partial class View_Output_Browse : System.Web.UI.Page
         }
         else {
             daySelector.Visible = true;
+        }
+
+        if (ReportTableList.SelectedValue == "data_settlement")
+        {
+            operatorList.Visible = true;
+        }
+        else {
+            operatorList.Visible = false;
         }
 
         contentMultiView.ActiveViewIndex = ReportTableList.SelectedIndex;
@@ -118,6 +128,9 @@ public partial class View_Output_Browse : System.Web.UI.Page
                 break;
             case "ReportTypeList":
                 name = "--类型--";
+                break;
+            case "operatorList":
+                name = "--运营商--";
                 break;
         }
 

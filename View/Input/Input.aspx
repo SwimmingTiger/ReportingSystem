@@ -144,7 +144,7 @@
                                 <asp:Parameter DefaultValue="2" Name="type" Type="Int32" />
                             </SelectParameters>
                         </asp:SqlDataSource>
-                        <asp:DropDownList ID="DropDownList3" runat="server" DataSourceID="SqlDataSource14" DataTextField="name" DataValueField="id">
+                        <asp:DropDownList ID="DropDownList3" runat="server" DataSourceID="SqlDataSource14" DataTextField="name" DataValueField="id" SelectedValue='<%# Bind("type") %>'>
                         </asp:DropDownList>
                             </td>
                             <td>
@@ -196,7 +196,7 @@
                                 <asp:Parameter DefaultValue="2" Name="type" Type="Int32" />
                             </SelectParameters>
                         </asp:SqlDataSource>
-                        <asp:DropDownList ID="DropDownList3" runat="server" DataSourceID="SqlDataSource14" DataTextField="name" DataValueField="id">
+                        <asp:DropDownList ID="DropDownList3" runat="server" DataSourceID="SqlDataSource14" DataTextField="name" DataValueField="id" SelectedValue='<%# Bind("type") %>'>
                         </asp:DropDownList>
                             </td>
                             <td>
@@ -546,7 +546,7 @@
                                     <th runat="server">产品</th>
                                     <th runat="server">卡销售数量</th>
                                     <th runat="server">面值金额</th>
-                                    <th runat="server">卡总金额</th>
+                                    <th runat="server">实售金额</th>
                                     <th runat="server">稽核状态</th>
                                 </tr>
                                 <tr id="itemPlaceholder" runat="server">
@@ -705,7 +705,13 @@
                         </asp:DropDownList>
                         </td>
                         <td>
-                            <asp:TextBox ID="typeTextBox" runat="server" Text='<%# Bind("type") %>' />
+                            <asp:SqlDataSource ID="SqlDataSource6" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [name], [id] FROM [report_param] WHERE ([type] = @type)">
+                            <SelectParameters>
+                                <asp:Parameter DefaultValue="7" Name="type" Type="Int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                        <asp:DropDownList ID="DropDownList6" runat="server" DataSourceID="SqlDataSource6" DataTextField="name" DataValueField="id" SelectedValue='<%# Bind("type") %>'>
+                        </asp:DropDownList>
                         </td>
                         <td>
                             <asp:TextBox ID="moneyTextBox" runat="server" Text='<%# Bind("money") %>' />
