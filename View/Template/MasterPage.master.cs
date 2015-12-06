@@ -32,9 +32,14 @@ public partial class MasterPage : System.Web.UI.MasterPage
     {
         Permission.User.LoginCheck();
 
-        foreach (KeyValuePair<string, string> item in MenuItems) {
-            if (MenuPermissions.ContainsKey(item.Key) == false || User.HasPermission(MenuPermissions[item.Key]) == true) {
-                NavMenu.Items.Add(new MenuItem(item.Key, item.Value));
+        if (!IsPostBack)
+        {
+            foreach (KeyValuePair<string, string> item in MenuItems)
+            {
+                if (MenuPermissions.ContainsKey(item.Key) == false || User.HasPermission(MenuPermissions[item.Key]) == true)
+                {
+                    NavMenu.Items.Add(new MenuItem(item.Key, item.Value));
+                }
             }
         }
     }

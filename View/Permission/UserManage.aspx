@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="UserManage.aspx.cs" Inherits="View_Permission_UserManage" MasterPageFile="~/View/Template/MasterPage.master" %>
 
 <asp:Content ID="title" ContentPlaceHolderID="title" runat="server">
-    用户/权限管理 - <%= Param.Website.SITE_NAME %>
+    用户权限管理 - <%= Param.Website.SITE_NAME %>
 </asp:Content>
 
 <asp:Content ID="content" ContentPlaceHolderID="content" runat="server">

@@ -22,7 +22,8 @@ public partial class Error_PermissionDenied : System.Web.UI.Page
         }
         catch (Exception)
         {
-            // ignore
+            // 未给出缺少的权限信息，可能是异常掉线
+            Response.Redirect("/");
         }
     }
 
