@@ -14,7 +14,7 @@
         
         <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex = 0>
             <asp:View ID="View1" runat="server">
-            <asp:SqlDataSource ID="SqlDataSource6" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" DeleteCommand="DELETE FROM [data_account] WHERE [id] = @id" InsertCommand="INSERT INTO [data_account] ([month], [city], [product], [type], [money],[status]) VALUES (@month, @city, @product, @type, @money,@status)" SelectCommand="SELECT * FROM [data_account]" UpdateCommand="UPDATE [data_account] SET [month] = @month, [city] = @city, [product] = @product, [type] = @type, [money] = @money, [status] = @status WHERE [id] = @id">
+            <asp:SqlDataSource ID="SqlDataSource6" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" DeleteCommand="DELETE FROM [data_account] WHERE [id] = @id" InsertCommand="INSERT INTO [data_account] ([month], [city], [product], [type], [money],[status]) VALUES (@month, @city, @product, @type, @money,@status)" SelectCommand="SELECT * FROM [data_account] ORDER BY [status] DESC, [month] ASC, [id] ASC" UpdateCommand="UPDATE [data_account] SET [month] = @month, [city] = @city, [product] = @product, [type] = @type, [money] = @money, [status] = @status WHERE [id] = @id">
                     <DeleteParameters>
                         <asp:Parameter Name="id" Type="Int32" />
                     </DeleteParameters>
@@ -75,7 +75,7 @@
                         </asp:ListView>
                             </td>
                             <td>
-                                <asp:Label ID="Label3" runat="server" Text='<%# Bind("type") %>'></asp:Label>
+                                <asp:Label ID="Label3" runat="server" Text='<%# Bind("type") %>' Visible="False"></asp:Label>
                         <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [name] FROM [report_param] WHERE ([id] = @id)">
                             <SelectParameters>
                                 <asp:ControlParameter ControlID="Label3" Name="id" PropertyName="Text" Type="Int32" />
@@ -240,7 +240,7 @@
                         </asp:ListView>
                             </td>
                             <td>
-                                 <asp:Label ID="Label3" runat="server" Text='<%# Bind("type") %>'></asp:Label>
+                                 <asp:Label ID="Label3" runat="server" Text='<%# Bind("type") %>' Visible="False"></asp:Label>
                         <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [name] FROM [report_param] WHERE ([id] = @id)">
                             <SelectParameters>
                                 <asp:ControlParameter ControlID="Label3" Name="id" PropertyName="Text" Type="Int32" />
@@ -306,7 +306,7 @@
         </asp:View>
         <asp:View ID="View2" runat="server">
             <h3>卡销售信息</h3>
-            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" DeleteCommand="DELETE FROM [data_cardsale] WHERE [id] = @original_id" InsertCommand="INSERT INTO [data_cardsale] ([date], [city], [product], [number], [unit_price], [final_price], [status]) VALUES (@date, @city, @product, @number, @unit_price, @final_price, @status)" OldValuesParameterFormatString="original_{0}" SelectCommand="SELECT * FROM [data_cardsale]" UpdateCommand="UPDATE [data_cardsale] SET [date] = @date, [city] = @city, [product] = @product, [number] = @number, [unit_price] = @unit_price, [final_price] = @final_price, [status] = @status WHERE [id] = @original_id">
+            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" DeleteCommand="DELETE FROM [data_cardsale] WHERE [id] = @original_id" InsertCommand="INSERT INTO [data_cardsale] ([date], [city], [product], [number], [unit_price], [final_price], [status]) VALUES (@date, @city, @product, @number, @unit_price, @final_price, @status)" OldValuesParameterFormatString="original_{0}" SelectCommand="SELECT * FROM [data_cardsale] ORDER BY [status] DESC, [date] ASC, [id] ASC" UpdateCommand="UPDATE [data_cardsale] SET [date] = @date, [city] = @city, [product] = @product, [number] = @number, [unit_price] = @unit_price, [final_price] = @final_price, [status] = @status WHERE [id] = @original_id">
                      <DeleteParameters>
                          <asp:Parameter Name="original_id" Type="Int32" />
                      </DeleteParameters>
@@ -575,7 +575,7 @@
         </asp:View>   
         <asp:View ID="View3" runat="server">
             <h3>网间结算基本信息</h3>
-            <asp:SqlDataSource ID="SqlDataSource7" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" DeleteCommand="DELETE FROM [data_settlement] WHERE [id] = @id" InsertCommand="INSERT INTO [data_settlement] ([month], [city], [product], [operator], [type], [money], [status]) VALUES (@month, @city, @product, @operator, @type, @money, @status)" SelectCommand="SELECT * FROM [data_settlement]" UpdateCommand="UPDATE [data_settlement] SET [month] = @month, [city] = @city, [product] = @product, [operator] = @operator, [type] = @type, [money] = @money, [status] = @status WHERE [id] = @id">
+            <asp:SqlDataSource ID="SqlDataSource7" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" DeleteCommand="DELETE FROM [data_settlement] WHERE [id] = @id" InsertCommand="INSERT INTO [data_settlement] ([month], [city], [product], [operator], [type], [money], [status]) VALUES (@month, @city, @product, @operator, @type, @money, @status)" SelectCommand="SELECT * FROM [data_settlement] ORDER BY [status] DESC, [month] ASC, [id] ASC" UpdateCommand="UPDATE [data_settlement] SET [month] = @month, [city] = @city, [product] = @product, [operator] = @operator, [type] = @type, [money] = @money, [status] = @status WHERE [id] = @id">
                 <DeleteParameters>
                     <asp:Parameter Name="id" Type="Int32" />
                 </DeleteParameters>
@@ -914,7 +914,7 @@
             </asp:View>
         <asp:View ID="View4" runat="server">
             <h3>预存转收入基本信息</h3>
-            <asp:SqlDataSource ID="SqlDataSource8" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" DeleteCommand="DELETE FROM [data_prestore] WHERE [id] = @id" InsertCommand="INSERT INTO [data_prestore] ([date], [city], [product], [type], [money], [status]) VALUES (@date, @city, @product, @type, @money, @status)" SelectCommand="SELECT * FROM [data_prestore]" UpdateCommand="UPDATE [data_prestore] SET [date] = @date, [city] = @city, [product] = @product, [type] = @type, [money] = @money, [status] = @status WHERE [id] = @id">
+            <asp:SqlDataSource ID="SqlDataSource8" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" DeleteCommand="DELETE FROM [data_prestore] WHERE [id] = @id" InsertCommand="INSERT INTO [data_prestore] ([date], [city], [product], [type], [money], [status]) VALUES (@date, @city, @product, @type, @money, @status)" SelectCommand="SELECT * FROM [data_prestore] ORDER BY [status] DESC, [date] ASC, [id] ASC" UpdateCommand="UPDATE [data_prestore] SET [date] = @date, [city] = @city, [product] = @product, [type] = @type, [money] = @money, [status] = @status WHERE [id] = @id">
                 <DeleteParameters>
                     <asp:Parameter Name="id" Type="Int32" />
                 </DeleteParameters>
@@ -1199,7 +1199,7 @@
          </asp:View>
         <asp:View ID="View5" runat="server">
             <h3>通知单收入基本信息</h3>
-            <asp:SqlDataSource ID="SqlDataSource9" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" DeleteCommand="DELETE FROM [data_notice] WHERE [id] = @id" InsertCommand="INSERT INTO [data_notice] ([date], [city], [product], [type], [money], [status]) VALUES (@date, @city, @product, @type, @money, @status)" SelectCommand="SELECT * FROM [data_notice]" UpdateCommand="UPDATE [data_notice] SET [date] = @date, [city] = @city, [product] = @product, [type] = @type, [money] = @money, [status] = @status WHERE [id] = @id" OnSelecting="SqlDataSource9_Selecting">
+            <asp:SqlDataSource ID="SqlDataSource9" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" DeleteCommand="DELETE FROM [data_notice] WHERE [id] = @id" InsertCommand="INSERT INTO [data_notice] ([date], [city], [product], [type], [money], [status]) VALUES (@date, @city, @product, @type, @money, @status)" SelectCommand="SELECT * FROM [data_notice] ORDER BY [status] DESC, [date] ASC, [id] ASC" UpdateCommand="UPDATE [data_notice] SET [date] = @date, [city] = @city, [product] = @product, [type] = @type, [money] = @money, [status] = @status WHERE [id] = @id" OnSelecting="SqlDataSource9_Selecting">
                 <DeleteParameters>
                     <asp:Parameter Name="id" Type="Int32" />
                 </DeleteParameters>

@@ -15,7 +15,7 @@
         <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
             <asp:View ID="View1" runat="server">
                 <h3>出账收入基本信息</h3>
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT * FROM [data_account]"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT * FROM [data_account] ORDER BY [status] DESC, [month] ASC, [id] ASC"></asp:SqlDataSource>
                 <asp:ListView ID="ListView1" runat="server" DataKeyNames="id" DataSourceID="SqlDataSource1">
                     <AlternatingItemTemplate>
                         <tr style="background-color:#FFF8DC;">
@@ -205,7 +205,7 @@
             <asp:View ID="View2" runat="server">
                 <h3>卡销售收入基本信息</h3>
                  <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" 
-                    SelectCommand="SELECT * FROM [data_cardsale]">
+                    SelectCommand="SELECT * FROM [data_cardsale] ORDER BY [status] DESC, [date] ASC, [id] ASC">
                  </asp:SqlDataSource>
 
                  <asp:ListView ID="ListView6" runat="server" DataKeyNames="id" DataSourceID="SqlDataSource2">
@@ -372,7 +372,7 @@
             </asp:View>
             <asp:View ID="View3" runat="server">
                 <h3>通知单收入基本信息</h3>
-                <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT * FROM [data_notice]"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT * FROM [data_notice] ORDER BY [status] DESC, [date] ASC, [id] ASC"></asp:SqlDataSource>
                 <asp:ListView ID="ListView7" runat="server" DataKeyNames="id" DataSourceID="SqlDataSource3">
                 <AlternatingItemTemplate>
                     <tr style="background-color:#FFF8DC;">
@@ -564,7 +564,7 @@
             </asp:View>
             <asp:View ID="View4" runat="server">
                 <h3>预存转收入基本信息</h3>
-                <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT * FROM [data_prestore]"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT * FROM [data_prestore] ORDER BY [status] DESC, [date] ASC, [id] ASC"></asp:SqlDataSource>
                 <asp:ListView ID="ListView8" runat="server" DataKeyNames="id" DataSourceID="SqlDataSource4">
                 <AlternatingItemTemplate>
                     <tr style="background-color:#FFF8DC;">
@@ -745,7 +745,7 @@
             </asp:View>
             <asp:View ID="View5" runat="server">
                 <h3>网间结算基本信息</h3>
-                <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT * FROM [data_settlement]"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT * FROM [data_settlement] ORDER BY [status] DESC, [month] ASC, [id] ASC"></asp:SqlDataSource>
                 <asp:ListView ID="ListView9" runat="server" DataKeyNames="id" DataSourceID="SqlDataSource5">
                 <AlternatingItemTemplate>
                     <tr style="background-color:#FFF8DC;">

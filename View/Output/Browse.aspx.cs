@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Output;
+using System.Data;
 
 public partial class View_Output_Browse : System.Web.UI.Page
 {
@@ -163,5 +164,12 @@ public partial class View_Output_Browse : System.Web.UI.Page
     protected void ResetFilter_Click(object sender, EventArgs e)
     {
         clearFilter();
+    }
+
+    protected void ExportTable_Click(object sender, EventArgs e)
+    {
+        DataView dv = (DataView)accountDataSource.Select(DataSourceSelectArguments.Empty);
+
+        xxxx.Text = ((int)dv.Table.Rows[2]["id"]).ToString();
     }
 }
