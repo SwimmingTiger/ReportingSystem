@@ -14,7 +14,17 @@ public partial class Input : System.Web.UI.Page
 
     protected void Page_Error(object sender, EventArgs e)
     {
-        Html.ErrorPage.Show();
+        Exception ex = Server.GetLastError().GetBaseException(); // 获取错误
+        string message = "";
+
+        if (ex.Message.IndexOf("DateTime") >= 0)
+        {
+            message = "请输入正确的日期。";
+        } else if (ex.Message.IndexOf("Cannot insert the value NULL") >= 0) {
+            message = "请将表单填写完整。";
+        }
+
+        Html.ErrorPage.Show(message);
     }
 
     protected void Menu1_MenuItemClick(object sender, MenuEventArgs e)

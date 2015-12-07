@@ -36,6 +36,7 @@
                 <asp:ControlParameter ControlID="operatorTypeLabel" Name="type" PropertyName="Text" Type="Int32" />
             </SelectParameters>
         </asp:SqlDataSource>
+        <div>
         <asp:DropDownList ID="ReportTableList" runat="server" DataSourceID="reportTableDataSource" DataTextField="Value" DataValueField="Key" AutoPostBack="True" OnSelectedIndexChanged="ReportTable_SelectedIndexChanged"></asp:DropDownList>
         
         <asp:DropDownList ID="yearSelector" runat="server" OnSelectedIndexChanged="yearSelector_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
@@ -47,15 +48,19 @@
         
         <asp:DropDownList ID="CityList" runat="server" AutoPostBack="True" DataSourceID="CityDataSource" DataTextField="name" DataValueField="id" OnDataBound="DropDownList_DataBound">
         </asp:DropDownList>
-        
+        <asp:Button ID="ResetFilter" runat="server" OnClick="ResetFilter_Click" Text="清除条件" />
+            <asp:Button ID="ExportTable" runat="server" OnClick="ExportTable_Click" Text="导出csv" />
+        </div>
+        <div>
         <asp:DropDownList ID="ProductList" runat="server" DataSourceID="ProductDataSource" DataTextField="name" DataValueField="id" AutoPostBack="True" OnDataBound="DropDownList_DataBound" OnDataBinding="DropDownList_DataBinding">
         </asp:DropDownList>
         
         <asp:DropDownList ID="ReportTypeList" runat="server" DataSourceID="reportTypeDataSource" DataTextField="name" DataValueField="id" AutoPostBack="True" OnDataBound="DropDownList_DataBound">
         </asp:DropDownList>
-        <asp:Button ID="ResetFilter" runat="server" OnClick="ResetFilter_Click" Text="清除条件" />
+        </div>
+
         <asp:SqlDataSource ID="accountDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" 
-            SelectCommand="SELECT * FROM [data_account] WHERE (@city = 0 OR [city] = @city) AND (@year = 0 OR year([month]) = @year) AND (@month = 0 OR month([month]) = @month) AND (@product = 0 OR [product] = @product) AND (@type = 0 OR [type] = @type) AND ([status] = @status)">
+            SelectCommand="SELECT * FROM [data_account] WHERE (@city = 0 OR [city] = @city) AND (@year = 0 OR year([month]) = @year) AND (@month = 0 OR month([month]) = @month) AND (@product = 0 OR [product] = @product) AND (@type = 0 OR [type] = @type) AND ([status] = @status) ORDER BY [month] ASC, [id] ASC">
             <SelectParameters>
                 <asp:ControlParameter ControlID="CityList" Name="city" PropertyName="SelectedValue" Type="Int32" />
                 <asp:ControlParameter ControlID="yearSelector" Type="Int32" Name="year" PropertyName="SelectedValue" />
@@ -67,7 +72,7 @@
         </asp:SqlDataSource>
 
         <asp:SqlDataSource ID="cardsaleDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" 
-            SelectCommand="SELECT *,[unit_price] * [number] as [total_price] FROM [data_cardsale] WHERE (@city = 0 OR [city] = @city) AND (@year = 0 OR year([date]) = @year) AND (@month = 0 OR month([date]) = @month) AND (@day = 0 OR day([date]) = @day) AND (@product = 0 OR [product] = @product) AND ([status] = @status)">
+            SelectCommand="SELECT *,[unit_price] * [number] as [total_price] FROM [data_cardsale] WHERE (@city = 0 OR [city] = @city) AND (@year = 0 OR year([date]) = @year) AND (@month = 0 OR month([date]) = @month) AND (@day = 0 OR day([date]) = @day) AND (@product = 0 OR [product] = @product) AND ([status] = @status) ORDER BY [date] ASC, [id] ASC">
             <SelectParameters>
                 <asp:ControlParameter ControlID="CityList" Name="city" PropertyName="SelectedValue" Type="Int32" />
                 <asp:ControlParameter ControlID="yearSelector" Type="Int32" Name="year" PropertyName="SelectedValue" />
@@ -79,7 +84,7 @@
         </asp:SqlDataSource>
 
         <asp:SqlDataSource ID="noticeDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" 
-            SelectCommand="SELECT * FROM [data_notice] WHERE (@city = 0 OR [city] = @city) AND (@year = 0 OR year([date]) = @year) AND (@month = 0 OR month([date]) = @month) AND (@day = 0 OR day([date]) = @day) AND (@product = 0 OR [product] = @product) AND (@type = 0 OR [type] = @type) AND ([status] = @status)">
+            SelectCommand="SELECT * FROM [data_notice] WHERE (@city = 0 OR [city] = @city) AND (@year = 0 OR year([date]) = @year) AND (@month = 0 OR month([date]) = @month) AND (@day = 0 OR day([date]) = @day) AND (@product = 0 OR [product] = @product) AND (@type = 0 OR [type] = @type) AND ([status] = @status) ORDER BY [date] ASC, [id] ASC">
             <SelectParameters>
                 <asp:ControlParameter ControlID="CityList" Name="city" PropertyName="SelectedValue" Type="Int32" />
                 <asp:ControlParameter ControlID="yearSelector" Type="Int32" Name="year" PropertyName="SelectedValue" />
@@ -92,7 +97,7 @@
         </asp:SqlDataSource>
 
         <asp:SqlDataSource ID="prestoreDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" 
-            SelectCommand="SELECT * FROM [data_prestore] WHERE (@city = 0 OR [city] = @city) AND (@year = 0 OR year([date]) = @year) AND (@month = 0 OR month([date]) = @month) AND (@day = 0 OR day([date]) = @day) AND (@product = 0 OR [product] = @product) AND (@type = 0 OR [type] = @type) AND ([status] = @status)">
+            SelectCommand="SELECT * FROM [data_prestore] WHERE (@city = 0 OR [city] = @city) AND (@year = 0 OR year([date]) = @year) AND (@month = 0 OR month([date]) = @month) AND (@day = 0 OR day([date]) = @day) AND (@product = 0 OR [product] = @product) AND (@type = 0 OR [type] = @type) AND ([status] = @status) ORDER BY [date] ASC, [id] ASC">
             <SelectParameters>
                 <asp:ControlParameter ControlID="CityList" Name="city" PropertyName="SelectedValue" Type="Int32" />
                 <asp:ControlParameter ControlID="yearSelector" Type="Int32" Name="year" PropertyName="SelectedValue" />
@@ -105,7 +110,7 @@
         </asp:SqlDataSource>
 		
         <asp:SqlDataSource ID="settlementDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" 
-            SelectCommand="SELECT * FROM [data_settlement] WHERE (@city = 0 OR [city] = @city) AND (@year = 0 OR year([month]) = @year) AND (@month = 0 OR month([month]) = @month) AND (@product = 0 OR [product] = @product) AND (@operator = 0 OR [operator] = @operator) AND (@type = 0 OR [type] = @type) AND ([status] = @status)">
+            SelectCommand="SELECT * FROM [data_settlement] WHERE (@city = 0 OR [city] = @city) AND (@year = 0 OR year([month]) = @year) AND (@month = 0 OR month([month]) = @month) AND (@product = 0 OR [product] = @product) AND (@operator = 0 OR [operator] = @operator) AND (@type = 0 OR [type] = @type) AND ([status] = @status) ORDER BY [month] ASC, [id] ASC">
             <SelectParameters>
                 <asp:ControlParameter ControlID="CityList" Name="city" PropertyName="SelectedValue" Type="Int32" />
                 <asp:ControlParameter ControlID="yearSelector" Type="Int32" Name="year" PropertyName="SelectedValue" />
@@ -152,7 +157,7 @@
                                 </asp:ListView>
                             </td>
                             <td>
-                                <asp:Label ID="Label3" runat="server" Text='<%# Bind("type") %>'></asp:Label>
+                                <asp:Label ID="Label3" runat="server" Text='<%# Bind("type") %>' Visible="False"></asp:Label>
                                 <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [name] FROM [report_param] WHERE ([id] = @id)">
                                     <SelectParameters>
                                         <asp:ControlParameter ControlID="Label3" Name="id" PropertyName="Text" Type="Int32" />
@@ -208,7 +213,7 @@
                                 </asp:ListView>
                             </td>
                             <td>
-                                <asp:Label ID="Label3" runat="server" Text='<%# Bind("type") %>'></asp:Label>
+                                <asp:Label ID="Label3" runat="server" Text='<%# Bind("type") %>' Visible="False"></asp:Label>
                                 <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [name] FROM [report_param] WHERE ([id] = @id)">
                                     <SelectParameters>
                                         <asp:ControlParameter ControlID="Label3" Name="id" PropertyName="Text" Type="Int32" />
@@ -231,11 +236,11 @@
                                 <td runat="server">
                                     <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;font-family: Verdana, Arial, Helvetica, sans-serif;">
                                         <tr runat="server" style="background-color: #E0FFFF;color: #333333;">
-                                            <th runat="server">录入月份</th>
+                                            <th runat="server">出账月份</th>
                                             <th runat="server">地市</th>
                                             <th runat="server">产品</th>
                                             <th runat="server">出账类型</th>
-                                            <th runat="server">录入金额</th>
+                                            <th runat="server">出账金额</th>
                                         </tr>
                                         <tr id="itemPlaceholder" runat="server">
                                         </tr>
@@ -370,7 +375,7 @@
                         <td runat="server">
                             <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;font-family: Verdana, Arial, Helvetica, sans-serif;">
                                 <tr runat="server" style="background-color: #DCDCDC; color: #000000;">
-                                    <th runat="server">录入日期</th>
+                                    <th runat="server">销售日期</th>
                                     <th runat="server">地市</th>
                                     <th runat="server">产品</th>
                                     <th runat="server">卡销售数量</th>
@@ -518,7 +523,7 @@
                                         <th runat="server">营业收款日期</th>
                                         <th runat="server">地市</th>
                                         <th runat="server">产品</th>
-                                        <th runat="server">通知单收入</th>
+                                        <th runat="server">通知单类型</th>
                                         <th runat="server">营业收入金额</th>
                                     </tr>
                                     <tr id="itemPlaceholder" runat="server">
@@ -838,7 +843,7 @@
                             <td runat="server">
                                 <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;font-family: Verdana, Arial, Helvetica, sans-serif;">
                                     <tr runat="server" style="background-color: #E0FFFF;color: #333333;">
-                                        <th runat="server">录入月份</th>
+                                        <th runat="server">结算月份</th>
                                         <th runat="server">地市</th>
                                         <th runat="server">产品</th>
                                         <th runat="server">结算运营商</th>

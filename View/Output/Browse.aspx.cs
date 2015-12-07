@@ -168,8 +168,32 @@ public partial class View_Output_Browse : System.Web.UI.Page
 
     protected void ExportTable_Click(object sender, EventArgs e)
     {
-        DataView dv = (DataView)accountDataSource.Select(DataSourceSelectArguments.Empty);
+        string tableName = ReportTableList.SelectedValue;
+        SqlDataSource dataSource;
 
-        xxxx.Text = ((int)dv.Table.Rows[2]["id"]).ToString();
+        switch (tableName) {
+            case "data_account":
+                dataSource = accountDataSource;
+                break;
+            case "data_cardsale":
+                dataSource = cardsaleDataSource;
+                break;
+            case "data_notice":
+                dataSource = noticeDataSource;
+                break;
+            case "data_prestore":
+                dataSource = prestoreDataSource;
+                break;
+            case "data_settlement":
+                dataSource = settlementDataSource;
+                break;
+            default:
+                dataSource = accountDataSource;
+                break;
+        }
+
+        DataView dv = (DataView)dataSource.Select(DataSourceSelectArguments.Empty);
+        ExportCSV csv = new ExportCSV(dv.Table, tableName);
+        csv.run();
     }
 }

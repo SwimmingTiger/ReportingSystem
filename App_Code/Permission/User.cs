@@ -207,7 +207,7 @@ namespace Permission
             db.Close();
 
             if (HashPassword(password) != hashedPassword) {
-                throw new UserException("密码错误"+ HashPassword(password) + ", " + hashedPassword);
+                throw new UserException("密码错误");
             }
 
             HttpContext.Current.Session["UserId"] = id;

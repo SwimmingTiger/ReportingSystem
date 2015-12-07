@@ -273,11 +273,11 @@
                                     <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;font-family: Verdana, Arial, Helvetica, sans-serif;">
                                         <tr runat="server" style="background-color: #E0FFFF;color: #333333;">
                                             <th runat="server">ID</th>
-                                            <th runat="server">录入月份</th>
+                                            <th runat="server">出账月份</th>
                                             <th runat="server">地市</th>
                                             <th runat="server">产品</th>
                                             <th runat="server">出账类型</th>
-                                            <th runat="server">录入金额</th>
+                                            <th runat="server">出账金额</th>
                                             <th runat="server">稽核状态</th>
                                             <th runat="server">操作</th>
                                         </tr>
@@ -544,7 +544,7 @@
                             <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;font-family: Verdana, Arial, Helvetica, sans-serif;">
                                 <tr runat="server" style="background-color: #DCDCDC; color: #000000;">
                                     <th runat="server">ID</th>
-                                    <th runat="server">录入日期</th>
+                                    <th runat="server">销售日期</th>
                                     <th runat="server">地市</th>
                                     <th runat="server">产品</th>
                                     <th runat="server">卡销售数量</th>
@@ -883,7 +883,7 @@
                                 <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;font-family: Verdana, Arial, Helvetica, sans-serif;">
                                     <tr runat="server" style="background-color: #E0FFFF;color: #333333;">
                                         <th runat="server">ID</th>
-                                        <th runat="server">录入月份</th>
+                                        <th runat="server">结算月份</th>
                                         <th runat="server">地市</th>
                                         <th runat="server">产品</th>
                                         <th runat="server">结算运营商</th>
@@ -1453,7 +1453,7 @@
                                         <th runat="server">营业收款日期</th>
                                         <th runat="server">地市</th>
                                         <th runat="server">产品</th>
-                                        <th runat="server">通知单收入</th>
+                                        <th runat="server">通知单类型</th>
                                         <th runat="server">营业收入金额</th>
                                         <th runat="server">稽核状态</th>
                                         <th runat="server">操作</th>
