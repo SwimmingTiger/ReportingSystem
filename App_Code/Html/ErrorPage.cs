@@ -12,10 +12,9 @@ namespace Html
     {
         public static void Show(string message = "")
         {
-            Exception ex = HttpContext.Current.Server.GetLastError().GetBaseException(); // 获取错误
-
             if (message == "")
             {
+                Exception ex = HttpContext.Current.Server.GetLastError().GetBaseException(); // 获取错误
                 message = "<p>未知错误：" + ex.Message + "</p>";
             }
 
