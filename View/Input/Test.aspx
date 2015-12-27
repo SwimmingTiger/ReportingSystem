@@ -9,165 +9,243 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-    
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT * FROM [data_account]"></asp:SqlDataSource>
-    
-    </div>
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="SqlDataSource1">
             <Columns>
                 <asp:BoundField DataField="id" HeaderText="id" InsertVisible="False" ReadOnly="True" SortExpression="id" />
                 <asp:BoundField DataField="month" HeaderText="month" SortExpression="month" />
                 <asp:BoundField DataField="city" HeaderText="city" SortExpression="city" />
-                <asp:BoundField DataField="product" HeaderText="product" SortExpression="product" />
-                <asp:TemplateField HeaderText="type" SortExpression="type">
+                <asp:TemplateField HeaderText="product" SortExpression="product">
                     <EditItemTemplate>
-                        <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("type") %>'></asp:TextBox>
+                        <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("product") %>'></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="Label1" runat="server" Text='<%# Bind("type") %>'></asp:Label>
+                        <asp:Label ID="Label1" runat="server" Text='<%# Bind("product") %>' Visible="False"></asp:Label>
                         <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [name] FROM [report_param] WHERE ([id] = @id)">
                             <SelectParameters>
                                 <asp:ControlParameter ControlID="Label1" Name="id" PropertyName="Text" Type="Int32" />
                             </SelectParameters>
                         </asp:SqlDataSource>
-                        <asp:ListView ID="ListView1" runat="server" DataSourceID="SqlDataSource2">
-                        
+                        <asp:ListView ID="ListView2" runat="server" DataSourceID="SqlDataSource2">
                             <ItemTemplate>
-                                        <asp:Label ID="nameLabel" runat="server" Text='<%# Eval("name") %>' />
+                                           <asp:Label ID="nameLabel" runat="server" Text='<%# Eval("name") %>' />
                             </ItemTemplate>
-             
+                            
+                            
                         </asp:ListView>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:BoundField DataField="money" HeaderText="money" SortExpression="money" />
-                <asp:BoundField DataField="status" HeaderText="status" SortExpression="status" />
-            </Columns>
-        </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT * FROM [data_settlement]"></asp:SqlDataSource>
-        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="SqlDataSource3">
-            <Columns>
-                <asp:BoundField DataField="id" HeaderText="id" InsertVisible="False" ReadOnly="True" SortExpression="id" />
-                <asp:BoundField DataField="month" HeaderText="month" SortExpression="month" />
-                <asp:BoundField DataField="city" HeaderText="city" SortExpression="city" />
-                <asp:BoundField DataField="product" HeaderText="product" SortExpression="product" />
-                <asp:TemplateField HeaderText="operator" SortExpression="operator">
-                    <EditItemTemplate>
-                        <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("operator") %>'></asp:TextBox>
-                    </EditItemTemplate>
-                    <ItemTemplate>
-                        <asp:Label ID="Label1" runat="server" Text='<%# Bind("operator") %>'></asp:Label>
-                        <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [name] FROM [report_param] WHERE ([id] = @id)">
-                            <SelectParameters>
-                                <asp:ControlParameter ControlID="Label1" Name="id" PropertyName="Text" Type="Int32" />
-                            </SelectParameters>
-                        </asp:SqlDataSource>
-                        <asp:ListView ID="ListView2" runat="server" DataSourceID="SqlDataSource4">
-
-                            <ItemTemplate>
-
-                                        <asp:Label ID="nameLabel" runat="server" Text='<%# Eval("name") %>' />
-                            </ItemTemplate>
-                         
-                        </asp:ListView>
-                        <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [name], [id] FROM [report_param] WHERE ([type] = @type)">
-                            <SelectParameters>
-                                <asp:Parameter DefaultValue="6" Name="type" Type="Int32" />
-                            </SelectParameters>
-                        </asp:SqlDataSource>
-                        <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource5" DataTextField="name" DataValueField="id">
-                        </asp:DropDownList>
-                        <br />
-                        <asp:Label ID="Label2" runat="server" Text='<%# Eval("type") %>'></asp:Label>
-                        <asp:SqlDataSource ID="SqlDataSource6" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [name] FROM [report_param] WHERE ([id] = @id)">
-                            <SelectParameters>
-                                <asp:ControlParameter ControlID="Label2" Name="id" PropertyName="Text" Type="Int32" />
-                            </SelectParameters>
-                        </asp:SqlDataSource>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:BoundField DataField="type" HeaderText="type" SortExpression="type" />
                 <asp:BoundField DataField="money" HeaderText="money" SortExpression="money" />
-                <asp:BoundField DataField="status" HeaderText="status" SortExpression="status" />
-            </Columns>
-        </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource7" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT * FROM [data_prestore]"></asp:SqlDataSource>
-        <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="SqlDataSource7">
-            <Columns>
-                <asp:BoundField DataField="id" HeaderText="id" InsertVisible="False" ReadOnly="True" SortExpression="id" />
-                <asp:BoundField DataField="date" HeaderText="date" SortExpression="date" />
-                <asp:BoundField DataField="city" HeaderText="city" SortExpression="city" />
-                <asp:BoundField DataField="product" HeaderText="product" SortExpression="product" />
-                <asp:TemplateField HeaderText="type" SortExpression="type">
+                <asp:TemplateField HeaderText="status" SortExpression="status">
                     <EditItemTemplate>
-                        <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("type") %>'></asp:TextBox>
+                        <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("status") %>'></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="Label1" runat="server" Text='<%# Bind("type") %>'></asp:Label>
-                        <asp:SqlDataSource ID="SqlDataSource8" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [name] FROM [report_param] WHERE ([id] = @id)">
-                            <SelectParameters>
-                                <asp:ControlParameter ControlID="Label1" Name="id" PropertyName="Text" Type="Int32" />
-                            </SelectParameters>
-                        </asp:SqlDataSource>
-                        <asp:ListView ID="ListView3" runat="server" DataSourceID="SqlDataSource8">
+                        <asp:RadioButtonList ID="RadioButtonList1" runat="server"  AppendDataBoundItems="true" AutoPostBack="True"
+                                     SelectedValue='<%# Bind("status") %>' OnSelectedIndexChanged="OnSelectedIndexChanged_data_cardsale">
 
-                            <ItemTemplate>
+                            <asp:ListItem Value="0">正常</asp:ListItem>
+                            <asp:ListItem Value="2">错误</asp:ListItem>
+                            <asp:ListItem Value="1">未稽核</asp:ListItem>
 
-                                        <asp:Label ID="nameLabel" runat="server" Text='<%# Eval("name") %>' />
-                            </ItemTemplate>
-
-                        </asp:ListView>
-                        <asp:SqlDataSource ID="SqlDataSource12" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [id], [name] FROM [report_param] WHERE ([type] = @type)">
-                            <SelectParameters>
-                                <asp:Parameter DefaultValue="3" Name="type" Type="Int32" />
-                            </SelectParameters>
-                        </asp:SqlDataSource>
-                        <asp:DropDownList ID="DropDownList3" runat="server" DataSourceID="SqlDataSource12" DataTextField="name" DataValueField="id">
-                        </asp:DropDownList>
+                        </asp:RadioButtonList>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:BoundField DataField="money" HeaderText="money" SortExpression="money" />
-                <asp:BoundField DataField="status" HeaderText="status" SortExpression="status" />
+            
             </Columns>
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource9" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT * FROM [data_notice]"></asp:SqlDataSource>
-        <asp:GridView ID="GridView4" runat="server" AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="SqlDataSource9">
-            <Columns>
-                <asp:BoundField DataField="id" HeaderText="id" InsertVisible="False" ReadOnly="True" SortExpression="id" />
-                <asp:BoundField DataField="date" HeaderText="date" SortExpression="date" />
-                <asp:BoundField DataField="city" HeaderText="city" SortExpression="city" />
-                <asp:BoundField DataField="product" HeaderText="product" SortExpression="product" />
-                <asp:TemplateField HeaderText="type" SortExpression="type">
-                    <EditItemTemplate>
-                        <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("type") %>'></asp:TextBox>
-                    </EditItemTemplate>
-                    <ItemTemplate>
-                        <asp:Label ID="Label1" runat="server" Text='<%# Bind("type") %>'></asp:Label>
-                        <asp:SqlDataSource ID="SqlDataSource10" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [name] FROM [report_param] WHERE ([id] = @id)">
-                            <SelectParameters>
-                                <asp:ControlParameter ControlID="Label1" Name="id" PropertyName="Text" Type="Int32" />
-                            </SelectParameters>
-                        </asp:SqlDataSource>
-                        <asp:ListView ID="ListView4" runat="server" DataSourceID="SqlDataSource10">
 
-                            <ItemTemplate>
-                                        <asp:Label ID="nameLabel" runat="server" Text='<%# Eval("name") %>' />
-                            </ItemTemplate>
-                
-                        </asp:ListView>
-                        <asp:SqlDataSource ID="SqlDataSource11" runat="server" ConnectionString="<%$ ConnectionStrings:database %>" SelectCommand="SELECT [name], [id] FROM [report_param] WHERE ([type] = @type)">
-                            <SelectParameters>
-                                <asp:Parameter DefaultValue="4" Name="type" Type="Int32" />
-                            </SelectParameters>
-                        </asp:SqlDataSource>
-                        <asp:DropDownList ID="DropDownList2" runat="server" DataSourceID="SqlDataSource11" DataTextField="name" DataValueField="id">
-                        </asp:DropDownList>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:BoundField DataField="money" HeaderText="money" SortExpression="money" />
-                <asp:BoundField DataField="status" HeaderText="status" SortExpression="status" />
-            </Columns>
-        </asp:GridView>
+        <asp:ListView ID="ListView1" runat="server" DataKeyNames="id" DataSourceID="SqlDataSource1">
+            <AlternatingItemTemplate>
+                <tr style="background-color: #FFFFFF;color: #284775;">
+                    <td>
+                        <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="monthLabel" runat="server" Text='<%# Eval("month") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="cityLabel" runat="server" Text='<%# Eval("city") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="productLabel" runat="server" Text='<%# Eval("product") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="typeLabel" runat="server" Text='<%# Eval("type") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="moneyLabel" runat="server" Text='<%# Eval("money") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' />
+                        <asp:RadioButtonList ID="RadioButtonList1" runat="server"  AppendDataBoundItems="true" AutoPostBack="True"
+                                     SelectedValue='<%# Bind("status") %>' OnSelectedIndexChanged="OnSelectedIndexChanged_data_cardsale">
+
+                            <asp:ListItem Value="0">正常</asp:ListItem>
+                            <asp:ListItem Value="2">错误</asp:ListItem>
+                            <asp:ListItem Value="1">未稽核</asp:ListItem>
+
+                        </asp:RadioButtonList>
+                    </td>
+                </tr>
+            </AlternatingItemTemplate>
+            <EditItemTemplate>
+                <tr style="background-color: #999999;">
+                    <td>
+                        <asp:Button ID="UpdateButton" runat="server" CommandName="Update" Text="更新" />
+                        <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="取消" />
+                    </td>
+                    <td>
+                        <asp:Label ID="idLabel1" runat="server" Text='<%# Eval("id") %>' />
+                    </td>
+                    <td>
+                        <asp:TextBox ID="monthTextBox" runat="server" Text='<%# Bind("month") %>' />
+                    </td>
+                    <td>
+                        <asp:TextBox ID="cityTextBox" runat="server" Text='<%# Bind("city") %>' />
+                    </td>
+                    <td>
+                        <asp:TextBox ID="productTextBox" runat="server" Text='<%# Bind("product") %>' />
+                    </td>
+                    <td>
+                        <asp:TextBox ID="typeTextBox" runat="server" Text='<%# Bind("type") %>' />
+                    </td>
+                    <td>
+                        <asp:TextBox ID="moneyTextBox" runat="server" Text='<%# Bind("money") %>' />
+                    </td>
+                    <td>
+                        <asp:TextBox ID="statusTextBox" runat="server" Text='<%# Bind("status") %>' />
+                    </td>
+                </tr>
+            </EditItemTemplate>
+            <EmptyDataTemplate>
+                <table runat="server" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;">
+                    <tr>
+                        <td>未返回数据。</td>
+                    </tr>
+                </table>
+            </EmptyDataTemplate>
+            <InsertItemTemplate>
+                <tr style="">
+                    <td>
+                        <asp:Button ID="InsertButton" runat="server" CommandName="Insert" Text="插入" />
+                        <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="清除" />
+                    </td>
+                    <td>&nbsp;</td>
+                    <td>
+                        <asp:TextBox ID="monthTextBox" runat="server" Text='<%# Bind("month") %>' />
+                    </td>
+                    <td>
+                        <asp:TextBox ID="cityTextBox" runat="server" Text='<%# Bind("city") %>' />
+                    </td>
+                    <td>
+                        <asp:TextBox ID="productTextBox" runat="server" Text='<%# Bind("product") %>' />
+                    </td>
+                    <td>
+                        <asp:TextBox ID="typeTextBox" runat="server" Text='<%# Bind("type") %>' />
+                    </td>
+                    <td>
+                        <asp:TextBox ID="moneyTextBox" runat="server" Text='<%# Bind("money") %>' />
+                    </td>
+                    <td>
+                        <asp:TextBox ID="statusTextBox" runat="server" Text='<%# Bind("status") %>' />
+                    
+                    </td>
+                </tr>
+            </InsertItemTemplate>
+            <ItemTemplate>
+                <tr style="background-color: #E0FFFF;color: #333333;">
+                    <td>
+                        <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="monthLabel" runat="server" Text='<%# Eval("month") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="cityLabel" runat="server" Text='<%# Eval("city") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="productLabel" runat="server" Text='<%# Eval("product") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="typeLabel" runat="server" Text='<%# Eval("type") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="moneyLabel" runat="server" Text='<%# Eval("money") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' />
+                        <asp:RadioButtonList ID="RadioButtonList1" runat="server"  AppendDataBoundItems="true" AutoPostBack="True"
+                                     SelectedValue='<%# Bind("status") %>' OnSelectedIndexChanged="OnSelectedIndexChanged_data_cardsale">
+
+                            <asp:ListItem Value="0">正常</asp:ListItem>
+                            <asp:ListItem Value="2">错误</asp:ListItem>
+                            <asp:ListItem Value="1">未稽核</asp:ListItem>
+
+                        </asp:RadioButtonList>
+                    </td>
+                </tr>
+            </ItemTemplate>
+            <LayoutTemplate>
+                <table runat="server">
+                    <tr runat="server">
+                        <td runat="server">
+                            <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;font-family: Verdana, Arial, Helvetica, sans-serif;">
+                                <tr runat="server" style="background-color: #E0FFFF;color: #333333;">
+                                    <th runat="server">id</th>
+                                    <th runat="server">month</th>
+                                    <th runat="server">city</th>
+                                    <th runat="server">product</th>
+                                    <th runat="server">type</th>
+                                    <th runat="server">money</th>
+                                    <th runat="server">status</th>
+                                </tr>
+                                <tr id="itemPlaceholder" runat="server">
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr runat="server">
+                        <td runat="server" style="text-align: center;background-color: #5D7B9D;font-family: Verdana, Arial, Helvetica, sans-serif;color: #FFFFFF">
+                            <asp:DataPager ID="DataPager1" runat="server">
+                                <Fields>
+                                    <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
+                                    <asp:NumericPagerField />
+                                    <asp:NextPreviousPagerField ButtonType="Button" ShowLastPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
+                                </Fields>
+                            </asp:DataPager>
+                        </td>
+                    </tr>
+                </table>
+            </LayoutTemplate>
+            <SelectedItemTemplate>
+                <tr style="background-color: #E2DED6;font-weight: bold;color: #333333;">
+                    <td>
+                        <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="monthLabel" runat="server" Text='<%# Eval("month") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="cityLabel" runat="server" Text='<%# Eval("city") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="productLabel" runat="server" Text='<%# Eval("product") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="typeLabel" runat="server" Text='<%# Eval("type") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="moneyLabel" runat="server" Text='<%# Eval("money") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="statusLabel" runat="server" Text='<%# Eval("status") %>' />
+                    </td>
+                </tr>
+            </SelectedItemTemplate>
+        </asp:ListView>
+
     </form>
 </body>
 </html>
